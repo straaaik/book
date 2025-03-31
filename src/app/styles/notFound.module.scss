@@ -1,0 +1,19 @@
+.notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.description {
+    display: flex;
+    font-size: var(--font-size-xl);
+    margin-bottom: 30px;
+}
+
+.text::before {
+    content: '|';
+    margin: 0 25px;
+}

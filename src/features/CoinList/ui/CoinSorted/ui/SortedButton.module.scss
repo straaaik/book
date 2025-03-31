@@ -1,0 +1,36 @@
+.SortedButton {
+    position: relative;
+    transition: 0.4s;
+}
+
+.SortedButton:hover {
+    background: var(--bg-secondary-color-opacity);
+}
+
+.secondClick::before {
+    left: 5px;
+    top: 12px;
+    position: absolute;
+    align-items: center;
+    margin-left: 5px;
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid var(--primary-color);
+}
+
+.threeClick::before {
+    left: 5px;
+    top: 12px;
+    position: absolute;
+    align-items: center;
+    margin-left: 5px;
+    content: ' ';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid var(--primary-color);
+}

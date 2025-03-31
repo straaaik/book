@@ -1,0 +1,16 @@
+[data-theme='light'] {
+    --bg-color: rgb(242, 242, 242);
+    --bg-secondary-color: rgb(204, 204, 204);
+    --bg-secondary-color-opacity: rgba(204, 204, 204, 0.2);
+    --primary-color: rgb(89, 89, 89);
+    --secondary-color: rgb(127, 127, 127);
+    --hover-color: rgb(165, 165, 165);
+    --warn-color: rgb(235 94 40);
+
+    // Инвертированные цвета
+
+    --inverted-bg-color: rgb(37 36 34);
+    --inverted-secondary-bg-color: rgb(64 61 57);
+    --inverted-primary-color: rgb(255 252 242);
+    --inverted-secondary-color: rgb(204 197 185);
+}

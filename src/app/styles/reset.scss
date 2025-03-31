@@ -1,0 +1,60 @@
+/* Сброс box-sizing для всех элементов */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Убираем стандартные стили у списков */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Убираем стандартное оформление ссылок */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Убираем обводку у кнопок в некоторых браузерах */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+/* Делаем кнопки кликабельными */
+button {
+    cursor: pointer;
+}
+
+/* Обнуляем стандартные отступы у заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* Настройки для body */
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+}

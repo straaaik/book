@@ -1,0 +1,38 @@
+.Button {
+    padding: 5px 25px;
+    border-radius: 15px;
+}
+
+.button_inverted {
+    background: var(--inverted-bg-color);
+    color: var(--inverted-primary-color);
+}
+
+.button_background {
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+.button_clear {
+    color: var(--primary-color);
+}
+
+.button_danger {
+    background: var(--warn-color);
+    color: var(--primary-color);
+}
+
+.size_m {
+    padding: 5px 25px;
+    font-size: var(--font-size-m);
+}
+
+.size_l {
+    padding: 10px 50px;
+    font-size: var(--font-size-l);
+}
+
+.size_xl {
+    padding: 20px 100px;
+    font-size: var(--font-size-xl);
+}
