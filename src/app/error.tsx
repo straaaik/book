@@ -4,7 +4,12 @@ import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button';
 import { useEffect } from 'react';
 import cls from './styles/error.module.scss';
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+interface ErrorProps {
+    error: Error & { digest?: string };
+    reset: () => void;
+}
+
+export default function Error({ error, reset }: ErrorProps) {
     useEffect(() => {
         console.error(error);
     }, [error]);
