@@ -2,14 +2,14 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './CoinList.module.scss';
-import { useFetching } from '@/shared/hooks/useFetching';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CoinInfo } from './ui/CoinInfo/CoinInfo';
 import { CoinData } from '@/shared/types/types';
 import { CoinSorted } from './ui/CoinSorted/CoinSorted';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 import { MyError } from '@/app/(pages)/_error/MyError';
-import { getCoinList } from '@/shared/api/request';
+import { fetcher } from '@/shared/api/request';
+import useSWR from 'swr';
 
 interface CoinListProps {
     className?: string;
@@ -19,17 +19,16 @@ export const CoinList = ({ className }: CoinListProps) => {
     const [coinList, setCoinList] = useState<CoinData[]>([]);
     const [page] = useState<number>(1);
     const [limit] = useState<number>(100);
+    const { data, error, isLoading } = useSWR<CoinData[]>(
+        [
+            'https://api.coingecko.com/api/v3/coins/markets',
+            { params: { vs_currency: 'usd', per_page: limit, page: page } },
+        ],
+        ([url, params]) => fetcher(url, params),
+        { refreshInterval: 2 * 60 * 1000 }
+    );
 
-    const [data, isLoading, error] = useFetching<CoinData[]>(() => getCoinList(limit, page));
-    console.log(error);
-
-    useEffect(() => {
-        if (!isLoading && data != null) {
-            setCoinList(data);
-        }
-    }, [data, isLoading]);
-
-    if (isLoading) {
+    if (isLoading || !data) {
         return <LoadingSpinner />;
     }
 
@@ -38,7 +37,7 @@ export const CoinList = ({ className }: CoinListProps) => {
     return (
         <div className={classNames(cls.CoinList, {}, [className])}>
             <CoinSorted data={coinList} set={setCoinList} />
-            {coinList.map((coin) => (
+            {data.map((coin) => (
                 <CoinInfo
                     id={coin.id}
                     key={coin.market_cap_rank}

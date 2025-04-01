@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import cls from './CoinInfo.module.scss';
 import Link from 'next/link';
+import { Text } from '@/shared/ui/animation/text/Text';
 
 interface CoinInfoProps {
     rank?: number;
@@ -34,10 +35,9 @@ export const CoinInfo: FC<CoinInfoProps> = (props) => {
                 <div className={cls.name}>{name}</div>
                 {symbol && <div className={cls.symbol}>{symbol.toUpperCase()}</div>}
             </div>
-
-            <div className={cls.current_price}>${price}</div>
-            <div className={cls.price_change_percentage_24h}>{change24h} %</div>
-            <div className={cls.market_cap}>{marketCap}</div>
+            <Text className={cls.current_price} text={price} />
+            <Text className={cls.price_change_percentage_24h} text={change24h} />
+            <Text className={cls.market_cap} text={marketCap} />
         </Link>
     );
 };
