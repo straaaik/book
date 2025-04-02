@@ -1,63 +1,60 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './SortedButton.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { CoinData } from '@/shared/types/types';
 
 interface SortedButtonProps {
     className?: string;
     children?: string;
-    data: CoinData[];
-    set: Dispatch<SetStateAction<CoinData[]>>;
-    item: keyof CoinData;
 }
 
-export const SortedButton = ({ className, children, data, set, item }: SortedButtonProps) => {
+export const SortedButton = ({ className, children }: SortedButtonProps) => {
     const [status, setStatus] = useState<number>(0);
-    const [initialData, setInitialData] = useState<CoinData[]>(data);
+    // const [initialData, setInitialData] = useState<CoinData[]>(data);
 
     const sorted = (data: CoinData[], item: keyof CoinData) => {
-        if (status == 0) {
-            if (item == 'name') {
-                set(
-                    data.toSorted((a, b) => {
-                        if (a[item].toUpperCase() > b[item].toUpperCase()) return 1;
-                        if (a[item].toUpperCase() < b[item].toUpperCase()) return -1;
-                        return 0;
-                    })
-                );
-            } else {
-                set(data.toSorted((a, b) => Number(b[item]) - Number(a[item])));
-            }
-        }
-        if (status == 1) {
-            if (item == 'name') {
-                set(
-                    data.toSorted((a, b) => {
-                        if (a[item].toUpperCase() < b[item].toUpperCase()) return 1;
-                        if (a[item].toUpperCase() > b[item].toUpperCase()) return -1;
-                        return 0;
-                    })
-                );
-            } else {
-                set(data.toSorted((a, b) => Number(a[item]) - Number(b[item])));
-            }
-        }
-        if (status == 2) {
-            set(initialData);
-        }
+        // if (status == 0) {
+        //     if (item == 'name') {
+        //         set(
+        //             data.toSorted((a, b) => {
+        //                 if (a[item].toUpperCase() > b[item].toUpperCase()) return 1;
+        //                 if (a[item].toUpperCase() < b[item].toUpperCase()) return -1;
+        //                 return 0;
+        //             })
+        //         );
+        //     } else {
+        //         set(data.toSorted((a, b) => Number(b[item]) - Number(a[item])));
+        //     }
+        // }
+        // if (status == 1) {
+        //     if (item == 'name') {
+        //         set(
+        //             data.toSorted((a, b) => {
+        //                 if (a[item].toUpperCase() < b[item].toUpperCase()) return 1;
+        //                 if (a[item].toUpperCase() > b[item].toUpperCase()) return -1;
+        //                 return 0;
+        //             })
+        //         );
+        //     } else {
+        //         set(data.toSorted((a, b) => Number(a[item]) - Number(b[item])));
+        //     }
+        // }
+        // if (status == 2) {
+        //     set(initialData);
+        // }
     };
 
     const onButtonClick = (data: CoinData[], item: keyof CoinData) => {
-        if (status == 0) {
-            setInitialData(data);
-        }
-        if (status !== 2) {
-            setStatus((prev) => prev + 1);
-        } else {
-            setStatus(0);
-        }
-        sorted(data, item);
+        // if (status == 0) {
+        //     setInitialData(data);
+        // }
+        // if (status !== 2) {
+        //     setStatus((prev) => prev + 1);
+        // } else {
+        //     setStatus(0);
+        // }
+        // sorted(data, item);
     };
     const mods = {
         [cls.firstClick]: status === 0,

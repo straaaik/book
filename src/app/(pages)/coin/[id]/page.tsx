@@ -10,11 +10,16 @@ import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 import { MyError } from '../../_error/MyError';
 import { fetcher } from '@/shared/api/request';
 import useSWR from 'swr';
+import { Text } from '@/shared/ui/animation/text/Text';
+import { InfoBox } from '@/shared/ui/infoBox/infoBox';
+import { RELOAD_TIME } from '@/shared/constant/constant';
 
 export default function Coin() {
     const route = useParams();
     const id = route.id;
-    const { data, error, isLoading } = useSWR<Coin>(`https://api.coingecko.com/api/v3/coins/${id}`, fetcher);
+    const { data, error, isLoading } = useSWR<Coin>(`coins/${id}`, fetcher, {
+        refreshInterval: RELOAD_TIME,
+    });
 
     if (isLoading || !data) return <LoadingSpinner />;
     if (error) return <MyError error={error} />;
@@ -32,22 +37,18 @@ export default function Coin() {
                 <div className={cls.name}>{data.name}</div>
                 <div className={cls.symbol}>{data.symbol}</div>
             </div>
-            <div className={cls.price}>${data.market_data?.current_price.usd}</div>
-            <div className={cls.statistics}>
-                <div>
-                    <span>Marker Cap</span> ${marketCap?.toLocaleString('en-EN')}
+            <Text className={cls.price} text={data.market_data?.current_price.usd} />
+            <div className={cls.statistics_container}>
+                <div className={cls.statistics}>
+                    <InfoBox data={['Marker Cap', marketCap?.toLocaleString('en-EN')]} />
+                    <InfoBox data={['Fully Diluted Valuation', fullyDilutedValuation?.toLocaleString('en-EN')]} />
+                    <InfoBox data={['Circulating Supply', circulatingSupply?.toLocaleString('en-EN')]} />
                 </div>
-                <div>
-                    <span>FDV</span> ${fullyDilutedValuation?.toLocaleString('en-EN')}
-                </div>
-                <div>
-                    <span>Circulating Supply</span> ${circulatingSupply?.toLocaleString('en-EN')}
-                </div>
-                <div>
-                    <span>Total Supply</span> ${totalSupply?.toLocaleString('en-EN')}
-                </div>
-                <div>
-                    <span>Max Supply</span> ${maxSupply?.toLocaleString('en-EN') || '∞'}
+                <div className={cls.supply}>
+                    <InfoBox
+                        data={['Total Supply', totalSupply?.toLocaleString('en-EN')]}
+                        secondData={['Max Supply', maxSupply?.toLocaleString('en-EN') || '∞']}
+                    />
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import cls from './CoinInfo.module.scss';
 import Link from 'next/link';
 import { Text } from '@/shared/ui/animation/text/Text';
+import { div } from 'motion/react-client';
 
 interface CoinInfoProps {
     rank?: number;
@@ -28,16 +29,19 @@ export const CoinInfo: FC<CoinInfoProps> = (props) => {
         id,
     } = props;
     return (
-        <Link href={`/coin/${id}`} className={cls.coin}>
+        <div className={cls.coin}>
             <div className={cls.market_cap_rank}>{rank}</div>
             <div className={cls.name_container}>
                 {image && <Image src={image} alt={image} width={30} height={30} />}
-                <div className={cls.name}>{name}</div>
-                {symbol && <div className={cls.symbol}>{symbol.toUpperCase()}</div>}
+                <Link href={`/coin/${id}`} className={cls.link}>
+                    <div className={cls.name}>{name}</div>
+                    {symbol && <div className={cls.symbol}>{symbol.toUpperCase()}</div>}
+                </Link>
             </div>
+
             <Text className={cls.current_price} text={price} />
             <Text className={cls.price_change_percentage_24h} text={change24h} />
             <Text className={cls.market_cap} text={marketCap} />
-        </Link>
+        </div>
     );
 };

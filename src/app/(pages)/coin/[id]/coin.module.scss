@@ -7,7 +7,7 @@
     .coin {
         display: flex;
         align-items: center;
-        margin-top: 1%;
+        margin-top: 2%;
         margin-left: 20px;
         font-size: 48px;
         font-weight: 800;
@@ -27,18 +27,15 @@
     .price {
         font-size: 48px;
         font-weight: 800;
-        color: rgba(4, 94, 23, 0.833);
     }
 
     .statistics {
         display: flex;
         font-size: 24px;
         margin-top: 2%;
-        div {
-            padding: 10px;
-            border: 1px solid black;
-        }
-        div span {
-        }
+    }
+
+    .supply {
+        font-size: 24px;
     }
 }

@@ -1,0 +1,32 @@
+.infoBox {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    background: var(--bg-secondary-color);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    min-height: 100px;
+    min-width: 250px;
+    white-space: nowrap;
+}
+
+.description {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.firstBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secondBlock {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

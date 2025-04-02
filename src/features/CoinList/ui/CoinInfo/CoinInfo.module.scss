@@ -1,29 +1,32 @@
 .coin {
     display: flex;
     padding: 10px 0px;
-    margin-bottom: 10px;
     background-color: var(--bg-secondary-color-opacity);
     transition: 0.4s;
+    margin-bottom: 10px;
 }
 
 .coin:hover {
-    background: var(--bg-color);
+    background-color: var(--bg-color);
 }
 
 .name_container {
     display: flex;
     align-items: center;
     flex: 1;
+}
 
-    .name {
-        font-weight: 600;
-        margin: 0 10px;
-    }
+.link {
+    margin-left: 15px;
+}
 
-    .symbol {
-        white-space: nowrap;
-        color: var(--secondary-color);
-    }
+.name {
+    font-weight: 600;
+}
+
+.symbol {
+    white-space: nowrap;
+    color: var(--secondary-color);
 }
 
 .market_cap_rank {
@@ -38,8 +41,6 @@
     display: flex;
     align-items: center;
     flex: 0.5;
-    color: green;
-    font-weight: 800;
     text-align: right;
 }
 .price_change_percentage_24h {

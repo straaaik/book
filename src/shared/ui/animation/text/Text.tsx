@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 
 interface TextProps {
     className?: string;
-    text: string;
+    text?: string | number;
 }
 
 export const Text = ({ className, text }: TextProps) => {
