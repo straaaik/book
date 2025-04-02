@@ -3,6 +3,7 @@ import cls from './SortedButton.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
 import { useState } from 'react';
 import { CoinData } from '@/shared/types/types';
+import useSWRMutation from 'swr/mutation';
 
 interface SortedButtonProps {
     className?: string;
@@ -11,6 +12,7 @@ interface SortedButtonProps {
 
 export const SortedButton = ({ className, children }: SortedButtonProps) => {
     const [status, setStatus] = useState<number>(0);
+
     // const [initialData, setInitialData] = useState<CoinData[]>(data);
 
     const sorted = (data: CoinData[], item: keyof CoinData) => {
@@ -45,7 +47,7 @@ export const SortedButton = ({ className, children }: SortedButtonProps) => {
         // }
     };
 
-    const onButtonClick = (data: CoinData[], item: keyof CoinData) => {
+    const onButtonClick = () => {
         // if (status == 0) {
         //     setInitialData(data);
         // }
@@ -55,6 +57,7 @@ export const SortedButton = ({ className, children }: SortedButtonProps) => {
         //     setStatus(0);
         // }
         // sorted(data, item);
+        console.log(data);
     };
     const mods = {
         [cls.firstClick]: status === 0,
@@ -65,7 +68,7 @@ export const SortedButton = ({ className, children }: SortedButtonProps) => {
     return (
         <Button
             theme={ButtonTheme.CLEAR}
-            onClick={() => onButtonClick(data, item)}
+            onClick={() => onButtonClick()}
             className={classNames(cls.SortedButton, mods, [className])}
         >
             {children}

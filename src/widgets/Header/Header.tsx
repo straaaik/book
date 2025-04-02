@@ -3,7 +3,7 @@
 import React from 'react';
 import cls from './Header.module.scss';
 import Link from 'next/link';
-import { Button, ButtonTheme } from '@/shared/ui/button/Button';
+import { CoinSearch } from '@/features/CoinSearch/CoinSearch';
 
 export default function header() {
     return (
@@ -15,7 +15,7 @@ export default function header() {
                 <Link href={'/portfolio'} className={cls.portfolio}>
                     Portfolio
                 </Link>
-                <Button theme={ButtonTheme.INVERTED}>Search</Button>
+                <CoinSearch />
             </div>
         </div>
     );

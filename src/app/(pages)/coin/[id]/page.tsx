@@ -13,6 +13,7 @@ import useSWR from 'swr';
 import { Text } from '@/shared/ui/animation/text/Text';
 import { InfoBox } from '@/shared/ui/infoBox/infoBox';
 import { RELOAD_TIME } from '@/shared/constant/constant';
+import { InfoLine } from '@/shared/ui/infoLine/infoLine';
 
 export default function Coin() {
     const route = useParams();
@@ -38,17 +39,15 @@ export default function Coin() {
                 <div className={cls.symbol}>{data.symbol}</div>
             </div>
             <Text className={cls.price} text={data.market_data?.current_price.usd} />
+
             <div className={cls.statistics_container}>
                 <div className={cls.statistics}>
-                    <InfoBox data={['Marker Cap', marketCap?.toLocaleString('en-EN')]} />
-                    <InfoBox data={['Fully Diluted Valuation', fullyDilutedValuation?.toLocaleString('en-EN')]} />
-                    <InfoBox data={['Circulating Supply', circulatingSupply?.toLocaleString('en-EN')]} />
+                    <InfoBox data={['Marker Cap', marketCap]} />
+                    <InfoBox data={['Fully Diluted Valuation', fullyDilutedValuation]} />
+                    <InfoBox data={['Circulating Supply', circulatingSupply]} />
                 </div>
                 <div className={cls.supply}>
-                    <InfoBox
-                        data={['Total Supply', totalSupply?.toLocaleString('en-EN')]}
-                        secondData={['Max Supply', maxSupply?.toLocaleString('en-EN') || '∞']}
-                    />
+                    <InfoBox data={['Total Supply', totalSupply]} secondData={['Max Supply', maxSupply]} />
                 </div>
             </div>
         </div>

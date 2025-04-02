@@ -1,0 +1,24 @@
+.CoinSearch {
+}
+
+.input {
+    border-bottom: 1px solid var(--inverted-bg-color);
+}
+
+.link {
+    display: flex;
+    font-size: var(--font-size-l);
+    font-weight: 300;
+}
+.link:hover {
+    background: var(--bg-secondary-color);
+}
+
+.name {
+}
+
+.symbol {
+    margin-left: 10px;
+    color: var(--inverted-primary-color);
+    text-transform: uppercase;
+}

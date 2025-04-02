@@ -160,3 +160,9 @@ export type Coin = {
         target_coin_id: string;
     }[];
 };
+export interface CoinList {
+    id: string;
+    symbol: string;
+    name: string;
+    platforms: Record<string, string>; // объект с динамическими ключами (например, {"ethereum": "0x123..."})
+}
