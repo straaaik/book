@@ -3,7 +3,6 @@ import cls from './ModalButton.module.scss';
 import { ReactNode, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Button } from '../../button/Button';
-import { div } from 'motion/react-client';
 
 interface ModalProps {
     className?: string;

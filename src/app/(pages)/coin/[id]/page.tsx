@@ -7,13 +7,11 @@ import { useParams } from 'next/navigation';
 import type { Coin } from '@/shared/types/types';
 import image from '@/../public/ImageHolder.png';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { MyError } from '../../_error/MyError';
 import { fetcher } from '@/shared/api/request';
 import useSWR from 'swr';
 import { Text } from '@/shared/ui/animation/text/Text';
 import { InfoBox } from '@/shared/ui/infoBox/infoBox';
 import { RELOAD_TIME } from '@/shared/constant/constant';
-import { InfoLine } from '@/shared/ui/infoLine/infoLine';
 
 export default function Coin() {
     const route = useParams();
@@ -22,8 +20,8 @@ export default function Coin() {
         refreshInterval: RELOAD_TIME,
     });
 
+    if (error) throw new Error(error);
     if (isLoading || !data) return <LoadingSpinner />;
-    if (error) return <MyError error={error} />;
 
     const marketCap = data.market_data.market_cap.usd;
     const fullyDilutedValuation = data.market_data?.fully_diluted_valuation.usd;

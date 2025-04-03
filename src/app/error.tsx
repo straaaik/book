@@ -16,7 +16,7 @@ export default function Error({ error, reset }: ErrorProps) {
 
     return (
         <div className={cls.Error}>
-            <div className={cls.description}>Something went wrong!</div>
+            <div className={cls.description}>{error.message}</div>
             <Button theme={ButtonTheme.DANGER} size={ButtonSize.XL} onClick={() => reset()}>
                 Try again
             </Button>
