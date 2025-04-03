@@ -17,11 +17,16 @@
 }
 
 .link {
-    margin-left: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .name {
     font-weight: 600;
+}
+
+.image {
+    margin-right: 15px;
 }
 
 .symbol {

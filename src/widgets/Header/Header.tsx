@@ -8,14 +8,18 @@ import { CoinSearch } from '@/features/CoinSearch/CoinSearch';
 export default function header() {
     return (
         <div className={cls.header}>
-            <Link href={'/'} className={cls.logo}>
-                BOOKS
-            </Link>
+            <div className={cls.icon}>
+                <Link href={'/'} className={cls.logo}>
+                    BOOKS
+                </Link>
+            </div>
+            <div className={cls.search}>
+                <CoinSearch />
+            </div>
             <div className={cls.nav}>
                 <Link href={'/portfolio'} className={cls.portfolio}>
                     Portfolio
                 </Link>
-                <CoinSearch />
             </div>
         </div>
     );

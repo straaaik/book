@@ -38,9 +38,9 @@ export const CoinList = ({ className }: CoinListProps) => {
                     id={coin.id}
                     key={coin.market_cap_rank}
                     name={coin.name}
-                    change24h={coin.price_change_percentage_24h.toLocaleString('ru-RU', { maximumFractionDigits: 4 })}
-                    marketCap={coin.market_cap.toLocaleString('ru-RU')}
-                    price={coin.current_price.toLocaleString('ru-RU', { maximumFractionDigits: 20 })}
+                    change24h={coin.price_change_percentage_24h}
+                    marketCap={coin.market_cap}
+                    price={coin.current_price}
                     rank={coin.market_cap_rank}
                     image={coin.image}
                     symbol={coin.symbol}

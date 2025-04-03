@@ -1,0 +1,45 @@
+.ModalSearch {
+    min-height: 500px;
+    min-width: 600px;
+    max-width: 600px;
+}
+
+.input {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    border-bottom: 1px solid var(--inverted-primary-color);
+}
+
+.link {
+    display: flex;
+    font-size: var(--font-size-l);
+    font-weight: 300;
+}
+.link:hover {
+    background: var(--bg-secondary-color);
+}
+
+.name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.symbol {
+    margin-left: 10px;
+    color: var(--inverted-primary-color);
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.iconSearch {
+    color: var(--inverted-primary-color);
+    width: 200px;
+    height: 200px;
+    inset: 0;
+    margin: auto;
+    position: absolute;
+}

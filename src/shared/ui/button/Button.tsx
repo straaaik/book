@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import cls from './Button.module.scss';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { motion } from 'motion/react';
 
 interface SearchProps {
     className?: string;
@@ -8,6 +9,7 @@ interface SearchProps {
     children?: ReactNode;
     theme?: string;
     size?: string;
+    scale?: [number, number];
 }
 
 export enum ButtonTheme {
@@ -24,10 +26,22 @@ export enum ButtonSize {
 }
 
 export const Button: FC<SearchProps> = (props) => {
-    const { className, onClick, children, theme = ButtonTheme.INVERTED, size = ButtonSize.M } = props;
+    const {
+        className,
+        onClick,
+        children,
+        theme = ButtonTheme.INVERTED,
+        size = ButtonSize.M,
+        scale = [1.1, 0.95],
+    } = props;
     return (
-        <button className={classNames(cls.Button, {}, [className, cls[theme], cls[size]])} onClick={onClick}>
+        <motion.button
+            whileHover={{ scale: scale[0] }}
+            whileTap={{ scale: scale[1] }}
+            className={classNames(cls.Button, {}, [className, cls[theme], cls[size]])}
+            onClick={onClick}
+        >
             {children}
-        </button>
+        </motion.button>
     );
 };
