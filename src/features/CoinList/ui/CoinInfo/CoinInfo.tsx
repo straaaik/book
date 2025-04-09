@@ -18,16 +18,8 @@ interface CoinInfoProps {
 }
 
 export const CoinInfo: FC<CoinInfoProps> = (props) => {
-    const {
-        rank = '#',
-        name = 'Name',
-        price = 'Price',
-        change24h = '24h',
-        marketCap = 'Market Cap',
-        image,
-        symbol,
-        id,
-    } = props;
+    const { rank = '#', name = 'Name', price = 'Price', change24h = '24h', marketCap = 'Market Cap', image, symbol, id } = props;
+
     return (
         <div className={cls.coin}>
             <div className={cls.market_cap_rank}>{rank}</div>
@@ -44,8 +36,8 @@ export const CoinInfo: FC<CoinInfoProps> = (props) => {
             </div>
 
             <Text className={cls.current_price} text={price} currency />
-            <Text className={cls.price_change_percentage_24h} text={change24h} percentages />
-            <Text className={cls.market_cap} text={marketCap} />
+            <Text className={cls.price_change_percentage_24h} text={change24h} highlight percentages />
+            <Text className={cls.market_cap} text={marketCap} big />
         </div>
     );
 };

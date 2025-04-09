@@ -1,3 +1,5 @@
+'use client';
+
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './SortedButton.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
@@ -30,12 +32,7 @@ export const SortedButton = ({ className, children, item }: SortedButtonProps) =
     };
 
     return (
-        <Button
-            scale={[1.3, 0.98]}
-            theme={ButtonTheme.CLEAR}
-            onClick={() => onButtonClick(item)}
-            className={classNames(cls.SortedButton, {}, [className])}
-        >
+        <Button scale={[1.3, 0.98]} theme={ButtonTheme.CLEAR} onClick={() => onButtonClick(item)} className={classNames(cls.SortedButton, {}, [className])}>
             {status == 1 && (
                 <motion.div className={cls.indicator} animate={{ rotate: 360 }}>
                     <AiOutlineCaretDown />

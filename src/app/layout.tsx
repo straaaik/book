@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './styles/global.scss';
 import { Quicksand } from 'next/font/google';
 import Header from '@/widgets/Header/Header';
-import Footer from '@/widgets/Footer/Footer';
 import { ThemeProvider } from 'next-themes';
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher/ThemeSwitcher';
 
@@ -24,7 +23,6 @@ export default function RootLayout({
                     <Header />
                     <ThemeSwitcher />
                     {children}
-                    <Footer />
                 </ThemeProvider>
             </body>
         </html>

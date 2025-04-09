@@ -36,7 +36,7 @@ export default function Coin() {
                 <div className={cls.name}>{data.name}</div>
                 <div className={cls.symbol}>{data.symbol}</div>
             </div>
-            <Text className={cls.price} text={data.market_data?.current_price.usd} />
+            <Text className={cls.price} text={data.market_data?.current_price.usd} currency />
 
             <div className={cls.statistics_container}>
                 <div className={cls.statistics}>
