@@ -7,21 +7,22 @@ import { CoinInfo } from './ui/CoinInfo/CoinInfo';
 import { CoinData } from '@/shared/types/types';
 import { CoinSorted } from './ui/CoinSorted/CoinSorted';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { fetcher } from '@/shared/api/request';
+import { fetcherCoinGecko } from '@/shared/api/request';
 import useSWR from 'swr';
 import { RELOAD_TIME } from '@/shared/constant/constant';
 import { AxiosRequestConfig } from 'axios';
+import { PageCount } from './ui/PageCount/PageCount';
 
 interface CoinListProps {
     className?: string;
 }
 
 export const CoinList = ({ className }: CoinListProps) => {
-    const [page] = useState<number>();
-    const [limit] = useState<number>(100);
+    const [page, setPage] = useState<number>(1);
+    const [limit, setLimit] = useState<string>('100');
     const { data, error, isLoading } = useSWR<CoinData[]>(
         ['coins/markets', { params: { vs_currency: 'usd', per_page: limit, page: page } }],
-        ([url, params]: [string, AxiosRequestConfig]) => fetcher(url, params),
+        ([url, params]: [string, AxiosRequestConfig]) => fetcherCoinGecko(url, params),
         { refreshInterval: RELOAD_TIME }
     );
 
@@ -32,7 +33,7 @@ export const CoinList = ({ className }: CoinListProps) => {
     }
     return (
         <div className={classNames(cls.CoinList, {}, [className])}>
-            <CoinSorted />
+            <CoinSorted limit={limit} setLimit={setLimit} />
             {data!.map((coin) => (
                 <CoinInfo
                     id={coin.id}
@@ -46,6 +47,7 @@ export const CoinList = ({ className }: CoinListProps) => {
                     symbol={coin.symbol}
                 />
             ))}
+            <PageCount page={page} setPage={setPage} />
         </div>
     );
 };

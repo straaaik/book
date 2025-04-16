@@ -4,6 +4,7 @@ import { Quicksand } from 'next/font/google';
 import Header from '@/widgets/Header/Header';
 import { ThemeProvider } from 'next-themes';
 import { ThemeSwitcher } from '@/widgets/ThemeSwitcher/ThemeSwitcher';
+import StoreProvider from './config/store/StoreProvider';
 
 export const metadata: Metadata = {
     title: 'Books',
@@ -19,11 +20,13 @@ export default function RootLayout({
     return (
         <html suppressHydrationWarning lang="en">
             <body className={quicksand.className}>
-                <ThemeProvider>
-                    <Header />
-                    <ThemeSwitcher />
-                    {children}
-                </ThemeProvider>
+                <StoreProvider>
+                    <ThemeProvider>
+                        <Header />
+                        <ThemeSwitcher />
+                        {children}
+                    </ThemeProvider>
+                </StoreProvider>
             </body>
         </html>
     );

@@ -4,11 +4,14 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './portfolio.module.scss';
 import { CoinSorted } from '@/features/CoinList/ui/CoinSorted/CoinSorted';
 import { Text } from '@/shared/ui/animation/text/Text';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { Button } from '@/shared/ui/button/Button';
-import { CoinInfo } from '@/features/CoinList/ui/CoinInfo/CoinInfo';
-import { div } from 'motion/react-client';
+import { useAppSelector } from '@/app/config/store/hooks';
+import useSWR from 'swr';
+import { fetcherLocalData } from '@/shared/api/request';
+import { LoadingSpinner } from '../_loading/loading';
+import { portfolioApi } from '@/entities/Portfolio';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
@@ -31,13 +34,16 @@ interface portfolioProps {
     className?: string;
 }
 
-const portfolioData = [];
-
 const Portfolio = ({ className }: portfolioProps) => {
+    const { data: portfolio, error, isLoading } = portfolioApi.useGetPortfolioQuery();
+
+    if (isLoading) return <LoadingSpinner />;
+
+    console.log(portfolio);
     return (
         <div className={classNames(cls.Portfolio, {}, [className])}>
             <div className={cls.info_Portfolio}>
-                <div className={cls.name_Portfolio}>Total value</div>
+                <div className={cls.name_Portfolio}>{portfolio.name}</div>
                 <div className={cls.price_Portfolio}>
                     <Text text={123123} currency />
                 </div>
@@ -48,24 +54,18 @@ const Portfolio = ({ className }: portfolioProps) => {
                 <div>
                     <Button>History</Button>
                 </div>
-                <Line data={data} />
+                {/* <Line data={data} /> */}
             </div>
             <div className={cls.holdings}>
                 <Button>Add coin</Button>
-                <CoinSorted />
-                {portfolioData.lenght ? (
-                    portfolioData.map((coin) => (
-                        <CoinInfo
-                            id={coin.id}
-                            key={coin.market_cap_rank}
-                            name={coin.name}
-                            change24h={coin.price_change_percentage_24h}
-                            marketCap={coin.market_cap}
-                            price={coin.current_price}
-                            rank={coin.market_cap_rank}
-                            image={coin.image}
-                            symbol={coin.symbol}
-                        />
+                {/* <CoinSorted /> */}
+                {portfolio.coins.length ? (
+                    portfolio.coins.map(({ coin_name, coin_amount, coin_buy_price }) => (
+                        <div className={cls.coin} key={coin_name}>
+                            <div>{coin_name}</div>
+                            <div>{coin_amount}</div>
+                            <div>{coin_buy_price}</div>
+                        </div>
                     ))
                 ) : (
                     <div className={cls.empty}>Your portfolio is empty</div>

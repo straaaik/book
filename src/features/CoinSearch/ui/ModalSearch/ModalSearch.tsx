@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
 import { CoinList } from '@/shared/types/types';
-import { fetcher } from '@/shared/api/request';
+import { fetcherCoinGecko } from '@/shared/api/request';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -19,7 +19,7 @@ interface ModalSearchProps {
 export const ModalSearch = ({ className, isOpen, onClose }: ModalSearchProps) => {
     const [value, setValue] = useState('');
     const [coinList, setCoinList] = useState<CoinList[]>([]);
-    const { data } = useSWR<CoinList[]>('coins/list', fetcher);
+    const { data } = useSWR<CoinList[]>('coins/list', fetcherCoinGecko);
 
     const onSortingData = (searchValue: string): CoinList[] => {
         const result = data ? data.filter((coin) => coin.name.toLowerCase().includes(searchValue.toLowerCase())) : [];

@@ -4,11 +4,25 @@ import { SortedButton } from '../SortedButton/SortedButton';
 
 interface CoinSortedProps {
     className?: string;
+    limit: string;
+    setLimit: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const CoinSorted = ({ className }: CoinSortedProps) => {
+export const CoinSorted = ({ className, limit, setLimit }: CoinSortedProps) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setLimit(e.target.value);
+    };
+
     return (
         <div className={classNames(cls.coin, {}, [className])}>
+            <form className={cls.limitSelect}>
+                <select name="limit" id="limit-select" value={limit} onChange={handleChange}>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="250">250</option>
+                </select>
+            </form>
             <div className={cls.market_cap_rank}>
                 <SortedButton item="market_cap_rank">#</SortedButton>
             </div>

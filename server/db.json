@@ -1,0 +1,22 @@
+{
+    "portfolio": {
+        "name": "Test name",
+        "coins": [
+            {
+                "coin_name": "BTC",
+                "coin_amount": [1],
+                "coin_buy_price": [10000]
+            },
+            {
+                "coin_name": "Solana",
+                "coin_amount": [2],
+                "coin_buy_price": [98]
+            },
+            {
+                "coin_name": "ETH",
+                "coin_amount": [10],
+                "coin_buy_price": [1027]
+            }
+        ]
+    }
+}
