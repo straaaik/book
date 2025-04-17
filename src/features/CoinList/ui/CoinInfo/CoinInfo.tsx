@@ -6,6 +6,7 @@ import { Text } from '@/shared/ui/animation/text/Text';
 import { motion } from 'motion/react';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
 import { AiFillPlusSquare } from 'react-icons/ai';
+import { portfolioApi } from '@/entities/Portfolio';
 
 interface CoinInfoProps {
     rank?: number;
@@ -21,9 +22,18 @@ interface CoinInfoProps {
 
 export const CoinInfo: FC<CoinInfoProps> = (props) => {
     const { rank = '#', name = 'Name', price = 'Price', change24h = '24h', marketCap = 'Market Cap', image, symbol, id } = props;
-
+    const [addCoin] = portfolioApi.useAddCoinToPortfolioMutation();
     //TODO При нажатии открывается модалка
-    const click = () => {};
+    const click = async () => {
+        addCoin({
+            id: 'Main',
+            coins: {
+                coin_name: name,
+                coin_amount: [1],
+                coin_buy_price: [100],
+            },
+        });
+    };
 
     return (
         <div className={cls.coin}>

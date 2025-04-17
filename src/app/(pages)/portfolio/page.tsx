@@ -8,6 +8,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import { Button } from '@/shared/ui/button/Button';
 import { LoadingSpinner } from '../_loading/loading';
 import { portfolioApi } from '@/entities/Portfolio';
+import { div } from 'motion/react-client';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
@@ -33,13 +34,19 @@ interface portfolioProps {
 const Portfolio = ({ className }: portfolioProps) => {
     const { data: portfolio, error, isLoading } = portfolioApi.useGetPortfolioQuery();
 
+    console.log(portfolio);
+
     if (isLoading) return <LoadingSpinner />;
     if (error) return;
 
     return (
         <div className={classNames(cls.Portfolio, {}, [className])}>
             <div className={cls.info_Portfolio}>
-                <div className={cls.name_Portfolio}>{portfolio.name}</div>
+                <div className={cls.name_Portfolio}>
+                    {portfolio?.map((item) => (
+                        <div>{item.id}</div>
+                    ))}
+                </div>
                 <div className={cls.price_Portfolio}>
                     <Text text={123123} currency />
                 </div>
@@ -55,12 +62,12 @@ const Portfolio = ({ className }: portfolioProps) => {
             <div className={cls.holdings}>
                 <Button>Add coin</Button>
                 {/* <CoinSorted /> */}
-                {portfolio.coins.length ? (
-                    portfolio.coins.map(({ coin_name, coin_amount, coin_buy_price }) => (
+                {true ? (
+                    portfolio[0].coins.map(({ coin_name, coin_amount, coin_buy_price }) => (
                         <div className={cls.coin} key={coin_name}>
                             <div>{coin_name}</div>
-                            <div>{coin_amount}</div>
-                            <div>{coin_buy_price}</div>
+                            <div>{coin_amount.reduce((acc, i) => acc + i)}</div>
+                            <div>{coin_buy_price.reduce((acc, i) => acc + i)}</div>
                         </div>
                     ))
                 ) : (

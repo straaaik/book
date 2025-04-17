@@ -1,14 +1,15 @@
 export interface Coins {
     coin_name: string;
-    coin_amount: [number];
-    coin_buy_price: [number];
+    coin_amount: number[];
+    coin_buy_price: number[];
 }
 
 export interface PortfolioState {
-    name: string;
-    coins: Coins;
+    id: string;
+    coins: Coins[];
 }
 
-export interface PortfolioResponse {
-    portfolio: PortfolioState;
+export interface newCoinType {
+    id: string;
+    coins: Coins;
 }

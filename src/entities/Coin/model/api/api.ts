@@ -12,9 +12,6 @@ export const coinApi = coinGeckoApi.injectEndpoints({
         }),
         getCoinList: create.query<CoinList[], void>({
             query: () => 'coins/list',
-            onQueryStarted: () => {
-                console.log('Запрос');
-            },
         }),
     }),
     overrideExisting: true,
