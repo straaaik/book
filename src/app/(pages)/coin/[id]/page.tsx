@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import cls from './coin.module.scss';
 import { useParams } from 'next/navigation';
-import type { Coin } from '@/shared/types/types';
 import image from '@/../public/ImageHolder.png';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 import { Text } from '@/shared/ui/animation/text/Text';

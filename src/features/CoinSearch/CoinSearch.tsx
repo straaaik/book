@@ -11,7 +11,7 @@ export const CoinSearch = () => {
 
     const onClickButton = () => {
         setIsOpen(true);
-        trigger();
+        trigger(undefined, true);
     };
 
     return (

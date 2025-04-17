@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface CoinsListWithMarketData {
     id: string;
     symbol: string;
