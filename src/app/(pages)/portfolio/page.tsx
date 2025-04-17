@@ -2,14 +2,10 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './portfolio.module.scss';
-import { CoinSorted } from '@/features/CoinList/ui/CoinSorted/CoinSorted';
 import { Text } from '@/shared/ui/animation/text/Text';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 import { Button } from '@/shared/ui/button/Button';
-import { useAppSelector } from '@/app/config/store/hooks';
-import useSWR from 'swr';
-import { fetcherLocalData } from '@/shared/api/request';
 import { LoadingSpinner } from '../_loading/loading';
 import { portfolioApi } from '@/entities/Portfolio';
 
@@ -38,8 +34,8 @@ const Portfolio = ({ className }: portfolioProps) => {
     const { data: portfolio, error, isLoading } = portfolioApi.useGetPortfolioQuery();
 
     if (isLoading) return <LoadingSpinner />;
+    if (error) return;
 
-    console.log(portfolio);
     return (
         <div className={classNames(cls.Portfolio, {}, [className])}>
             <div className={cls.info_Portfolio}>

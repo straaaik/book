@@ -7,20 +7,16 @@ import { useParams } from 'next/navigation';
 import type { Coin } from '@/shared/types/types';
 import image from '@/../public/ImageHolder.png';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { fetcher } from '@/shared/api/request';
-import useSWR from 'swr';
 import { Text } from '@/shared/ui/animation/text/Text';
 import { InfoBox } from '@/shared/ui/infoBox/infoBox';
-import { RELOAD_TIME } from '@/shared/constant/constant';
+import { coinApi } from '@/entities/Coin';
 
 export default function Coin() {
     const route = useParams();
     const id = route.id;
-    const { data, error, isLoading } = useSWR<Coin>(`coins/${id}`, fetcher, {
-        refreshInterval: RELOAD_TIME,
-    });
+    const { data, error, isLoading } = coinApi.useGetCoinQuery(id);
 
-    if (error) throw new Error(error);
+    if (error) throw new Error();
     if (isLoading || !data) return <LoadingSpinner />;
 
     const marketCap = data.market_data.market_cap.usd;

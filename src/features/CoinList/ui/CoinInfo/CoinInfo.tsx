@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { Text } from '@/shared/ui/animation/text/Text';
 import { motion } from 'motion/react';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
-import { useAppDispatch } from '@/app/config/store/hooks';
-import { portfolioActions } from '@/entities/Portfolio';
 import { AiFillPlusSquare } from 'react-icons/ai';
 
 interface CoinInfoProps {
@@ -22,13 +20,10 @@ interface CoinInfoProps {
 }
 
 export const CoinInfo: FC<CoinInfoProps> = (props) => {
-    const dispatch = useAppDispatch();
     const { rank = '#', name = 'Name', price = 'Price', change24h = '24h', marketCap = 'Market Cap', image, symbol, id } = props;
 
     //TODO При нажатии открывается модалка
-    const click = () => {
-        dispatch(portfolioActions.addNewCoin({ coin: name, amount: 10 }));
-    };
+    const click = () => {};
 
     return (
         <div className={cls.coin}>

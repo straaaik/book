@@ -4,22 +4,20 @@ import cls from './ModalSearch.module.scss';
 import { Modal } from '@/shared/ui/animation/modal/Modal';
 import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
-import useSWR from 'swr';
-import { CoinList } from '@/shared/types/types';
-import { fetcherCoinGecko } from '@/shared/api/request';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { CoinList } from '@/entities/Coin';
 
 interface ModalSearchProps {
     className?: string;
     isOpen: boolean;
     onClose: () => void;
+    data?: CoinList[];
 }
 
-export const ModalSearch = ({ className, isOpen, onClose }: ModalSearchProps) => {
+export const ModalSearch = ({ className, isOpen, onClose, data }: ModalSearchProps) => {
     const [value, setValue] = useState('');
     const [coinList, setCoinList] = useState<CoinList[]>([]);
-    const { data } = useSWR<CoinList[]>('coins/list', fetcherCoinGecko);
 
     const onSortingData = (searchValue: string): CoinList[] => {
         const result = data ? data.filter((coin) => coin.name.toLowerCase().includes(searchValue.toLowerCase())) : [];

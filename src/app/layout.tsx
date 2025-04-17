@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Books',
 };
 
-const quicksand = Quicksand();
+const quicksand = Quicksand({ subsets: ['latin'] });
 
 export default function RootLayout({
     children,

@@ -4,14 +4,11 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './CoinList.module.scss';
 import { useState } from 'react';
 import { CoinInfo } from './ui/CoinInfo/CoinInfo';
-import { CoinData } from '@/shared/types/types';
 import { CoinSorted } from './ui/CoinSorted/CoinSorted';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { fetcherCoinGecko } from '@/shared/api/request';
-import useSWR from 'swr';
 import { RELOAD_TIME } from '@/shared/constant/constant';
-import { AxiosRequestConfig } from 'axios';
 import { PageCount } from './ui/PageCount/PageCount';
+import { coinApi } from '@/entities/Coin';
 
 interface CoinListProps {
     className?: string;
@@ -20,13 +17,13 @@ interface CoinListProps {
 export const CoinList = ({ className }: CoinListProps) => {
     const [page, setPage] = useState<number>(1);
     const [limit, setLimit] = useState<string>('100');
-    const { data, error, isLoading } = useSWR<CoinData[]>(
-        ['coins/markets', { params: { vs_currency: 'usd', per_page: limit, page: page } }],
-        ([url, params]: [string, AxiosRequestConfig]) => fetcherCoinGecko(url, params),
-        { refreshInterval: RELOAD_TIME }
+
+    const { data, error, isLoading } = coinApi.useGetCoinListWithMarketQuery(
+        { vs_currency: 'usd', per_page: limit, page: page },
+        { pollingInterval: RELOAD_TIME }
     );
 
-    if (error) throw new Error(error);
+    if (error) throw new Error();
 
     if (isLoading) {
         return <LoadingSpinner />;
