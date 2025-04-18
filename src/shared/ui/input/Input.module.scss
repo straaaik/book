@@ -1,0 +1,20 @@
+.InputContent {
+    position: relative;
+}
+
+.input {
+    font-size: 24px;
+    font-weight: 300;
+    border: 1px solid var(--inverted-primary-color);
+    border-radius: 20px;
+}
+
+.placeholder {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.whileFocus {
+    border: 1px solid var(--warn-color);
+}

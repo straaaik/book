@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2;
+    margin-top: 10px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+
+    .name {
+        margin: 0 8px;
+    }
+
+    .symbol {
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+}

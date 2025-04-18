@@ -32,7 +32,7 @@ export interface CoinsListWithMarketData {
     last_updated: string;
 }
 
-export type ParamsCoinsListWithMarketData = { vs_currency: string; per_page?: string; page?: number };
+export type ParamsCoinsListWithMarketData = { vs_currency?: string; per_page?: string; page?: number };
 
 export interface CoinByID {
     id: string;

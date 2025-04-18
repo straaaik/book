@@ -4,7 +4,6 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './SortedButton.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/button/Button';
 import { useState } from 'react';
-import { sortingData } from '@/features/CoinList/services/sortingData';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { motion } from 'motion/react';
 import { CoinList } from '@/entities/Coin';

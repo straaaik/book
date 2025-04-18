@@ -24,26 +24,27 @@ export const CoinList = ({ className }: CoinListProps) => {
     );
 
     if (error) throw new Error();
-
-    if (isLoading) {
-        return <LoadingSpinner />;
-    }
     return (
         <div className={classNames(cls.CoinList, {}, [className])}>
             <CoinSorted limit={limit} setLimit={setLimit} />
-            {data!.map((coin) => (
-                <CoinInfo
-                    id={coin.id}
-                    key={coin.market_cap_rank}
-                    name={coin.name}
-                    change24h={coin.price_change_percentage_24h}
-                    marketCap={coin.market_cap}
-                    price={coin.current_price}
-                    rank={coin.market_cap_rank}
-                    image={coin.image}
-                    symbol={coin.symbol}
-                />
-            ))}
+
+            {!isLoading ? (
+                data!.map((coin) => (
+                    <CoinInfo
+                        id={coin.id}
+                        key={coin.market_cap_rank}
+                        name={coin.name}
+                        change24h={coin.price_change_percentage_24h}
+                        marketCap={coin.market_cap}
+                        price={coin.current_price}
+                        rank={coin.market_cap_rank}
+                        image={coin.image}
+                        symbol={coin.symbol}
+                    />
+                ))
+            ) : (
+                <LoadingSpinner />
+            )}
             <PageCount page={page} setPage={setPage} />
         </div>
     );
