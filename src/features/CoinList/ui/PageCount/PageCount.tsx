@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PageCount.module.scss';
-import { Button } from '@/shared/ui/button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 
 interface PageCountProps {
     className?: string;

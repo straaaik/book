@@ -1,11 +1,10 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './ModalTransaction.module.scss';
-import { Modal } from '@/shared/ui/animation/modal/Modal';
-import { coinApi } from '@/entities/Coin';
+import { Modal } from '@/shared/ui/Modal/Modal';
+import { CoinsListWithMarketData } from '@/entities/Coin';
 import { useState } from 'react';
 import { AddTransaction } from '../AddTransaction/AddTransaction';
 import { SelectCoin } from '../SelectCoin/SelectCoin';
-import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 
 export interface ChooseCoin {
     name: string;
@@ -18,20 +17,21 @@ interface ModalTransactionProps {
     className?: string;
     onClose: () => void;
     isOpen: boolean;
+    data?: CoinsListWithMarketData[];
 }
 
-export const ModalTransaction = ({ className, onClose, isOpen }: ModalTransactionProps) => {
+export const ModalTransaction = ({ className, onClose, isOpen, data }: ModalTransactionProps) => {
     const [chooseCoin, setChooseCoin] = useState<ChooseCoin | null>(null);
-    const { data, error, isLoading } = coinApi.useGetCoinListWithMarketQuery({});
-
-    if (error) throw new Error();
 
     return (
-        <Modal onClose={onClose} isOpen={isOpen} className={classNames(cls.ModalTransaction, {}, [className])}>
+        <Modal
+            header={!chooseCoin ? 'Select coin' : 'Add transaction'}
+            onClose={onClose}
+            isOpen={isOpen}
+            className={classNames(cls.ModalTransaction, { [cls.overflow]: !Boolean(chooseCoin) }, [className])}
+        >
             <div className={cls.content}>
-                {isLoading ? (
-                    <LoadingSpinner />
-                ) : !chooseCoin ? (
+                {!chooseCoin ? (
                     <SelectCoin className={cls.SelectCoin} data={data} setChooseCoin={setChooseCoin} />
                 ) : (
                     <AddTransaction chooseCoin={chooseCoin} setChooseCoin={setChooseCoin} className={cls.AddTransaction} />

@@ -2,38 +2,25 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import cls from './CoinInfo.module.scss';
 import Link from 'next/link';
-import { Text } from '@/shared/ui/animation/text/Text';
+import { Text } from '@/shared/ui/Text/Text';
 import { motion } from 'motion/react';
-import { Button, ButtonTheme } from '@/shared/ui/button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { AiFillPlusSquare } from 'react-icons/ai';
-import { portfolioApi } from '@/entities/Portfolio';
 
 interface CoinInfoProps {
-    rank?: number;
-    image?: string;
-    name?: string;
-    price?: number;
-    change24h?: number;
-    marketCap?: number;
-    symbol?: string;
+    rank: number;
+    image: string;
+    name: string;
+    price: number;
+    change24h: number;
+    marketCap: number;
+    symbol: string;
     onClick?: () => void;
-    id?: string;
+    id: string;
 }
 
 export const CoinInfo: FC<CoinInfoProps> = (props) => {
-    const { rank = '#', name = 'Name', price = 'Price', change24h = '24h', marketCap = 'Market Cap', image, symbol, id } = props;
-    const [addCoin] = portfolioApi.useAddCoinToPortfolioMutation();
-    //TODO При нажатии открывается модалка
-    const click = async () => {
-        addCoin({
-            id: 'Main',
-            coins: {
-                coin_name: name,
-                coin_amount: [1],
-                coin_buy_price: [100],
-            },
-        });
-    };
+    const { rank, name, price, change24h, marketCap, image, symbol, id } = props;
 
     return (
         <div className={cls.coin}>
@@ -54,7 +41,7 @@ export const CoinInfo: FC<CoinInfoProps> = (props) => {
             <Text className={cls.price_change_percentage_24h} text={change24h} highlight percentages />
             <Text className={cls.market_cap} text={marketCap} big />
             <div className={cls.hoverGroup}>
-                <Button theme={ButtonTheme.CLEAR} onClick={click}>
+                <Button theme={ButtonTheme.CLEAR}>
                     <AiFillPlusSquare />
                 </Button>
             </div>

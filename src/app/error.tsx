@@ -1,6 +1,6 @@
 'use client'; // Error boundaries must be Client Components
 
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button';
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
 import { useEffect } from 'react';
 import cls from './styles/error.module.scss';
 

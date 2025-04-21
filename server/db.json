@@ -1,73 +1,26 @@
 {
-  "portfolio": [
-    {
-      "coins": [
+    "main": [
         {
-          "coin_name": "USDC",
-          "coin_amount": [
-            1
-          ],
-          "coin_buy_price": [
-            100
-          ]
+            "id": "Bitcoin",
+            "buy": {
+                "amounts": [1, 1],
+                "prices": [88032, 88032]
+            },
+            "sell": {
+                "amounts": [1],
+                "prices": [88032]
+            }
         },
         {
-          "coin_name": "Bitcoin",
-          "coin_amount": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "coin_buy_price": [
-            100,
-            100,
-            100,
-            100,
-            100,
-            100
-          ]
-        },
-        {
-          "coin_name": "Tether",
-          "coin_amount": [
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "coin_buy_price": [
-            100,
-            100,
-            100,
-            100,
-            100
-          ]
-        },
-        {
-          "coin_name": "XRP",
-          "coin_amount": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
-          ],
-          "coin_buy_price": [
-            100,
-            100,
-            100,
-            100,
-            100,
-            100
-          ]
+            "id": "Tether",
+            "buy": {
+                "amounts": [1, 11, 10, 1],
+                "prices": [1, 1, 1, 1]
+            },
+            "sell": {
+                "amounts": [12, 1],
+                "prices": [1223, 1]
+            }
         }
-      ],
-      "id": "Main"
-    }
-  ]
+    ]
 }

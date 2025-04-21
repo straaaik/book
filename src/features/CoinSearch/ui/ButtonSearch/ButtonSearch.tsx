@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import cls from './ButtonSearch.module.scss';
 import { AiOutlineSearch } from 'react-icons/ai';
 

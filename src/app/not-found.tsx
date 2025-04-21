@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './styles/notFound.module.scss';
-import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/button/Button';
+import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button/Button';
 import Link from 'next/link';
 
 interface notFoundProps {

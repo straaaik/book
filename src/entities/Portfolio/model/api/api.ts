@@ -1,49 +1,58 @@
 import { baseApi } from '@/shared/api/request';
-import { newCoinType, PortfolioState } from '../../types/types';
+import { Coin, PortfolioState, UpdateCoin } from '../../types/types';
+import { OperationType } from '@/shared/types/types';
 
 export const portfolioApi = baseApi.injectEndpoints({
     endpoints: (create) => ({
-        getPortfolio: create.query<PortfolioState[], void>({ query: () => '/portfolio' }),
-        addCoinToPortfolio: create.mutation<PortfolioState, newCoinType>({
-            async queryFn(newCoin, _, __, baseQuery) {
-                const res = await baseQuery('/portfolio');
-                const portfolio = res.data as PortfolioState[];
-                const id = portfolio.findIndex((item) => item.id == newCoin.id);
-                const currentCoins = portfolio[id].coins;
-                const currentId = portfolio[id].id;
+        getPortfolio: create.query<PortfolioState[], void>({ query: () => '/main', providesTags: ['Portfolio'] }),
+        updateCoinToPortfolio: create.mutation<PortfolioState, [OperationType, UpdateCoin]>({
+            async queryFn([options, newCoin], _, __, baseQuery) {
+                const res = await baseQuery('/main');
+                const portfolio = res.data as Coin[];
+                const currentCoin = newCoin.id;
+                const checkCoin = portfolio.some((coin) => coin?.id == currentCoin);
 
-                //Если монета уже есть
-                if (currentCoins.some((coin) => coin?.coin_name == newCoin.coins.coin_name)) {
-                    console.log('Монета в портфеле');
-                    const coinId = currentCoins.findIndex((coin) => coin?.coin_name == newCoin.coins.coin_name);
+                if (checkCoin) {
+                    const coinId = portfolio.findIndex((coin) => coin?.id == currentCoin);
+                    const newAmounts = [...newCoin.amounts, ...portfolio[coinId][options].amounts];
+                    const newPrices = [...newCoin.prices, ...portfolio[coinId][options].prices];
+                    const updateData = { ...portfolio[coinId], [options]: { amounts: newAmounts, prices: newPrices } };
 
-                    const updateCoin = [
-                        ...currentCoins,
-                        //TODO Переписать, без forEach, потому что ---> forEach возвращает undefined <----
-                        newCoin.coins.coin_amount.forEach((item) => currentCoins[coinId].coin_amount.push(item)),
-                        newCoin.coins.coin_buy_price.forEach((item) => currentCoins[coinId].coin_buy_price.push(item)),
-                    ];
-
+                    if (options == 'buy') {
+                        const update = await baseQuery({
+                            url: `/main/${currentCoin}`,
+                            method: 'PUT',
+                            body: updateData,
+                        });
+                        return { data: update.data as PortfolioState };
+                    } else {
+                        const update = await baseQuery({
+                            url: `/main/${currentCoin}`,
+                            method: 'PUT',
+                            body: updateData,
+                        });
+                        return { data: update.data as PortfolioState };
+                    }
+                } else {
                     const update = await baseQuery({
-                        url: `/portfolio/${currentId}`,
-                        method: 'PUT',
-                        body: { coins: updateCoin.filter((item) => item != undefined) },
-                    });
-                    return { data: update.data as PortfolioState };
-                } //Если монеты нет
-                else {
-                    console.log('Монеты нет');
-
-                    const updatedPortfolio = [...currentCoins, newCoin.coins];
-                    const update = await baseQuery({
-                        url: `/portfolio/${currentId}`,
-                        method: 'PUT',
-                        body: { coins: updatedPortfolio },
+                        url: `/main`,
+                        method: 'POST',
+                        body: {
+                            id: newCoin.id,
+                            buy: {
+                                amounts: newCoin.amounts,
+                                prices: newCoin.prices,
+                            },
+                            sell: {
+                                amounts: [],
+                                prices: [],
+                            },
+                        },
                     });
                     return { data: update.data as PortfolioState };
                 }
             },
+            invalidatesTags: ['Portfolio'],
         }),
     }),
-    overrideExisting: true,
 });

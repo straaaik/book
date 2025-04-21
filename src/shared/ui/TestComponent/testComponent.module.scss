@@ -1,0 +1,36 @@
+.selectButton {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    background-color: #eee;
+    padding: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item {
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: color 0.2s ease;
+    font-weight: 500;
+
+    &.active {
+        color: var(--primary-color);
+    }
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    opacity: 0.2;
+    z-index: 0;
+    transition: background-color 0.3s ease;
+}

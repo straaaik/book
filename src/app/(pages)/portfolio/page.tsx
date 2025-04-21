@@ -2,13 +2,12 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './portfolio.module.scss';
-import { Text } from '@/shared/ui/animation/text/Text';
+import { Text } from '@/shared/ui/Text/Text';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from 'chart.js';
 // import { Line } from 'react-chartjs-2';
-import { Button } from '@/shared/ui/button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import { LoadingSpinner } from '../_loading/loading';
 import { portfolioApi } from '@/entities/Portfolio';
-import { div } from 'motion/react-client';
 import { NewTransaction } from '@/features';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
@@ -62,11 +61,11 @@ const Portfolio = ({ className }: portfolioProps) => {
                 <NewTransaction />
                 {/* <CoinSorted /> */}
                 {true ? (
-                    portfolio[0].coins.map(({ coin_name, coin_amount, coin_buy_price }) => (
-                        <div className={cls.coin} key={coin_name}>
-                            <div>{coin_name}</div>
-                            <div>{coin_amount.reduce((acc, i) => acc + i)}</div>
-                            <div>{coin_buy_price.reduce((acc, i) => acc + i)}</div>
+                    portfolio?.map(({ id, amounts, prices }) => (
+                        <div className={cls.coin} key={id}>
+                            <div>{id}</div>
+                            {/* <div>{amounts.reduce((acc, i) => acc + i)}</div>
+                            <div>{prices.reduce((acc, i) => acc + i)}</div> */}
                         </div>
                     ))
                 ) : (

@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './infoBox.module.scss';
-import { Text } from '@/shared/ui/animation/text/Text';
+import { Text } from '@/shared/ui/Text/Text';
 
 interface infoBoxProps {
     className?: string;
@@ -25,11 +25,7 @@ export const InfoBox = ({ className, data, secondData }: infoBoxProps) => {
             {secondData && (
                 <div className={cls.secondBlock}>
                     <div className={cls.description}>{secondData[0]}</div>
-                    {secondData[1] ? (
-                        <Text text={secondData[1].toLocaleString()} className={cls.data} />
-                    ) : (
-                        <Text text="Ꝏ" className={cls.data} />
-                    )}
+                    {secondData[1] ? <Text text={secondData[1].toLocaleString()} className={cls.data} /> : <Text text="Ꝏ" className={cls.data} />}
                 </div>
             )}
         </div>

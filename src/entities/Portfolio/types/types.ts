@@ -1,15 +1,20 @@
-export interface Coins {
-    coin_name: string;
-    coin_amount: number[];
-    coin_buy_price: number[];
+interface History {
+    amounts: number[];
+    prices: number[];
+}
+
+export interface Coin {
+    id: string;
+    buy: History;
+    sell: History;
 }
 
 export interface PortfolioState {
-    id: string;
-    coins: Coins[];
+    main: Coin[];
 }
 
-export interface newCoinType {
+export interface UpdateCoin {
     id: string;
-    coins: Coins;
+    amounts: number[];
+    prices: number[];
 }

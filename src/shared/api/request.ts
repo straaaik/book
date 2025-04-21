@@ -1,7 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosRequestConfig, isAxiosError } from 'axios';
 
-export const baseApi = createApi({ reducerPath: 'baseApi', baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3333/' }), endpoints: () => ({}) });
+export const baseApi = createApi({
+    reducerPath: 'baseApi',
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3333/' }),
+    tagTypes: ['Portfolio'],
+    endpoints: () => ({}),
+});
 
 export const coinGeckoApi = createApi({
     reducerPath: 'coinGeckoApi',

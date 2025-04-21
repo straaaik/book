@@ -2,7 +2,7 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './SortedButton.module.scss';
-import { Button, ButtonTheme } from '@/shared/ui/button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { useState } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { motion } from 'motion/react';

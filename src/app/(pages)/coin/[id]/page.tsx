@@ -6,8 +6,8 @@ import cls from './coin.module.scss';
 import { useParams } from 'next/navigation';
 import image from '@/../public/ImageHolder.png';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { Text } from '@/shared/ui/animation/text/Text';
-import { InfoBox } from '@/shared/ui/infoBox/infoBox';
+import { Text } from '@/shared/ui/Text/Text';
+import { InfoBox } from '@/shared/ui/InfoBox/infoBox';
 import { coinApi } from '@/entities/Coin';
 
 export default function Coin() {

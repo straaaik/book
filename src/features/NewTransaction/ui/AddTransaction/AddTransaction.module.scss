@@ -1,3 +1,9 @@
+.AddTransaction {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -8,9 +14,15 @@
     margin-top: 10px;
 }
 
-.wrapper {
+.selectButton {
+    margin: 20px 0;
+}
+
+.wrapperSelect {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 
     .name {
         margin: 0 8px;
@@ -21,4 +33,16 @@
         color: var(--secondary-color);
         font-weight: 600;
     }
+}
+
+.input_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoBox {
+    margin-bottom: 30px;
+}
+
+.buttonAdd {
 }
