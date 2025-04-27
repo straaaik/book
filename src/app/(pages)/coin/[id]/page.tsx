@@ -6,9 +6,9 @@ import cls from './coin.module.scss';
 import { useParams } from 'next/navigation';
 import image from '@/../public/ImageHolder.png';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { Text } from '@/shared/ui/Text/Text';
 import { InfoBox } from '@/shared/ui/InfoBox/infoBox';
 import { coinApi } from '@/entities/Coin';
+import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
 
 export default function Coin() {
     const route = useParams();
@@ -31,7 +31,7 @@ export default function Coin() {
                 <div className={cls.name}>{data.name}</div>
                 <div className={cls.symbol}>{data.symbol}</div>
             </div>
-            <Text className={cls.price} text={data.market_data?.current_price.usd} currency />
+            <TextNumber className={cls.price} text={data.market_data?.current_price.usd} currency />
 
             <div className={cls.statistics_container}>
                 <div className={cls.statistics}>

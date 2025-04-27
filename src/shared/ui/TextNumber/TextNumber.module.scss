@@ -1,0 +1,46 @@
+.highlight {
+}
+
+.currency::before {
+    content: '$';
+}
+
+.percentages::after {
+    content: '%';
+}
+
+.highlight_green {
+    display: flex;
+    align-items: center;
+    color: var(--green-color);
+    font-weight: 900;
+    position: relative;
+}
+
+.highlight_green::before {
+    margin-right: 5px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid var(--green-color);
+}
+
+.highlight_red {
+    display: flex;
+    align-items: center;
+    color: var(--red-color);
+    font-weight: 900;
+}
+
+.highlight_red::before {
+    margin-right: 5px;
+
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid var(--red-color);
+}

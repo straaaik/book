@@ -28,7 +28,8 @@ export const AddTransaction = ({ className, chooseCoin, setChooseCoin }: AddTran
         await addCoin([
             selectOption as OperationType,
             {
-                id: chooseCoin.name,
+                id: chooseCoin.id,
+                name: chooseCoin.name,
                 amounts: [Number(quantity)],
                 prices: [Number(price)],
             },
@@ -60,7 +61,7 @@ export const AddTransaction = ({ className, chooseCoin, setChooseCoin }: AddTran
                 <Input info="Quantity" value={quantity} onChange={onChangeQuantity} />
             </div>
             <InfoBox className={cls.infoBox} data={['Total Spent', Number(price) * Number(quantity)]} />
-            <Button onClick={handlerAddClick} className={cls.buttonAdd}>
+            <Button theme={ButtonTheme.INVERTED} onClick={handlerAddClick} className={cls.buttonAdd}>
                 {selectOption == 'buy' ? 'Add' : 'Remove'}
             </Button>
         </div>

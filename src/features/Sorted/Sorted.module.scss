@@ -1,0 +1,35 @@
+.CoinSorted {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+.btn,
+.btnName {
+    padding: 0;
+    text-align: left;
+}
+
+.btnName {
+    margin-left: 40px;
+}
+
+.name_container {
+    display: flex;
+    flex: 1.5;
+    margin: 0 10px;
+}
+
+.info_container {
+    display: flex;
+    flex: 3;
+
+    div {
+        flex: 1;
+    }
+}
+
+.actions_container {
+    flex: 0.5;
+}

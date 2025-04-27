@@ -11,6 +11,7 @@ export interface ChooseCoin {
     symbol: string;
     image: string;
     current_price: string | number;
+    id: string;
 }
 
 interface ModalTransactionProps {

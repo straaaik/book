@@ -3,7 +3,7 @@
 import React from 'react';
 import cls from './Header.module.scss';
 import Link from 'next/link';
-import { CoinSearch } from '@/features/CoinSearch/CoinSearch';
+import { CoinSearch } from '@/features/Search/Search';
 
 export default function header() {
     return (

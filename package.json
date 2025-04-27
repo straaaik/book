@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "go": "concurrently \"npm run dev\" \"npm run server\"",
+        "start:dev": "concurrently \"npm run dev\" \"npm run server\"",
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",

@@ -2,7 +2,7 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './NewTransaction.module.scss';
-import { Button } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { useState } from 'react';
 import { ModalTransaction } from './ui/ModalTransaction/ModalTransaction';
 import { coinApi } from '@/entities/Coin';
@@ -22,7 +22,9 @@ export const NewTransaction = ({ className }: NewTransactionProps) => {
 
     return (
         <div className={classNames(cls.NewTransaction, {}, [className])}>
-            <Button onClick={onClickButton}>Add Transaction</Button>
+            <Button theme={ButtonTheme.INVERTED} onClick={onClickButton}>
+                Add Transaction
+            </Button>
             <ModalTransaction data={data} isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </div>
     );

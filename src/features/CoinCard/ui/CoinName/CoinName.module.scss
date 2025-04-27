@@ -1,0 +1,14 @@
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name {
+    margin: 0 8px;
+}
+
+.symbol {
+    text-transform: uppercase;
+    color: var(--secondary-color);
+}

@@ -26,7 +26,7 @@ export const SelectCoin = ({ className, data, setChooseCoin }: SelectCoinProps) 
 
     const renderData = useMemo(() => {
         return data?.map(({ name, symbol, image, current_price, id }) => (
-            <Button onClick={() => onButtonClick({ name, symbol, image, current_price })} className={cls.wrapper} theme={ButtonTheme.CLEAR} key={id}>
+            <Button onClick={() => onButtonClick({ name, symbol, image, current_price, id })} className={cls.wrapper} theme={ButtonTheme.CLEAR} key={id}>
                 <Image className={cls.image} src={image} alt={image} width={30} height={30} />
                 <div className={cls.name}> {name}</div>
                 <div className={cls.symbol}>{symbol}</div>

@@ -30,9 +30,12 @@ export interface CoinsListWithMarketData {
         percentage: number;
     };
     last_updated: string;
+    price_change_percentage_1h_in_currency: number;
+    price_change_percentage_24h_in_currency: number;
+    price_change_percentage_7d_in_currency: number;
 }
 
-export type ParamsCoinsListWithMarketData = { vs_currency?: string; per_page?: string; page?: number };
+export type ParamsCoinsListWithMarketData = { vs_currency?: string; per_page?: string; page?: number; names?: string[] | string };
 
 export interface CoinByID {
     id: string;

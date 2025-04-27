@@ -1,40 +1,41 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
-import cls from './CoinList.module.scss';
-import { useState } from 'react';
-import { CoinInfo } from './ui/CoinInfo/CoinInfo';
-import { CoinSorted } from './ui/CoinSorted/CoinSorted';
+import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 import { RELOAD_TIME } from '@/shared/constant/constant';
-import { PageCount } from './ui/PageCount/PageCount';
-import { coinApi } from '@/entities/Coin';
+import { coinApi, CoinsListWithMarketData } from '@/entities/Coin';
+import { CoinCard } from '../CoinCard/CoinCard';
+import { Sorted } from '../Sorted/Sorted';
 
-interface CoinListProps {
-    className?: string;
-}
-
-export const CoinList = ({ className }: CoinListProps) => {
-    const [page, setPage] = useState<number>(1);
-    const [limit, setLimit] = useState<string>('100');
+export const CoinList = () => {
+    const [sortedData, setSortedData] = useState<CoinsListWithMarketData[]>([]);
+    const [page] = useState<number>(1);
+    const [limit] = useState<string>('100');
 
     const { data, error, isLoading } = coinApi.useGetCoinListWithMarketQuery(
         { vs_currency: 'usd', per_page: limit, page: page },
-        { pollingInterval: RELOAD_TIME }
+        {
+            pollingInterval: RELOAD_TIME,
+        }
     );
-
     if (error) throw new Error();
-    return (
-        <div className={classNames(cls.CoinList, {}, [className])}>
-            <CoinSorted limit={limit} setLimit={setLimit} />
 
+    useEffect(() => {
+        if (data) setSortedData(data);
+    }, [data]);
+
+    return (
+        <>
+            <Sorted rank name price change1h change7d change24h marketCap data={sortedData} setData={setSortedData} />
             {!isLoading ? (
-                data!.map((coin) => (
-                    <CoinInfo
+                sortedData.map((coin) => (
+                    <CoinCard
                         id={coin.id}
                         key={coin.market_cap_rank}
                         name={coin.name}
-                        change24h={coin.price_change_percentage_24h}
+                        change1h={coin.price_change_percentage_1h_in_currency}
+                        change24h={coin.price_change_percentage_24h_in_currency}
+                        change7d={coin.price_change_percentage_7d_in_currency}
                         marketCap={coin.market_cap}
                         price={coin.current_price}
                         rank={coin.market_cap_rank}
@@ -45,7 +46,6 @@ export const CoinList = ({ className }: CoinListProps) => {
             ) : (
                 <LoadingSpinner />
             )}
-            <PageCount page={page} setPage={setPage} />
-        </div>
+        </>
     );
 };
