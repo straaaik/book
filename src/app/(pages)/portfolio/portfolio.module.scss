@@ -1,36 +1,24 @@
 .Portfolio {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 30;
 }
 
-.info_Portfolio {
-    margin-left: 50px;
-    margin-bottom: 50px;
-}
-.name_Portfolio {
-}
-.price_Portfolio {
-    font-size: var(--font-size-xl);
-    font-weight: 800;
-}
-.price_change_Portfolio {
-}
 .chart {
-    background: var(--bg-secondary-color);
     padding: 50px;
-    margin: 20px;
     border-radius: 20px;
+    border: 1px dotted var(--bg-secondary-color);
 }
 
 .holdings {
-}
+    .actions_container {
+        display: flex;
 
-.empty {
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    margin-top: 20%;
-    font-size: var(--font-size-xl);
-    color: var(--bg-secondary-color);
-    font-weight: 800;
+        .btnNewTransaction {
+            margin-left: auto;
+        }
+    }
 }
 
 .coin {

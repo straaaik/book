@@ -4,7 +4,11 @@
     justify-content: space-between;
     background-color: var(--bg-secondary-color);
     border-radius: 12px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 32px;
 }
+
 .wrapper {
     display: flex;
     position: absolute;
@@ -30,8 +34,9 @@
 
 .swiper {
     position: absolute;
-    width: 85%;
-    height: 85%;
+    top: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 12px;
     background-color: var(--warn-color);
 }

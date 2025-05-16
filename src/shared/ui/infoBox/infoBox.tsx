@@ -1,31 +1,36 @@
+'use client';
+
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './infoBox.module.scss';
-import { TextNumber } from '../TextNumber/TextNumber';
+import { animate } from 'motion';
+import { useMotionValue, useTransform, motion } from 'motion/react';
+import { useEffect } from 'react';
+import { Button } from '../Button/Button';
 
 interface infoBoxProps {
     className?: string;
-    data: [string, number];
-    secondData?: [string, number];
+    description?: string;
+    value: number;
+    current?: string;
 }
 
-export const InfoBox = ({ className, data, secondData }: infoBoxProps) => {
-    const calcProgressWidth = () => {
-        const result = (data[1] / secondData![1]) * 100;
-        return `${result}%`;
-    };
+export const InfoBox = ({ className, description, value, current }: infoBoxProps) => {
+    const count = useMotionValue(0);
+    const rounded = useTransform(() => (count.get() + 0.001).toFixed(2));
+
+    useEffect(() => {
+        const controls = animate(count, value, { duration: 1 });
+        return () => controls.stop();
+    }, [value]);
 
     return (
         <div className={classNames(cls.infoBox, {}, [className])}>
-            <div className={cls.firstBlock}>
-                <div className={cls.description}>{data[0]}</div>
-                <TextNumber text={Number(data[1])} className={cls.data} />
-            </div>
-
-            {secondData && <div className={cls.loader} style={{ width: calcProgressWidth() }}></div>}
-            {secondData && (
-                <div className={cls.secondBlock}>
-                    <div className={cls.description}>{secondData[0]}</div>
-                    {secondData[1] ? <TextNumber text={Number(secondData[1])} className={cls.data} /> : <div className={cls.data}>Ꝏ</div>}
+            <div className={cls.description}>{description}</div>
+            <motion.div className={cls.data}>{rounded}</motion.div>
+            {current && (
+                // Изменения валюты
+                <div className={cls.changesBtn}>
+                    <Button>{current.toLocaleUpperCase()}</Button>
                 </div>
             )}
         </div>

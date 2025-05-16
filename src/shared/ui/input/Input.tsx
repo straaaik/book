@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Input.module.scss';
 import { FC, InputHTMLAttributes } from 'react';
-import { motion, useAnimate, ValueKeyframe } from 'motion/react';
+import { motion, useAnimate } from 'motion/react';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'info'>;
 
@@ -11,9 +11,10 @@ interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     placeholder?: string;
     info?: string;
+    badge?: string;
 }
 
-export const Input: FC<InputProps> = ({ className, value, onChange, placeholder = '', info }) => {
+export const Input: FC<InputProps> = ({ className, value, onChange, placeholder = '', info, badge }) => {
     const [placeholderRef, placeholderAnimate] = useAnimate();
     const [borderRef, borderAnimate] = useAnimate();
 
@@ -48,6 +49,7 @@ export const Input: FC<InputProps> = ({ className, value, onChange, placeholder 
                 value={value}
                 onChange={onChangeHandler}
             />
+            {badge && <motion.div className={cls.badge}>{badge}</motion.div>}
         </div>
     );
 };

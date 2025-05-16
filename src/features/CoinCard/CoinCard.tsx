@@ -1,11 +1,11 @@
 import cls from './CoinCard.module.scss';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { AiFillPlusSquare } from 'react-icons/ai';
 import { CoinName } from './ui/CoinName/CoinName';
 import { CoinInfo } from './ui/CoinInfo/CoinInfo';
-import { motion } from 'motion/react';
+import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { CoinActions } from './ui/CoinActions/CoinActions';
 
 interface CoinInfoProps {
+    className?: string;
     rank?: number;
     image?: string;
     name?: string;
@@ -19,39 +19,48 @@ interface CoinInfoProps {
     circulatingSupply?: number;
     holdings?: [number, number];
     avgPrice?: number;
-    profitLoss?: number;
-    id?: string;
+    profitLoss?: [number, number];
+    id: string;
 }
 
 export const CoinCard = (props: CoinInfoProps) => {
-    const { rank, name, image, symbol, id, price, change1h, change24h, change7d, marketCap, volume, circulatingSupply, holdings, avgPrice, profitLoss } = props;
+    const {
+        className,
+        rank,
+        name,
+        image,
+        symbol,
+        id,
+        price,
+        change1h,
+        change24h,
+        change7d,
+        marketCap,
+        volume,
+        circulatingSupply,
+        holdings,
+        avgPrice,
+        profitLoss,
+    } = props;
 
     return (
-        <motion.div className={cls.CoinCard}>
+        <div className={classNames(cls.CoinCard, {}, [className])}>
             {rank && <div>{rank}</div>}
-            <div className={cls.name_container}>
-                <CoinName name={name} image={image} symbol={symbol} id={id} />
-            </div>
-            <div className={cls.info_container}>
-                <CoinInfo
-                    price={price}
-                    marketCap={marketCap}
-                    volume={volume}
-                    profitLoss={profitLoss}
-                    avgPrice={avgPrice}
-                    change1h={change1h}
-                    change24h={change24h}
-                    change7d={change7d}
-                    circulatingSupply={circulatingSupply}
-                    holdings={holdings}
-                    symbol={symbol}
-                />
-            </div>
-            <div className={cls.actions_container}>
-                <Button theme={ButtonTheme.CLEAR}>
-                    <AiFillPlusSquare />
-                </Button>
-            </div>
-        </motion.div>
+            <CoinName name={name} image={image} symbol={symbol} id={id} />
+            <CoinInfo
+                price={price}
+                marketCap={marketCap}
+                volume={volume}
+                profitLoss={profitLoss}
+                avgPrice={avgPrice}
+                change1h={change1h}
+                change24h={change24h}
+                change7d={change7d}
+                circulatingSupply={circulatingSupply}
+                holdings={holdings}
+                symbol={symbol}
+            />
+            <CoinActions portfolio={Boolean(avgPrice)} coinInfo={{ name, symbol, image, current_price: price, id }} />
+        </div>
     );
 };

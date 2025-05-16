@@ -17,15 +17,25 @@
     width: 100%;
     font-size: 18px;
     font-weight: 300;
-    border-radius: 20px;
-    padding-left: 20px;
+    border-radius: 12px;
+    padding: 0 10px;
 }
 
 .placeholder {
     position: absolute;
-    bottom: 7;
-    left: 20;
+    bottom: 7px;
+    left: 20px;
     font-size: 18px;
     font-weight: 300;
-    letter-spacing: 2;
+    letter-spacing: 2px;
+}
+
+.badge {
+    pointer-events: none;
+    color: var(--secondary-color);
+    position: absolute;
+    font-size: 16px;
+    right: 10px;
+    bottom: 20px;
+    transform: translateY(50%);
 }

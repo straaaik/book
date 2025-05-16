@@ -1,0 +1,21 @@
+.AddTransaction {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    height: 100%;
+}
+
+.infoBox {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.buttonAdd {
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

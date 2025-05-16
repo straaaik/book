@@ -1,0 +1,13 @@
+.empty {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+    font-size: var(--font-size-xl);
+    color: var(--bg-secondary-color);
+    font-weight: 800;
+}
+
+.wrapper {
+    grid-template-columns: 20% repeat(auto-fit, minmax(0, 1fr));
+}

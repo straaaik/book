@@ -1,0 +1,27 @@
+.Select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    border: 1px dotted var(--bg-secondary-color);
+    border-radius: 12px;
+    top: 40px;
+    z-index: 1;
+
+    .option {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 100px;
+        margin: 1px;
+    }
+}

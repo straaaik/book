@@ -1,0 +1,15 @@
+.ButtonSelect {
+    min-width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px dotted var(--bg-secondary-color);
+    border-radius: 12px;
+    padding: 5px 20px;
+    gap: 10px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+}

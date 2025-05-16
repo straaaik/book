@@ -13,7 +13,7 @@ interface CoinNameProps {
 
 export const CoinName = ({ name, image, symbol, id }: CoinNameProps) => {
     return (
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className={cls.name}>
             <Link className={cls.link} href={`/coin/${id}`}>
                 {image && <Image className={cls.image} src={image} alt={image} width={30} height={30} />}
                 {name && <div className={cls.name}>{name}</div>}

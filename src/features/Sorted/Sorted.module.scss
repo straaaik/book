@@ -1,35 +1,21 @@
 .CoinSorted {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     align-items: center;
-    padding: 20px 20px;
+    text-align: start;
+    grid-auto-flow: column;
+    grid-template-columns: 40px 20% repeat(auto-fit, minmax(0, 1fr));
+    padding: 20px;
+    border-bottom: 1px dotted var(--bg-secondary-color);
+    white-space: nowrap;
+
+    :last-child {
+        grid-column: -1;
+        width: 40px;
+    }
 }
 
 .btn,
 .btnName {
     padding: 0;
     text-align: left;
-}
-
-.btnName {
-    margin-left: 40px;
-}
-
-.name_container {
-    display: flex;
-    flex: 1.5;
-    margin: 0 10px;
-}
-
-.info_container {
-    display: flex;
-    flex: 3;
-
-    div {
-        flex: 1;
-    }
-}
-
-.actions_container {
-    flex: 0.5;
 }

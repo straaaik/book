@@ -1,11 +1,27 @@
+.CoinInfo {
+    display: flex;
+    align-items: center;
+}
+
 .holdings {
     .wrapper {
         display: inline-flex;
         color: var(--secondary-color);
         font-size: 12px;
     }
+
     span {
         text-transform: uppercase;
         margin-left: 5px;
+    }
+}
+
+.profitLoss {
+    .currency::before {
+        content: none;
+    }
+
+    .percentages {
+        font-size: 12px;
     }
 }

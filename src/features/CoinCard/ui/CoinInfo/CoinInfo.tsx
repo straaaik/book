@@ -12,7 +12,7 @@ interface CoinInfoProps {
     circulatingSupply?: number;
     holdings?: [number, number];
     avgPrice?: number;
-    profitLoss?: number;
+    profitLoss?: [number, number];
     symbol?: string;
 }
 
@@ -31,24 +31,29 @@ export const CoinInfo = ({
 }: CoinInfoProps) => {
     return (
         <>
-            {price && <TextNumber text={price} currency />}
-            {change1h && <TextNumber text={change1h} percentages highlight />}
-            {change24h && <TextNumber text={change24h} percentages highlight />}
-            {change7d && <TextNumber text={change7d} percentages highlight />}
-            {marketCap && <TextNumber text={marketCap} big />}
-            {volume && <TextNumber text={Number(volume)} big />}
-            {circulatingSupply && <TextNumber text={Number(circulatingSupply)} big />}
-            {holdings && (
+            {price !== undefined && <TextNumber text={price} format="currency" />}
+            {change1h !== undefined && <TextNumber text={change1h} format="percentages" highlight />}
+            {change24h !== undefined && <TextNumber text={change24h} format="percentages" highlight />}
+            {change7d !== undefined && <TextNumber text={change7d} format="percentages" highlight />}
+            {marketCap !== undefined && <TextNumber text={marketCap} format="big" />}
+            {volume !== undefined && <TextNumber text={Number(volume)} format="big" />}
+            {circulatingSupply !== undefined && <TextNumber text={Number(circulatingSupply)} format="big" />}
+            {holdings !== undefined && (
                 <div className={cls.holdings}>
-                    <TextNumber text={Number(holdings[0])} currencyRounded />
+                    <TextNumber text={Number(holdings[0])} format="currencyRounded" />
                     <div className={cls.wrapper}>
                         <TextNumber text={Number(holdings[1])} />
                         <span>{symbol}</span>
                     </div>
                 </div>
             )}
-            {avgPrice && <TextNumber text={Number(avgPrice)} currencyRounded />}
-            {profitLoss && <TextNumber text={Number(profitLoss)} currency />}
+            {avgPrice !== undefined && <TextNumber text={Number(avgPrice)} format="currencyRounded" />}
+            {profitLoss !== undefined && (
+                <div className={cls.profitLoss}>
+                    <TextNumber className={cls.currency} text={Number(profitLoss[0])} format="currencyRounded" highlight />
+                    <TextNumber className={cls.percentages} text={Number(profitLoss[1])} format="percentages" highlight />
+                </div>
+            )}
         </>
     );
 };

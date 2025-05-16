@@ -1,65 +1,91 @@
 import { baseApi } from '@/shared/api/request';
-import { Coin, PortfolioState, UpdateCoin } from '../../types/types';
-import { OperationType } from '@/shared/types/types';
+import { Coin, PortfoliosStatus, UpdateCoin } from '../../types/types';
 import { coinApi } from '@/entities/Coin';
+import { portfolioActions } from '../slice/portfolioSlice';
 
 export const portfolioApi = baseApi.injectEndpoints({
     endpoints: (create) => ({
         getPortfolio: create.query<Coin[], void>({ query: () => '/main', providesTags: ['Portfolio'] }),
-        updateCoinToPortfolio: create.mutation<PortfolioState, [OperationType, UpdateCoin]>({
-            async queryFn([options, newCoin], api, __, baseQuery) {
+        getPortfolioStats: create.query<PortfoliosStatus, string>({ query: (name = 'main') => `/portfolio_stats/${name}`, providesTags: ['Portfolio'] }),
+        updatePortfolioStats: create.mutation<void, PortfoliosStatus>({
+            query: (patch) => ({
+                url: '/portfolio_stats/main',
+                method: 'PUT',
+                body: patch,
+            }),
+            invalidatesTags: ['Portfolio'],
+        }),
+        deleteCoin: create.mutation<void, string>({
+            query: (id) => ({
+                url: `/main/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Portfolio'],
+        }),
+        updateCoinToPortfolio: create.mutation<Coin, UpdateCoin>({
+            async queryFn(newCoin, _, __, baseQuery) {
                 const res = await baseQuery('/main');
+                const { id: newCoinId, name: newCoinName, options, ...newCoinInfo } = newCoin;
                 const portfolio = res.data as Coin[];
-                const currentCoinId = newCoin.id.toLocaleLowerCase();
-                const checkCoin = portfolio.some((coin) => coin?.id.toLocaleUpperCase() == currentCoinId.toLocaleUpperCase());
+
+                const checkCoin = portfolio.some((coin) => coin?.id == newCoinId);
 
                 if (checkCoin) {
-                    const coinId = portfolio.findIndex((coin) => coin?.id.toLocaleUpperCase() == currentCoinId.toLocaleUpperCase());
-                    const newAmounts = [...newCoin.amounts, ...portfolio[coinId][options].amounts];
-                    const newPrices = [...newCoin.prices, ...portfolio[coinId][options].prices];
-                    const updateData = { ...portfolio[coinId], [options]: { amounts: newAmounts, prices: newPrices } };
-                    const holdings = updateData.buy.amounts.reduce((acc, i) => acc + i, 0);
-                    const avgPrice = updateData.buy.amounts.reduce((acc, item, i) => acc + updateData.buy.prices[i] * item, 0) / holdings;
+                    const coinId = portfolio.findIndex((coin) => coin?.id == newCoinId);
+                    const updatePortfolio = [...portfolio[coinId][options], newCoinInfo];
+                    const updateData = {
+                        ...portfolio[coinId],
+                        [options]: updatePortfolio,
+                    };
+
+                    const holdingsCoin =
+                        updateData.buy.reduce((acc, item) => acc + item.amount, 0) - updateData.sell.reduce((acc, item) => acc + item.amount, 0);
+                    const avgPrice = updateData.buy.reduce((acc, item) => acc + item.price * item.amount, 0) / holdingsCoin;
+                    const purchasePrice = updateData.buy.reduce((acc, item) => acc + item.amount * item.price, 0);
 
                     if (options == 'buy') {
                         const update = await baseQuery({
-                            url: `/main/${currentCoinId}`,
+                            url: `/main/${newCoinId}`,
                             method: 'PUT',
-                            body: { ...updateData, holdings, avgPrice },
+                            body: { ...updateData, holdings_coin: holdingsCoin, avgPrice: avgPrice, purchase_price: purchasePrice },
                         });
-                        return { data: update.data as PortfolioState };
+                        return { data: update.data as Coin };
                     } else {
                         const update = await baseQuery({
-                            url: `/main/${currentCoinId}`,
+                            url: `/main/${newCoinId}`,
                             method: 'PUT',
-                            body: updateData,
+                            body: { ...updateData, holdings_coin: holdingsCoin },
                         });
-                        return { data: update.data as PortfolioState };
+                        return { data: update.data as Coin };
                     }
                 } else {
-                    const res = await api.dispatch(coinApi.endpoints.getCoinListWithMarket.initiate({ names: newCoin.name }));
-                    const coin = res.data;
-                    const holdings = newCoin.amounts.reduce((acc, i) => acc + i, 0);
-                    const avgPrice = newCoin.amounts.reduce((acc, item, i) => acc + newCoin.prices[i] * item, 0);
+                    const updateData = {
+                        id: newCoinId,
+                        name: newCoinName,
+                        buy: [newCoinInfo],
+                        sell: [],
+                        holdings_coin: newCoinInfo.amount,
+                        avgPrice: newCoinInfo.price,
+                        purchase_price: newCoinInfo.price * newCoinInfo.amount,
+                    };
 
                     const update = await baseQuery({
                         url: `/main`,
                         method: 'POST',
-                        body: {
-                            ...coin![0],
-                            buy: {
-                                amounts: newCoin.amounts,
-                                prices: newCoin.prices,
-                            },
-                            sell: {
-                                amounts: [],
-                                prices: [],
-                            },
-                            holdings: holdings,
-                            avgPrice: avgPrice,
-                        },
+                        body: updateData,
                     });
-                    return { data: update.data as PortfolioState };
+                    return { data: update.data as Coin };
+                }
+            },
+            async onQueryStarted(_, { dispatch, queryFulfilled }) {
+                try {
+                    const coin = (await queryFulfilled).data;
+                    const coinInfo = (await dispatch(coinApi.endpoints.getCoinListWithMarket.initiate({ names: coin.name }))).data || [];
+                    const merge = { ...coin, ...coinInfo[0], profit_loss: coinInfo[0].current_price * coin.holdings_coin - coin.purchase_price };
+                    dispatch(portfolioActions.addCoinToPortfolio(merge));
+                } catch (e) {
+                    // TODO обработать ошибку
+                    console.log(e);
                 }
             },
             invalidatesTags: ['Portfolio'],

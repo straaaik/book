@@ -1,0 +1,46 @@
+.title {
+    position: sticky;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--bg-color);
+    z-index: 1000;
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+}
+
+.wrapper {
+    display: flex;
+
+    .name {
+        margin: 0 8px;
+    }
+
+    .symbol {
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+}
+
+.iconSearch {
+    color: var(--inverted-primary-color);
+    width: 200px;
+    height: 200px;
+    inset: 0;
+    margin: auto;
+    position: absolute;
+}
+
+.skeleton {
+    height: 50px;
+}

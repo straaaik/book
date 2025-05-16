@@ -1,45 +1,29 @@
+'use client';
+
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { AnimatePresence, motion } from 'motion/react';
 import cls from './TextNumber.module.scss';
-import { LANG } from '@/shared/constant/constant';
+import { Skeleton } from '../Skeleton/Skeleton';
+import { NumberFormatter } from './module/NumberFormater';
+
+export type FormatNumber = 'currency' | 'percentages' | 'big' | 'currencyRounded';
 
 interface TextProps {
     className?: string;
     text: number;
-    currency?: boolean;
-    percentages?: boolean;
-    big?: boolean;
     highlight?: boolean;
-    currencyRounded?: boolean;
+    format?: FormatNumber;
 }
 
-export const TextNumber = ({ className, text, highlight = false, currency = false, percentages = false, big = false, currencyRounded = false }: TextProps) => {
+export const TextNumber = ({ className, text, highlight = false, format }: TextProps) => {
     const changeHighlightClass = () => {
         if (text > 0) {
             return cls.highlight_green;
-        } else {
+        } else if (text < 0) {
             return cls.highlight_red;
+        } else {
+            return cls.highlight_blue;
         }
-    };
-
-    const changeText = () => {
-        if (currency)
-            return Intl.NumberFormat('ru-RU', {
-                style: 'currency',
-                currency: 'USD',
-                roundingPriority: 'morePrecision',
-            }).format(text);
-        else if (percentages) return Intl.NumberFormat('ru-RU', { style: 'percent', maximumFractionDigits: 3, minimumFractionDigits: 0 }).format(text / 100);
-        else if (big) return Intl.NumberFormat(LANG, { notation: 'compact', minimumFractionDigits: 0 }).format(text);
-        else if (currencyRounded)
-            return Intl.NumberFormat('ru-RU', {
-                style: 'currency',
-                notation: 'standard',
-                currency: 'USD',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 3,
-            }).format(text);
-        else return Intl.NumberFormat('ru-RU').format(text);
     };
 
     const mods = {
@@ -48,16 +32,20 @@ export const TextNumber = ({ className, text, highlight = false, currency = fals
 
     return (
         <AnimatePresence mode="wait">
-            <motion.div
-                className={classNames(cls.text, mods, [className])}
-                key={text}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
-            >
-                {changeText()}
-            </motion.div>
+            {Number.isNaN(text) ? (
+                <Skeleton />
+            ) : (
+                <motion.div
+                    className={classNames(cls.text, mods, [className])}
+                    key={text}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    {NumberFormatter(text, format)}
+                </motion.div>
+            )}
         </AnimatePresence>
     );
 };

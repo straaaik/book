@@ -1,10 +1,6 @@
 .Modal {
-    font-size: 36px;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     justify-content: center;
     align-items: center;
     z-index: 100;
@@ -29,7 +25,7 @@
     flex-direction: column;
     background: var(--bg-color);
     border-radius: 12px;
-    box-shadow: 0px 10px 100px rgba(0, 0, 0, 0.786);
+    box-shadow: 0 10px 100px rgb(0 0 0 / 78.6%);
     overflow: hidden;
 }
 
@@ -51,8 +47,8 @@
     font-size: 24px;
     position: absolute;
     padding: 0;
-    top: 10;
-    right: 15;
+    top: 10px;
+    right: 15px;
 }
 
 .closeBtn:hover {

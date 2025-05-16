@@ -5,17 +5,33 @@
 
 .link {
     display: flex;
-    font-size: var(--font-size-l);
+    align-items: center;
+    justify-content: space-between;
     font-weight: 300;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
+
 .link:hover {
     background: var(--bg-secondary-color);
+    transition: all 0.5s;
+}
+
+.wrapperName {
+    display: flex;
+    overflow: hidden;
+    gap: 5;
 }
 
 .name {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.input {
+    margin-bottom: 10px;
 }
 
 .symbol {
@@ -34,4 +50,8 @@
     inset: 0;
     margin: auto;
     position: absolute;
+}
+
+.skeleton {
+    height: 50px;
 }

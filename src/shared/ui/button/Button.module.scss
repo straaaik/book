@@ -1,6 +1,6 @@
 .Button {
     padding: 5px 25px;
-    border-radius: 15px;
+    border-radius: 12px;
 }
 
 .button_inverted {
@@ -24,6 +24,16 @@
 .button_danger {
     background: var(--warn-color);
     color: var(--primary-color);
+}
+
+.button_border {
+    color: var(--primary-color);
+    border: 1px dotted var(--bg-secondary-color);
+}
+
+.button_border_warn {
+    color: var(--primary-color);
+    border: 1px dotted var(--warn-color);
 }
 
 .size_m {

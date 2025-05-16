@@ -1,5 +1,10 @@
-import { CoinList } from '@/features';
+import { CoinList } from './ui/CoinList/CoinList';
+import cls from './main.module.scss';
 
 export default function MainPage() {
-    return <CoinList />;
+    return (
+        <div className={cls.Main}>
+            <CoinList />
+        </div>
+    );
 }

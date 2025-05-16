@@ -1,25 +1,43 @@
 import { CoinsListWithMarketData } from '@/entities/Coin';
 
-interface History {
-    amounts: number[];
-    prices: number[];
+interface HistoryCoin {
+    amount: number;
+    price: number;
+    date: Date;
 }
 
-export interface Coin extends CoinsListWithMarketData {
+interface HistoryCapital {
+    capital: number;
+    date: Date;
+}
+
+export type Portfolio = Coin & CoinsListWithMarketData;
+
+export interface Coin {
     id: string;
-    buy: History;
-    sell: History;
-    holdings: number;
+    name: string;
+    buy: HistoryCoin[];
+    sell: HistoryCoin[];
+    holdings_coin: number;
+    purchase_price: number;
     avgPrice: number;
-}
-
-export interface PortfolioState {
-    main: Coin[];
+    profit_loss: number;
 }
 
 export interface UpdateCoin {
     id: string;
     name: string;
-    amounts: number[];
-    prices: number[];
+    amount: number;
+    price: number;
+    date: Date;
+    notes: string;
+    fee: number;
+    options: 'buy' | 'sell';
+}
+
+export interface PortfoliosStatus {
+    id: string;
+    capital: number;
+    initial_capital: number;
+    history_capital: HistoryCapital[];
 }
