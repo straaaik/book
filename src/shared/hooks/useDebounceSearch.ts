@@ -3,10 +3,10 @@ import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { useCallback, useEffect } from 'react';
 
-type DebounceType = [CoinsListWithMarketData[] | undefined, boolean, FetchBaseQueryError | SerializedError | undefined];
+type DebounceType = [CoinsListWithMarketData[] | undefined, boolean, FetchBaseQueryError | SerializedError | undefined, boolean];
 
 export const useDebounceSearch = (data?: CoinList[], value?: string): DebounceType => {
-    const [getCoins, { data: dataCoins, isFetching, error }] = coinApi.useLazyGetCoinListWithMarketQuery();
+    const [getCoins, { data: dataCoins, isFetching, error, isError }] = coinApi.useLazyGetCoinListWithMarketQuery();
 
     const onSortingDataName = useCallback(
         (searchValue: string) => {
@@ -20,7 +20,11 @@ export const useDebounceSearch = (data?: CoinList[], value?: string): DebounceTy
         const debounce = setTimeout(() => {
             if (value) {
                 const names = onSortingDataName(value);
-                getCoins({ names });
+                if (!!names?.length) {
+                    getCoins({ names });
+                } else {
+                    getCoins({ names: [value] });
+                }
             } else {
                 getCoins({});
             }
@@ -29,5 +33,5 @@ export const useDebounceSearch = (data?: CoinList[], value?: string): DebounceTy
         return () => clearTimeout(debounce);
     }, [getCoins, value, onSortingDataName]);
 
-    return [dataCoins, isFetching, error];
+    return [dataCoins, isFetching, error, isError];
 };

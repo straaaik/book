@@ -5,7 +5,6 @@ import { Modal } from '@/shared/ui/Modal/Modal';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { CoinList } from '@/entities/Coin';
 import { Input } from '@/shared/ui/Input/Input';
 import Image from 'next/image';
@@ -13,6 +12,7 @@ import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
 import { useDebounceSearch } from '@/shared/hooks/useDebounceSearch';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import ImageHolder from '../../../../../public/ImageHolder.png';
+import { NotFoundResult } from '@/shared/ui/NotFoundResult/NotFoundResult';
 
 interface ModalSearchProps {
     className?: string;
@@ -22,8 +22,8 @@ interface ModalSearchProps {
 }
 
 export const ModalSearch = ({ className, isOpen, onClose, data }: ModalSearchProps) => {
-    const [value, setValue] = useState('');
-    const [dataCoins, isFetching, error] = useDebounceSearch(data, value);
+    const [value, setValue] = useState<string>('');
+    const [dataCoins, isFetching, error, isError] = useDebounceSearch(data, value);
 
     const onChangeValue = (value: string) => {
         setValue(value);
@@ -54,18 +54,23 @@ export const ModalSearch = ({ className, isOpen, onClose, data }: ModalSearchPro
             }),
         [dataCoins, onLinkClick]
     );
+
+    const renderContent = () => {
+        if (isFetching || isError) {
+            return <Skeleton value={8} className={cls.skeleton} />;
+        } else {
+            if (memoDataCoins?.length) {
+                return memoDataCoins;
+            } else {
+                return <NotFoundResult />;
+            }
+        }
+    };
+
     return (
         <Modal header="Search coin" className={classNames(cls.ModalSearch, {}, [className])} onClose={onClose} isOpen={isOpen}>
-            <Input id="search" placeholder="Search coin..." className={cls.input} value={value} onChange={onChangeValue} />
-            {memoDataCoins?.length ? (
-                !isFetching && !error ? (
-                    memoDataCoins
-                ) : (
-                    <Skeleton value={5} className={cls.skeleton} />
-                )
-            ) : (
-                <AiOutlineSearch className={cls.iconSearch} />
-            )}
+            <Input focus id="search" placeholder="Search coin..." className={cls.input} value={value} onChange={onChangeValue} />
+            {renderContent()}
         </Modal>
     );
 };

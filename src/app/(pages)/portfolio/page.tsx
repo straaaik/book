@@ -2,11 +2,11 @@
 
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './portfolio.module.scss';
-import { Button } from '@/shared/ui/Button/Button';
 import { PortfolioInfo } from './ui/PortfolioInfo/PortfolioInfo';
 import { useUpdatePortfolio } from '@/shared/hooks/useUpdatePortfolio';
 import { NewTransaction } from './ui/NewTransaction/NewTransaction';
 import { PortfolioList } from './ui/PortfolioList/PortfolioList';
+import { PortfolioChart } from './ui/PortfolioChart/PortfolioChart';
 
 const Portfolio = () => {
     useUpdatePortfolio();
@@ -17,11 +17,7 @@ const Portfolio = () => {
                 <PortfolioInfo />
             </div>
             <div className={cls.chart}>
-                ТЕСТОВАЯ ТАБЛИЦА
-                <div>
-                    <Button>History</Button>
-                </div>
-                {/* <Line data={data} /> */}
+                <PortfolioChart />
             </div>
             <div className={cls.holdings}>
                 <div className={cls.actions_container}>

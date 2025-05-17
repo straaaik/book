@@ -29,7 +29,7 @@ export const CoinList = () => {
         <>
             <ActionsCoinsList setLimit={setLimit} limit={limit} />
             <SortingCoinList data={sortedData} setData={setSortedData} />
-            {sortedData.length && !isLoading ? (
+            {sortedData.length && !isLoading ? ( // TODO сделать правильную загрузку
                 !isError ? (
                     sortedData.map((coin) => (
                         <CoinCard

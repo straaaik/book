@@ -12,6 +12,7 @@ import { useDebounceSearch } from '@/shared/hooks/useDebounceSearch';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import ImageHolder from '../../../../../public/ImageHolder.png';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { NotFoundResult } from '@/shared/ui/NotFoundResult/NotFoundResult';
 
 interface SelectCoinProps {
     className?: string;
@@ -21,7 +22,7 @@ interface SelectCoinProps {
 export const SelectCoin = ({ className, setChooseCoin }: SelectCoinProps) => {
     const { data } = coinApi.useGetCoinListQuery();
     const [value, setValue] = useState('');
-    const [dataCoins, isFetching, error] = useDebounceSearch(data, value);
+    const [dataCoins, isFetching, error, isError] = useDebounceSearch(data, value);
 
     const onChangeHandler = (value: string) => {
         setValue(value);
@@ -55,22 +56,24 @@ export const SelectCoin = ({ className, setChooseCoin }: SelectCoinProps) => {
         [dataCoins, onButtonClick]
     );
 
+    const renderContent = () => {
+        if (isFetching || isError) {
+            return <Skeleton value={8} className={cls.skeleton} />;
+        } else {
+            if (memoDataCoins?.length) {
+                return memoDataCoins;
+            } else {
+                return <NotFoundResult />;
+            }
+        }
+    };
+
     return (
         <div className={classNames(cls.SelectCoin, {}, [className])}>
             <div className={cls.title}>
                 <Input className={cls.input} value={value} onChange={onChangeHandler} placeholder="Search..." />
             </div>
-            <div className={cls.content}>
-                {!isFetching && !error ? (
-                    dataCoins?.length ? (
-                        memoDataCoins
-                    ) : (
-                        <AiOutlineSearch className={cls.iconSearch} />
-                    )
-                ) : (
-                    <Skeleton value={8} className={cls.skeleton} />
-                )}
-            </div>
+            <div className={cls.content}>{renderContent()}</div>
         </div>
     );
 };

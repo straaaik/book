@@ -5,6 +5,8 @@
     align-items: center;
     z-index: 100;
     color: var(--primary-color);
+    backdrop-filter: blur(2px);
+    overflow-y: hidden;
 }
 
 .header {
@@ -39,7 +41,6 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background: var(--bg-secondary-color-opacity);
 }
 
 .closeBtn {

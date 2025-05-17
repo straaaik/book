@@ -21,7 +21,7 @@ export const Actions = ({ className, control }: ActionsProps) => {
                 name="fee"
                 control={control}
                 render={({ field }) => (
-                    <ButtonPicker icon={<MdAttachMoney />} text="Fee" item={<Input value={field.value} onChange={field.onChange} badge="USD" />} />
+                    <ButtonPicker icon={<MdAttachMoney />} text="Fee" item={<Input focus value={field.value} onChange={field.onChange} badge="USD" />} />
                 )}
             />
             <Controller name="date" control={control} render={({ field }) => <MyDatePicker selected={field.value} onChange={field.onChange} />} />

@@ -5,6 +5,7 @@ import cls from './DropDownMenu.module.scss';
 import { AnimatePresence, motion } from 'motion/react';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { DropDownMenuOpenButton } from './DropDownMenuOpenButton/DropDownMenuOpenButton';
+import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
 
 interface ActionsProps {
     className?: string;
@@ -14,19 +15,7 @@ interface ActionsProps {
 export const DropDownMenu = ({ className, children }: ActionsProps) => {
     const [show, setShow] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && !ref.current.contains(event.target as Node)) {
-                setShow(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [setShow]);
+    useOutsideClick(ref, setShow);
 
     return (
         <motion.div className={classNames(cls.Actions, {}, [className])}>

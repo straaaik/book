@@ -52,12 +52,19 @@
           "date": "2025-05-16T14:54:23.405Z",
           "fee": 0,
           "notes": ""
+        },
+        {
+          "amount": 100,
+          "price": 2553.7,
+          "date": "2025-05-16T23:40:03.020Z",
+          "fee": 0,
+          "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 2588.34,
-      "purchase_price": 2588.34
+      "holdings_coin": 101,
+      "avgPrice": 2554.0429702970296,
+      "purchase_price": 257958.33999999997
     }
   ]
 }

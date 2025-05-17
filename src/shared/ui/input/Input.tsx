@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Input.module.scss';
-import { FC, InputHTMLAttributes } from 'react';
-import { motion, useAnimate } from 'motion/react';
+import { FC, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'info'>;
 
@@ -12,39 +12,43 @@ interface InputProps extends HTMLInputProps {
     placeholder?: string;
     info?: string;
     badge?: string;
+    focus?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ className, value, onChange, placeholder = '', info, badge }) => {
-    const [placeholderRef, placeholderAnimate] = useAnimate();
-    const [borderRef, borderAnimate] = useAnimate();
+export const Input: FC<InputProps> = ({ className, value, onChange, placeholder = '', info, badge, focus }) => {
+    const [isFocus, setIsFocus] = useState(false);
+    const ref = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (focus) {
+            setIsFocus(true);
+            ref.current?.focus();
+        }
+    }, [focus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
 
     const handlerFocus = () => {
-        placeholderAnimate(placeholderRef.current, { opacity: 0 });
-        borderAnimate(borderRef.current, { border: '2px solid var(--inverted-primary-color)' });
+        setIsFocus(true);
     };
 
     const handlerBlur = () => {
-        if (!value) {
-            placeholderAnimate(placeholderRef.current, { opacity: 1 });
-            borderAnimate(borderRef.current, { border: '20px solid var(--inverted-primary-color)' });
-        }
+        setIsFocus(false);
     };
 
     return (
         <div className={classNames(cls.InputContent, {}, [className])}>
             {info && <div className={cls.info}>{info}</div>}
-            <motion.div ref={placeholderRef} className={cls.placeholder} style={{ pointerEvents: 'none' }}>
-                {value ? '' : placeholder}
+            <motion.div animate={{ opacity: isFocus || value ? 0 : 1 }} className={cls.placeholder}>
+                {!isFocus && !value && placeholder}
             </motion.div>
             <motion.input
-                ref={borderRef}
-                initial={{ border: value ? '2px solid var(--inverted-primary-color)' : '20px solid var(--inverted-primary-color)' }}
+                ref={ref}
                 onFocus={handlerFocus}
                 onBlur={handlerBlur}
+                animate={{ border: isFocus || value ? '2px solid var(--inverted-primary-color)' : '20px solid var(--inverted-primary-color)' }}
                 className={cls.input}
                 value={value}
                 onChange={onChangeHandler}
