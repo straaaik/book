@@ -20,9 +20,10 @@ interface ModalTransactionProps {
     onClose: () => void;
     isOpen: boolean;
     coin?: ChooseCoin;
+    active: string;
 }
 
-export const ModalTransaction = ({ className, onClose, isOpen, coin }: ModalTransactionProps) => {
+export const ModalTransaction = ({ className, onClose, isOpen, coin, active }: ModalTransactionProps) => {
     const [chooseCoin, setChooseCoin] = useState<ChooseCoin | null>(coin ? coin : null);
 
     return (
@@ -36,7 +37,7 @@ export const ModalTransaction = ({ className, onClose, isOpen, coin }: ModalTran
                 {!chooseCoin ? (
                     <SelectCoin className={cls.SelectCoin} setChooseCoin={setChooseCoin} />
                 ) : (
-                    <FormAddTransaction chooseCoin={chooseCoin} setChooseCoin={setChooseCoin} className={cls.AddTransaction} />
+                    <FormAddTransaction active={active} chooseCoin={chooseCoin} setChooseCoin={setChooseCoin} className={cls.AddTransaction} />
                 )}
             </div>
         </Modal>

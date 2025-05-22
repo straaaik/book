@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './ButtonPicker.module.scss';
 import { Button, ButtonTheme } from '../Button/Button';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 interface ButtonPickerProps {
     className?: string;
@@ -10,7 +10,7 @@ interface ButtonPickerProps {
     item?: React.ReactNode;
 }
 
-export const ButtonPicker = ({ className, icon, text, item }: ButtonPickerProps) => {
+export const ButtonPicker = memo(({ className, icon, text, item }: ButtonPickerProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -40,4 +40,4 @@ export const ButtonPicker = ({ className, icon, text, item }: ButtonPickerProps)
             )}
         </div>
     );
-};
+});

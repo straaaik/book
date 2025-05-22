@@ -1,70 +1,54 @@
 {
-  "portfolio_stats": [
+  "portfolio": [
     {
-      "id": "main",
-      "capital": 0,
-      "initial_capital": 0,
-      "history_capital": []
-    }
-  ],
-  "main": [
-    {
-      "id": "solana",
-      "name": "Solana",
+      "id": "bitcoinMain",
+      "name": "Bitcoin",
       "buy": [
         {
           "amount": 1,
-          "price": 182.48,
-          "date": "2025-05-13T21:40:58.354Z",
+          "price": 111601,
+          "date": "2025-05-22T17:29:40.624Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
       "holdings_coin": 1,
-      "avgPrice": 182.48,
-      "purchase_price": 182.48
+      "avgPrice": 111601,
+      "purchase_price": 111601,
+      "portfolio_name": "Main"
     },
     {
-      "id": "tron",
-      "name": "TRON",
-      "buy": [
-        {
-          "amount": 1,
-          "price": 0.271442,
-          "date": "2025-05-13T21:41:01.313Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 0.271442,
-      "purchase_price": 0.271442
-    },
-    {
-      "id": "ethereum",
+      "id": "ethereumSecond",
       "name": "Ethereum",
       "buy": [
         {
           "amount": 1,
-          "price": 2588.34,
-          "date": "2025-05-16T14:54:23.405Z",
-          "fee": 0,
-          "notes": ""
-        },
-        {
-          "amount": 100,
-          "price": 2553.7,
-          "date": "2025-05-16T23:40:03.020Z",
+          "price": 2662.4,
+          "date": "2025-05-22T17:30:18.829Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 101,
-      "avgPrice": 2554.0429702970296,
-      "purchase_price": 257958.33999999997
+      "holdings_coin": 1,
+      "avgPrice": 2662.4,
+      "purchase_price": 2662.4,
+      "portfolio_name": "Second"
+    }
+  ],
+  "portfolio_names": [
+    {
+      "id": "Main",
+      "icon": "Man"
+    },
+    {
+      "id": "Second",
+      "icon": "Helmet"
+    },
+    {
+      "id": "ss",
+      "icon": "Dragon"
     }
   ]
 }

@@ -3,13 +3,14 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Skeleton.module.scss';
 import { motion } from 'motion/react';
+import { memo } from 'react';
 
 interface LoadingDataProps {
     className?: string;
     value?: number;
 }
 
-export const Skeleton = ({ className, value = 1 }: LoadingDataProps) => {
+export const Skeleton = memo(({ className, value = 1 }: LoadingDataProps) => {
     const skeletonArr = new Array(value).fill(null);
 
     return (
@@ -25,4 +26,4 @@ export const Skeleton = ({ className, value = 1 }: LoadingDataProps) => {
             ))}
         </motion.div>
     );
-};
+});

@@ -26,7 +26,7 @@ export const useDebounceSearch = (data?: CoinList[], value?: string): DebounceTy
                     getCoins({ names: [value] });
                 }
             } else {
-                getCoins({});
+                // getCoins({});
             }
         }, 1000);
 

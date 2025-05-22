@@ -12,9 +12,9 @@ export const useUpdatePortfolio = () => {
 
     useEffect(() => {
         const merged = dataPortfolio?.map((item) => {
-            const match = dataCoins?.find((coin) => coin.id === item.id);
+            const match = dataCoins?.find((coin) => coin.name === item.name);
             if (match) {
-                const updatePortfolio = { ...item, ...match, profit_loss: match.current_price * item.holdings_coin - item.purchase_price };
+                const updatePortfolio = { ...match, ...item, profit_loss: match.current_price * item.holdings_coin - item.purchase_price };
                 return updatePortfolio;
             }
             return { ...item };

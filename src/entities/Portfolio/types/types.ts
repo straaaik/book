@@ -13,6 +13,11 @@ interface HistoryCapital {
 
 export type Portfolio = Coin & CoinsListWithMarketData;
 
+export interface IPortfolioNames {
+    id: string;
+    icon?: string;
+}
+
 export interface Coin {
     id: string;
     name: string;
@@ -22,6 +27,7 @@ export interface Coin {
     purchase_price: number;
     avgPrice: number;
     profit_loss: number;
+    portfolio_name: string;
 }
 
 export interface UpdateCoin {
@@ -33,6 +39,7 @@ export interface UpdateCoin {
     notes: string;
     fee: number;
     options: 'buy' | 'sell';
+    portfolio_name: string;
 }
 
 export interface PortfoliosStatus {

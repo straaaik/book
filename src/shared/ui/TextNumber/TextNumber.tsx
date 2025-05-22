@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import cls from './TextNumber.module.scss';
 import { Skeleton } from '../Skeleton/Skeleton';
 import { NumberFormatter } from './module/NumberFormater';
+import { memo } from 'react';
 
 export type FormatNumber = 'currency' | 'percentages' | 'big' | 'currencyRounded';
 
@@ -15,7 +16,7 @@ interface TextProps {
     format?: FormatNumber;
 }
 
-export const TextNumber = ({ className, text, highlight = false, format }: TextProps) => {
+export const TextNumber = memo(({ className, text, highlight = false, format }: TextProps) => {
     const changeHighlightClass = () => {
         if (text > 0) {
             return cls.highlight_green;
@@ -48,4 +49,4 @@ export const TextNumber = ({ className, text, highlight = false, format }: TextP
             )}
         </AnimatePresence>
     );
-};
+});

@@ -2,20 +2,16 @@
     display: grid;
     align-items: center;
     text-align: start;
+    justify-content: center;
     grid-auto-flow: column;
-    grid-template-columns: 40px 20% repeat(auto-fit, minmax(0, 1fr));
-    padding: 20px;
+    grid-template-columns: 40px 20% 1fr 1fr 1fr 1fr 1fr 1fr 1fr 40px;
+    padding: 10px;
     border-bottom: 1px dotted var(--bg-secondary-color);
-    white-space: nowrap;
-
-    :last-child {
-        grid-column: -1;
-        width: 40px;
-    }
 }
 
 .btn,
 .btnName {
     padding: 0;
     text-align: left;
+    white-space: nowrap;
 }

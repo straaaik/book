@@ -2,3 +2,13 @@
 @forward './theme/ThemeLight';
 @forward './reset';
 @forward './variables';
+
+// ::-webkit-scrollbar {
+//     width: 5px; /* Remove scrollbar space */
+//     height: 5px;
+//     background-color: var(--bg-secondary-color);
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background-color: var(--warn-color);
+// }

@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './infoBox.module.scss';
 import { animate } from 'motion';
 import { useMotionValue, useTransform, motion } from 'motion/react';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Button } from '../Button/Button';
 
 interface infoBoxProps {
@@ -14,7 +14,7 @@ interface infoBoxProps {
     current?: string;
 }
 
-export const InfoBox = ({ className, description, value, current }: infoBoxProps) => {
+export const InfoBox = memo(({ className, description, value, current }: infoBoxProps) => {
     const count = useMotionValue(0);
     const rounded = useTransform(() => (count.get() + 0.001).toFixed(2));
 
@@ -35,4 +35,4 @@ export const InfoBox = ({ className, description, value, current }: infoBoxProps
             )}
         </div>
     );
-};
+});

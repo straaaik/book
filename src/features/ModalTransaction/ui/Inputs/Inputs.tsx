@@ -13,9 +13,15 @@ export const Inputs = ({ control }: InputsProps) => {
             <Controller
                 name="price"
                 control={control}
+                rules={{ required: 'The price must be specified.' }}
                 render={({ field }) => <Input info="Price Per Coin" value={field.value} onChange={field.onChange} badge="USD" />}
             />
-            <Controller name="amount" control={control} render={({ field }) => <Input info="Quantity" value={field.value} onChange={field.onChange} />} />
+            <Controller
+                name="amount"
+                rules={{ required: 'The quantity must be specified.' }}
+                control={control}
+                render={({ field }) => <Input info="Quantity" value={field.value} onChange={field.onChange} />}
+            />
         </div>
     );
 };

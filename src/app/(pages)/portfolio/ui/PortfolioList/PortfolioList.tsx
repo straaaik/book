@@ -1,17 +1,25 @@
-import { useAppSelector } from '@/app/config/store/hooks';
 import { CoinCard } from '@/features/CoinCard/CoinCard';
 import cls from './PortfolioList.module.scss';
 import { PortfolioSorted } from './ui/PortfolioSorted/PortfolioSorted';
+import { Portfolio } from '@/entities/Portfolio';
 
-export const PortfolioList = () => {
-    const portfolio = useAppSelector((state) => state.portfolio.data);
+interface IPortfolioList {
+    portfolio: Portfolio[];
+    active: string;
+}
+
+export const PortfolioList = ({ portfolio, active }: IPortfolioList) => {
+    const activePortfolio = (() => {
+        if (active == 'Overview') return portfolio;
+        return portfolio?.filter((item) => item.portfolio_name == active);
+    })();
 
     return (
         <>
-            {Boolean(portfolio?.length) ? (
+            {Boolean(activePortfolio?.length) ? (
                 <div className={cls.wrapper}>
                     <PortfolioSorted />
-                    {portfolio?.map((item) => (
+                    {activePortfolio?.map((item) => (
                         <CoinCard
                             className={cls.wrapper}
                             id={item.id}

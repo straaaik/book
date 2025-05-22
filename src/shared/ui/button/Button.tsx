@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, memo, ReactNode } from 'react';
 import cls from './Button.module.scss';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { motion, MotionStyle } from 'motion/react';
@@ -31,7 +31,7 @@ export enum ButtonSize {
     XL = 'size_xl',
 }
 
-export const Button: FC<SearchProps> = (props) => {
+export const Button: FC<SearchProps> = memo((props) => {
     const { className, onClick, children, theme = ButtonTheme.CLEAR, size = ButtonSize.M, scale = [1.1, 0.95], style, animation, type = 'button' } = props;
 
     switch (animation) {
@@ -75,4 +75,4 @@ export const Button: FC<SearchProps> = (props) => {
                 </motion.button>
             );
     }
-};
+});

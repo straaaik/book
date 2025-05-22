@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './selectButton.module.scss';
 import { motion } from 'motion/react';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 interface selectButtonProps {
     className?: string;
@@ -13,7 +13,7 @@ const ActiveSwiper = () => {
     return <motion.div className={cls.swiper} layoutId="swiper"></motion.div>;
 };
 
-export const SelectButton = ({ className, items, onSendData }: selectButtonProps) => {
+export const SelectButton = memo(({ className, items, onSendData }: selectButtonProps) => {
     const [selected, setSelected] = useState(items[0]);
 
     const handlerItemClick = (item: string) => {
@@ -31,4 +31,4 @@ export const SelectButton = ({ className, items, onSendData }: selectButtonProps
             ))}
         </ul>
     );
-};
+});

@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Input.module.scss';
-import { FC, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
+import { FC, InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'info'>;
@@ -15,7 +15,7 @@ interface InputProps extends HTMLInputProps {
     focus?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ className, value, onChange, placeholder = '', info, badge, focus }) => {
+export const Input: FC<InputProps> = memo(({ className, value, onChange, placeholder = '', info, badge, focus }) => {
     const [isFocus, setIsFocus] = useState(false);
     const ref = useRef<HTMLInputElement>(null);
 
@@ -56,4 +56,4 @@ export const Input: FC<InputProps> = ({ className, value, onChange, placeholder 
             {badge && <motion.div className={cls.badge}>{badge}</motion.div>}
         </div>
     );
-};
+});

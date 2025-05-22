@@ -4,11 +4,7 @@
     text-align: start;
     justify-content: center;
     grid-auto-flow: column;
-    grid-template-columns: 40px 20% repeat(auto-fit, minmax(0, 1fr));
+    grid-template-columns: 40px 20% 1fr 1fr 1fr 1fr 1fr 1fr 1fr 40px;
     padding: 10px;
     border-bottom: 1px dotted var(--bg-secondary-color);
-
-    :last-child {
-        grid-column: -1;
-    }
 }

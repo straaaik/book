@@ -1,0 +1,16 @@
+.PortfolioInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input_wrapper {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    user-select: none;
+}
+
+.btn_wrapper {
+    margin-left: auto;
+}

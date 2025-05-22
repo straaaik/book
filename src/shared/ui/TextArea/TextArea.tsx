@@ -1,6 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './TextArea.module.scss';
 import { motion } from 'motion/react';
+import { memo } from 'react';
 
 interface TextAreaProps {
     className?: string;
@@ -8,7 +9,7 @@ interface TextAreaProps {
     onChange: () => void;
 }
 
-export const TextArea = ({ className, value, onChange }: TextAreaProps) => {
+export const TextArea = memo(({ className, value, onChange }: TextAreaProps) => {
     const maxLength = 50;
     const charactersRemaining = maxLength - value.length;
 
@@ -26,4 +27,4 @@ export const TextArea = ({ className, value, onChange }: TextAreaProps) => {
             <span className={cls.charactersRemaining}>{charactersRemaining}</span>
         </>
     );
-};
+});

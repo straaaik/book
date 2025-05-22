@@ -7,4 +7,5 @@ export interface IForm {
     fee: string;
     notes: string;
     options: 'buy' | 'sell';
+    portfolio_name: string;
 }

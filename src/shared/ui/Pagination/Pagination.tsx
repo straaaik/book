@@ -1,6 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Pagination.module.scss';
 import { Button, ButtonTheme } from '../Button/Button';
+import { memo } from 'react';
 
 interface PaginationProps {
     className?: string;
@@ -8,7 +9,7 @@ interface PaginationProps {
     onClick: (arg: number) => void;
 }
 
-export const Pagination = ({ className, value, onClick: setPage }: PaginationProps) => {
+export const Pagination = memo(({ className, value, onClick: setPage }: PaginationProps) => {
     return (
         <div className={classNames(cls.Pagination, {}, [className])}>
             <Button animation="bg" className={cls.btn} theme={ButtonTheme.CLEAR} onClick={() => setPage(value - 1)}>
@@ -39,4 +40,4 @@ export const Pagination = ({ className, value, onClick: setPage }: PaginationPro
             </Button>
         </div>
     );
-};
+});

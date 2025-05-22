@@ -3,7 +3,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './DropDownMenu.module.scss';
 import { AnimatePresence, motion } from 'motion/react';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { memo, ReactNode, useRef, useState } from 'react';
 import { DropDownMenuOpenButton } from './DropDownMenuOpenButton/DropDownMenuOpenButton';
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
 
@@ -12,7 +12,7 @@ interface ActionsProps {
     children: ReactNode;
 }
 
-export const DropDownMenu = ({ className, children }: ActionsProps) => {
+export const DropDownMenu = memo(({ className, children }: ActionsProps) => {
     const [show, setShow] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
     useOutsideClick(ref, setShow);
@@ -35,4 +35,4 @@ export const DropDownMenu = ({ className, children }: ActionsProps) => {
             </AnimatePresence>
         </motion.div>
     );
-};
+});

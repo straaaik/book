@@ -15,12 +15,18 @@ interface FormAddTransactionProps {
     className?: string;
     chooseCoin: ChooseCoin;
     setChooseCoin: (item: null) => void;
+    active: string;
 }
 
-export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin }: FormAddTransactionProps) => {
+export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, active }: FormAddTransactionProps) => {
     const [addCoin] = portfolioApi.useUpdateCoinToPortfolioMutation();
 
-    const { handleSubmit, control, watch } = useForm<IForm>({
+    const {
+        handleSubmit,
+        control,
+        watch,
+        formState: { errors },
+    } = useForm<IForm>({
         defaultValues: {
             name: chooseCoin.name,
             id: chooseCoin.id,
@@ -36,7 +42,7 @@ export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin }: For
     const onSubmit: SubmitHandler<IForm> = async (data) => {
         setChooseCoin(null);
         await addCoin({
-            id: data.id,
+            id: data.id + active,
             name: data.name,
             amount: Number(data.amount),
             price: Number(data.price),
@@ -44,6 +50,7 @@ export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin }: For
             fee: Number(data.fee),
             notes: data.notes,
             options: data.options,
+            portfolio_name: active,
         });
     };
 

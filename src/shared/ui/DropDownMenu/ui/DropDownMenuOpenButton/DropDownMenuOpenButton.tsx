@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import cls from './DropDownMenuOpenButton.module.scss';
 import { CgMoreVertical } from 'react-icons/cg';
+import { memo } from 'react';
 
 interface DropDownMenuOpenButtonProps {
     className?: string;
@@ -8,7 +9,7 @@ interface DropDownMenuOpenButtonProps {
     isOpen: boolean;
 }
 
-export const DropDownMenuOpenButton = ({ onOpen, isOpen }: DropDownMenuOpenButtonProps) => {
+export const DropDownMenuOpenButton = memo(({ onOpen, isOpen }: DropDownMenuOpenButtonProps) => {
     return (
         <motion.div
             //TODO Поменять VAR в motion для анимации
@@ -20,4 +21,4 @@ export const DropDownMenuOpenButton = ({ onOpen, isOpen }: DropDownMenuOpenButto
             <CgMoreVertical />
         </motion.div>
     );
-};
+});

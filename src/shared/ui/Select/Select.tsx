@@ -1,6 +1,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Select.module.scss';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import React from 'react';
 import { Button } from '../Button/Button';
 import { motion } from 'motion/react';
@@ -19,7 +19,7 @@ interface SelectProps {
     initialValue: string;
 }
 
-export const Select = ({ className, options, onChange, initialValue }: SelectProps) => {
+export const Select = memo(({ className, options, onChange, initialValue }: SelectProps) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const onClickHandler = (value: string) => {
@@ -45,4 +45,4 @@ export const Select = ({ className, options, onChange, initialValue }: SelectPro
             </motion.div>
         </motion.div>
     );
-};
+});
