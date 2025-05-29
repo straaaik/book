@@ -1,6 +1,6 @@
 :root {
-    --height: 100vh - 60px;
-    --width: 100vw - 10px;
+    --height: calc(100vh - 60px);
+    --width: calc(100vw - 10px);
 
     // z-index:
     --z-index-modal: 10;
