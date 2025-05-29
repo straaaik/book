@@ -1,11 +1,6 @@
 .PortfolioChart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    width: 300px;
-}
-
-.doughnut {
+    width: 100%;
+    border: var(--border);
+    padding: 20px;
     border-radius: 12px;
 }

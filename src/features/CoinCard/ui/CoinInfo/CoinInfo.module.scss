@@ -1,11 +1,5 @@
-.CoinInfo {
-    display: flex;
-    align-items: center;
-}
-
 .holdings {
     .wrapper {
-        display: inline-flex;
         color: var(--secondary-color);
         font-size: 12px;
     }
@@ -17,6 +11,9 @@
 }
 
 .profitLoss {
+    display: inline-flex;
+    flex-direction: column;
+
     .currency::before {
         content: none;
     }

@@ -5,36 +5,90 @@
       "name": "Bitcoin",
       "buy": [
         {
-          "amount": 1,
-          "price": 111601,
-          "date": "2025-05-22T17:29:40.624Z",
+          "amount": 0.21,
+          "price": 108839,
+          "date": "2025-05-29T11:37:30.408Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 111601,
-      "purchase_price": 111601,
+      "holdings_coin": 0.21,
+      "avgPrice": 108839,
+      "purchase_price": 22856.19,
       "portfolio_name": "Main"
     },
     {
-      "id": "ethereumSecond",
+      "id": "ethereumMain",
       "name": "Ethereum",
       "buy": [
         {
+          "amount": 0.2,
+          "price": 2719.79,
+          "date": "2025-05-29T11:58:05.150Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 0.2,
+      "avgPrice": 2719.79,
+      "purchase_price": 543.958,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "rippleMain",
+      "name": "XRP",
+      "buy": [
+        {
+          "amount": 2,
+          "price": 2.3,
+          "date": "2025-05-29T12:02:14.854Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 2,
+      "avgPrice": 2.3,
+      "purchase_price": 4.6,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "bitcoin-cashMain",
+      "name": "Bitcoin Cash",
+      "buy": [
+        {
+          "amount": 12,
+          "price": 419.64,
+          "date": "2025-05-29T12:02:23.173Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 12,
+      "avgPrice": 419.64,
+      "purchase_price": 5035.68,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "bitcoinBitcoin",
+      "name": "Bitcoin",
+      "buy": [
+        {
           "amount": 1,
-          "price": 2662.4,
-          "date": "2025-05-22T17:30:18.829Z",
+          "price": 108508,
+          "date": "2025-05-29T13:03:23.932Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
       "holdings_coin": 1,
-      "avgPrice": 2662.4,
-      "purchase_price": 2662.4,
-      "portfolio_name": "Second"
+      "avgPrice": 108508,
+      "purchase_price": 108508,
+      "portfolio_name": "Bitcoin"
     }
   ],
   "portfolio_names": [
@@ -43,12 +97,8 @@
       "icon": "Man"
     },
     {
-      "id": "Second",
-      "icon": "Helmet"
-    },
-    {
-      "id": "ss",
-      "icon": "Dragon"
+      "id": "Bitcoin",
+      "icon": "Lufy"
     }
   ]
 }

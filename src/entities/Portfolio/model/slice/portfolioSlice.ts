@@ -33,14 +33,14 @@ export const portfolioSlice = createSlice({
         sortedPortfolio: (state, action: PayloadAction<SortedType>) => {
             const { status, item } = action.payload;
             if (status == 'ascending') {
-                if (item == 'name') {
+                if (item == 'name' || item == 'portfolio_name') {
                     state.data.sort((a, b) => a[item].localeCompare(b[item], undefined, { sensitivity: 'base' }));
                 } else {
                     state.data.sort((a, b) => Number(b[item]) - Number(a[item]));
                 }
             }
             if (status == 'descending') {
-                if (item == 'name') {
+                if (item == 'name' || item == 'portfolio_name') {
                     state.data.sort((a, b) => b[item].localeCompare(a[item], undefined, { sensitivity: 'base' }));
                 } else {
                     state.data.sort((a, b) => Number(a[item]) - Number(b[item]));

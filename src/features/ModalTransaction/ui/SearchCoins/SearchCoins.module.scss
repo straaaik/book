@@ -1,0 +1,29 @@
+.SelectCoin {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.title {
+    position: static;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--bg-color);
+    z-index: 1000;
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+}
+
+.skeleton {
+    height: 40px;
+}

@@ -22,18 +22,12 @@ export const CoinActions = ({ portfolio, coinInfo }: CoinActionsProps) => {
     };
 
     return (
-        <>
+        <td>
             {portfolio ? (
-                <PortfolioActions
-                    coinInfo={coinInfo}
-                    isOpen={isOpen}
-                    onAddBtnClick={onAddBtnClick}
-                    onClose={() => setIsOpen(false)}
-                    onDeleteBtnClick={onDeleteBtnClick}
-                />
+                <PortfolioActions isOpen={isOpen} onAddBtnClick={onAddBtnClick} onClose={() => setIsOpen(false)} onDeleteBtnClick={onDeleteBtnClick} />
             ) : (
-                <MainActions coinInfo={coinInfo} isOpen={isOpen} onAddBtnClick={onAddBtnClick} onClose={() => setIsOpen(false)} />
+                <MainActions isOpen={isOpen} onAddBtnClick={onAddBtnClick} onClose={() => setIsOpen(false)} />
             )}
-        </>
+        </td>
     );
 };

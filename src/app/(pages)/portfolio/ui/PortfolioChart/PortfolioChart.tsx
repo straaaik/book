@@ -1,19 +1,22 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfolioChart.module.scss';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-import { portfolioApi } from '@/entities/Portfolio';
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { CharDoughnut } from '@/shared/ui/Charts/Doughnut/Doughnut';
+import { useAppSelector } from '@/app/config/store/hooks';
 
 interface PortfolioChartProps {
     className?: string;
+    active: string;
 }
 
-export const PortfolioChart = ({ className }: PortfolioChartProps) => {
-    const { data: portfolioData } = portfolioApi.useGetPortfolioQuery();
-    const coinName = portfolioData?.map((coin) => coin.name);
-    const amountCoin = portfolioData?.map((coin) => coin.holdings_coin);
+export const PortfolioChart = ({ className, active }: PortfolioChartProps) => {
+    const portfolioData = useAppSelector((state) => state.portfolio.data);
+    const activePortfolio = (() => {
+        if (active == 'Overview') return portfolioData;
+        return portfolioData?.filter((item) => item.portfolio_name == active);
+    })();
+
+    const coinName = activePortfolio?.map((coin) => coin.name);
+    const amountCoin = activePortfolio?.map((coin) => coin.holdings_coin * coin.current_price);
 
     const data = {
         labels: coinName,
@@ -21,12 +24,13 @@ export const PortfolioChart = ({ className }: PortfolioChartProps) => {
             {
                 data: amountCoin,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
+                    'rgb(0, 173, 181)',
+                    'rgb(255, 46, 99)',
+                    'rgb(157, 192, 139)',
+                    'rgb(162, 123, 92)',
+                    'rgb(192, 108, 132)',
+                    'rgb(96, 153, 102)',
+                    'rgb(138, 129, 124)',
                 ],
                 borderColor: 'transparent',
             },
@@ -34,7 +38,7 @@ export const PortfolioChart = ({ className }: PortfolioChartProps) => {
     };
     return (
         <div className={classNames(cls.PortfolioChart, {}, [className])}>
-            <Doughnut className={cls.doughnut} data={data} />
+            <CharDoughnut data={data} />
         </div>
     );
 };

@@ -1,7 +1,5 @@
-import cls from './CoinCard.module.scss';
 import { CoinName } from './ui/CoinName/CoinName';
 import { CoinInfo } from './ui/CoinInfo/CoinInfo';
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { CoinActions } from './ui/CoinActions/CoinActions';
 
 interface CoinInfoProps {
@@ -21,6 +19,7 @@ interface CoinInfoProps {
     avgPrice?: number;
     profitLoss?: [number, number];
     id: string;
+    portfolioName?: string;
 }
 
 export const CoinCard = (props: CoinInfoProps) => {
@@ -41,12 +40,12 @@ export const CoinCard = (props: CoinInfoProps) => {
         holdings,
         avgPrice,
         profitLoss,
+        portfolioName,
     } = props;
 
     return (
-        <div className={classNames(cls.CoinCard, {}, [className])}>
-            {rank && <div>{rank}</div>}
-            <CoinName name={name} image={image} symbol={symbol} id={id} />
+        <tr className={className}>
+            <CoinName rank={rank} name={name} image={image} symbol={symbol} id={id} portfolioName={portfolioName} />
             <CoinInfo
                 price={price}
                 marketCap={marketCap}
@@ -61,6 +60,6 @@ export const CoinCard = (props: CoinInfoProps) => {
                 symbol={symbol}
             />
             <CoinActions portfolio={Boolean(avgPrice)} coinInfo={{ name, symbol, image, current_price: price, id }} />
-        </div>
+        </tr>
     );
 };

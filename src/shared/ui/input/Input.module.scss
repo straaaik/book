@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    padding: 5px;
 }
 
 .info {
@@ -12,6 +13,13 @@
     letter-spacing: 0.5px;
 }
 
+.error {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: var(--red-color);
+}
+
 .input {
     height: 40px;
     width: 100%;
@@ -19,16 +27,18 @@
     font-weight: 300;
     border-radius: 12px;
     padding: 0 10px;
+    border: 2px solid var(--inverted-primary-color);
 }
 
 .placeholder {
     position: absolute;
-    bottom: 7px;
+    bottom: 11px;
     left: 20px;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 2px;
     pointer-events: none;
+    white-space: nowrap;
 }
 
 .badge {
@@ -37,6 +47,6 @@
     position: absolute;
     font-size: 16px;
     right: 10px;
-    bottom: 20px;
+    bottom: 25px;
     transform: translateY(50%);
 }

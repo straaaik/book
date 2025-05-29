@@ -2,47 +2,44 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './FormAddTransaction.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { InfoBox } from '@/shared/ui/InfoBox/infoBox';
-import { ChooseCoin } from '../ModalTransaction';
 import { SelectButton } from '@/shared/ui/SelectButton/selectButton';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { portfolioApi } from '@/entities/Portfolio';
-import { Actions } from '../Actions/Actions';
+import { Actions } from './ui/Actions/Actions';
 import { IForm } from '../../module/types';
-import { ButtonChoosesCoin } from '../ButtonChoosesCoin/ButtonChoosesCoin';
-import { Inputs } from '../Inputs/Inputs';
+import { ButtonChoosesCoin } from './ui/ButtonChoosesCoin/ButtonChoosesCoin';
+import { Inputs } from './ui/Inputs/Inputs';
+import { SelectPortfolio } from './ui/SelectPortfolio/SelectPortfolio';
+import { CoinsListWithMarketData } from '@/entities/Coin';
 
 interface FormAddTransactionProps {
     className?: string;
-    chooseCoin: ChooseCoin;
+    chooseCoin: CoinsListWithMarketData;
     setChooseCoin: (item: null) => void;
-    active: string;
+    active?: string;
 }
 
 export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, active }: FormAddTransactionProps) => {
     const [addCoin] = portfolioApi.useUpdateCoinToPortfolioMutation();
 
-    const {
-        handleSubmit,
-        control,
-        watch,
-        formState: { errors },
-    } = useForm<IForm>({
+    const { handleSubmit, control, watch } = useForm<IForm>({
         defaultValues: {
             name: chooseCoin.name,
             id: chooseCoin.id,
-            price: chooseCoin.current_price?.toString() || '0',
-            amount: '1',
+            price: chooseCoin.current_price.toString() || '0',
+            amount: '',
             fee: '',
             notes: '',
             date: new Date(),
             options: 'buy',
+            portfolio_name: active == 'Overview' ? 'Choose portfolio' : active,
         },
+        mode: 'onSubmit',
     });
 
     const onSubmit: SubmitHandler<IForm> = async (data) => {
-        setChooseCoin(null);
         await addCoin({
-            id: data.id + active,
+            id: data.id + data.portfolio_name,
             name: data.name,
             amount: Number(data.amount),
             price: Number(data.price),
@@ -50,12 +47,12 @@ export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, activ
             fee: Number(data.fee),
             notes: data.notes,
             options: data.options,
-            portfolio_name: active,
+            portfolio_name: data.portfolio_name,
         });
+        setChooseCoin(null);
     };
 
     const totalSpend = Number(watch('amount')) * Number(watch('price'));
-    const imageCoin = chooseCoin.image || '';
 
     return (
         <form className={classNames(cls.AddTransaction, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
@@ -64,7 +61,8 @@ export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, activ
                 control={control}
                 render={({ field }) => <SelectButton onSendData={field.onChange} className={cls.selectButton} items={['buy', 'sell']} />}
             />
-            <ButtonChoosesCoin image={imageCoin} name={chooseCoin.name} symbol={chooseCoin.symbol} onClick={() => setChooseCoin(null)} />
+            <SelectPortfolio control={control} />
+            <ButtonChoosesCoin image={chooseCoin.image} name={chooseCoin.name} symbol={chooseCoin.symbol} onClick={() => setChooseCoin(null)} />
             <Inputs control={control} />
             <Actions control={control} />
             <InfoBox className={cls.infoBox} description="Total Spent" value={totalSpend} current="usd" />

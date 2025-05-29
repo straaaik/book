@@ -1,6 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './CreatePortfolioPage.module.scss';
 import { CreatePortfolio } from '../CreatePortfolio/CreatePortfolio';
+import { TbFaceIdError } from 'react-icons/tb';
 
 interface CreatePortfolioPageProps {
     className?: string;
@@ -11,6 +12,7 @@ export const CreatePortfolioPage = ({ className }: CreatePortfolioPageProps) => 
         <div className={classNames(cls.CreatePortfolioPage, {}, [className])}>
             <div className={cls.description}>{"You don't have any portfolio."}</div>
             <CreatePortfolio className={cls.btnAdd} />
+            <TbFaceIdError className={cls.icon} />
         </div>
     );
 };

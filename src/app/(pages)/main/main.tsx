@@ -1,5 +1,5 @@
-import { CoinList } from './ui/CoinList/CoinList';
 import cls from './main.module.scss';
+import { CoinList } from './ui/CoinList/CoinList';
 
 export default function MainPage() {
     return (

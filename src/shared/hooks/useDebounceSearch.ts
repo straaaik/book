@@ -1,37 +1,36 @@
-import { coinApi, CoinList, CoinsListWithMarketData } from '@/entities/Coin';
+import { coinApi } from '@/entities/Coin';
+import { CoinsListWithMarketData, SearchCoin } from '@/entities/Coin/types/types';
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-type DebounceType = [CoinsListWithMarketData[] | undefined, boolean, FetchBaseQueryError | SerializedError | undefined, boolean];
+export type ResponseType = SearchCoin[] | undefined | CoinsListWithMarketData[];
 
-export const useDebounceSearch = (data?: CoinList[], value?: string): DebounceType => {
-    const [getCoins, { data: dataCoins, isFetching, error, isError }] = coinApi.useLazyGetCoinListWithMarketQuery();
+interface DebounceType {
+    response: ResponseType;
+    isFetching: boolean;
+    error: FetchBaseQueryError | SerializedError | undefined;
+}
 
-    const onSortingDataName = useCallback(
-        (searchValue: string) => {
-            const result = data?.filter((coin) => coin.name.toLowerCase().includes(searchValue.toLowerCase()));
-            return result?.slice(0, 15).map((coin) => coin.name);
-        },
-        [data]
-    );
+export const useDebounceSearch = (value?: string): DebounceType => {
+    const [isFetching, setIsFetching] = useState(false);
+    const [searchCoins, { data, isFetching: isFetchingSearch, error }] = coinApi.useLazySearchCoinsQuery();
+    const { data: dataCoins, isFetching: isFetchingCoins, error: errorCoins } = coinApi.useGetCoinListWithMarketQuery({});
 
     useEffect(() => {
+        setIsFetching(true);
         const debounce = setTimeout(() => {
             if (value) {
-                const names = onSortingDataName(value);
-                if (!!names?.length) {
-                    getCoins({ names });
-                } else {
-                    getCoins({ names: [value] });
-                }
-            } else {
-                // getCoins({});
+                searchCoins(value);
+                setIsFetching(false);
             }
         }, 1000);
-
         return () => clearTimeout(debounce);
-    }, [getCoins, value, onSortingDataName]);
+    }, [searchCoins, value]);
 
-    return [dataCoins, isFetching, error, isError];
+    if (!value) {
+        return { response: dataCoins, isFetching: isFetchingCoins, error: errorCoins };
+    }
+
+    return { response: data?.coins, isFetching: isFetching || isFetchingSearch, error };
 };

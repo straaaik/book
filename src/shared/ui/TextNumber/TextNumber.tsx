@@ -3,7 +3,6 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { AnimatePresence, motion } from 'motion/react';
 import cls from './TextNumber.module.scss';
-import { Skeleton } from '../Skeleton/Skeleton';
 import { NumberFormatter } from './module/NumberFormater';
 import { memo } from 'react';
 
@@ -31,22 +30,20 @@ export const TextNumber = memo(({ className, text, highlight = false, format }: 
         [changeHighlightClass()]: highlight,
     };
 
+    if (Number.isNaN(text)) return null;
+
     return (
         <AnimatePresence mode="wait">
-            {Number.isNaN(text) ? (
-                <Skeleton />
-            ) : (
-                <motion.div
-                    className={classNames(cls.text, mods, [className])}
-                    key={text}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {NumberFormatter(text, format)}
-                </motion.div>
-            )}
+            <motion.div
+                className={classNames(cls.text, mods, [className])}
+                key={text}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+            >
+                {NumberFormatter(text, format)}
+            </motion.div>
         </AnimatePresence>
     );
 });

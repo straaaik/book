@@ -37,18 +37,16 @@ export const Sorted = <T,>(props: CoinSortedProps<T>) => {
     };
 
     return (
-        <div className={classNames(cls.CoinSorted, {}, [className])}>
+        <tr className={classNames(cls.Sorted, {}, [className])}>
             {params.map(({ sortKey, text }) => {
                 return (
-                    <div key={text}>
+                    <th key={text}>
                         <Button scale={[1.3, 0.8]} style={setStyleForStatus(sortKey)} onClick={() => onBtnClick(sortKey)} className={cls.btn}>
                             {text}
                         </Button>
-                    </div>
+                    </th>
                 );
             })}
-
-            <div className={cls.actions_container} />
-        </div>
+        </tr>
     );
 };

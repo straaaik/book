@@ -1,0 +1,10 @@
+.Doughnut {
+    width: 500px;
+    height: 500px;
+    border: var(--border);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}

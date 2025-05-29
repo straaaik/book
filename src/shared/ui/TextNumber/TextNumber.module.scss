@@ -1,3 +1,7 @@
+.text {
+    display: inline;
+}
+
 .currency::before {
     content: '$';
 }
@@ -15,9 +19,8 @@
 
 .highlight_green::before {
     position: absolute;
-    top: 8px;
-    left: -10px;
-    margin-right: 5px;
+    top: 0.4rem;
+    left: -15px;
     content: '';
     width: 0;
     height: 0;
@@ -35,9 +38,8 @@
 
 .highlight_red::before {
     position: absolute;
-    top: 8px;
-    left: -10px;
-    margin-right: 5px;
+    top: 0.4rem;
+    left: -15px;
     content: '';
     width: 0;
     height: 0;

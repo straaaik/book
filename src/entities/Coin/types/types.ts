@@ -172,3 +172,41 @@ export interface CoinList {
     name: string;
     platforms: Record<string, string>;
 }
+
+export type SearchCoinResponse = {
+    coins: SearchCoin[];
+    exchanges: SearchExchange[];
+    icos: string[];
+    categories: SearchCategory[];
+    nfts: SearchNFT[];
+};
+
+export type SearchCoin = {
+    id: string;
+    name: string;
+    api_symbol: string;
+    symbol: string;
+    market_cap_rank: number;
+    thumb: string;
+    large: string;
+};
+
+export type SearchExchange = {
+    id: string;
+    name: string;
+    market_type: string;
+    thumb: string;
+    large: string;
+};
+
+export type SearchCategory = {
+    id: string;
+    name: string;
+};
+
+export type SearchNFT = {
+    id: string;
+    name: string;
+    symbol: string;
+    thumb: string;
+};

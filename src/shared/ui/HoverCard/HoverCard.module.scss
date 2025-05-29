@@ -1,0 +1,22 @@
+.HoverCard {
+    position: relative;
+    z-index: 1000;
+
+    .title {
+        font-weight: 900;
+        text-decoration: underline;
+        font-size: 24px;
+    }
+
+    .description {
+        right: 0;
+        position: absolute;
+        background-color: var(--bg-color);
+        width: 250px;
+        border: var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        font-size: 12px;
+        font-weight: 900;
+    }
+}

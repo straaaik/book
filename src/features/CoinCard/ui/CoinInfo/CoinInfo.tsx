@@ -31,28 +31,64 @@ export const CoinInfo = ({
 }: CoinInfoProps) => {
     return (
         <>
-            {price !== undefined && <TextNumber text={price} format="currency" />}
-            {change1h !== undefined && <TextNumber text={change1h} format="percentages" highlight />}
-            {change24h !== undefined && <TextNumber text={change24h} format="percentages" highlight />}
-            {change7d !== undefined && <TextNumber text={change7d} format="percentages" highlight />}
-            {marketCap !== undefined && <TextNumber text={marketCap} format="big" />}
-            {volume !== undefined && <TextNumber text={Number(volume)} format="big" />}
-            {circulatingSupply !== undefined && <TextNumber text={Number(circulatingSupply)} format="big" />}
-            {holdings !== undefined && (
-                <div className={cls.holdings}>
-                    <TextNumber text={Number(holdings[0])} format="currencyRounded" />
-                    <div className={cls.wrapper}>
-                        <TextNumber text={Number(holdings[1])} />
-                        <span>{symbol}</span>
-                    </div>
-                </div>
+            {price !== undefined && (
+                <td>
+                    <TextNumber text={price} format="currency" />
+                </td>
             )}
-            {avgPrice !== undefined && <TextNumber text={Number(avgPrice)} format="currencyRounded" />}
+            {change1h !== undefined && (
+                <td>
+                    <TextNumber text={change1h} format="percentages" highlight />
+                </td>
+            )}
+            {change24h !== undefined && (
+                <td>
+                    <TextNumber text={change24h} format="percentages" highlight />
+                </td>
+            )}
+            {change7d !== undefined && (
+                <td>
+                    <TextNumber text={change7d} format="percentages" highlight />
+                </td>
+            )}
+            {marketCap !== undefined && (
+                <td>
+                    <TextNumber text={marketCap} format="big" />
+                </td>
+            )}
+            {volume !== undefined && (
+                <td>
+                    <TextNumber text={Number(volume)} format="big" />
+                </td>
+            )}
+            {circulatingSupply !== undefined && (
+                <td>
+                    <TextNumber text={Number(circulatingSupply)} format="big" />
+                </td>
+            )}
+            {holdings !== undefined && (
+                <td>
+                    <div className={cls.holdings}>
+                        <TextNumber text={Number(holdings[0])} format="currencyRounded" />
+                        <div className={cls.wrapper}>
+                            <TextNumber text={Number(holdings[1])} />
+                            <span>{symbol}</span>
+                        </div>
+                    </div>
+                </td>
+            )}
+            {avgPrice !== undefined && (
+                <td>
+                    <TextNumber text={Number(avgPrice)} format="currencyRounded" />
+                </td>
+            )}
             {profitLoss !== undefined && (
-                <div className={cls.profitLoss}>
-                    <TextNumber className={cls.currency} text={Number(profitLoss[0])} format="currencyRounded" highlight />
-                    <TextNumber className={cls.percentages} text={Number(profitLoss[1])} format="percentages" highlight />
-                </div>
+                <td>
+                    <div className={cls.profitLoss}>
+                        <TextNumber className={cls.currency} text={Number(profitLoss[0])} format="currencyRounded" highlight />
+                        <TextNumber className={cls.percentages} text={Number(profitLoss[1])} format="percentages" highlight />
+                    </div>
+                </td>
             )}
         </>
     );

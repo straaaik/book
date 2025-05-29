@@ -1,17 +1,5 @@
-.CoinSorted {
-    display: grid;
-    align-items: center;
-    text-align: start;
-    justify-content: center;
-    grid-auto-flow: column;
-    grid-template-columns: 40px 20% 1fr 1fr 1fr 1fr 1fr 1fr 1fr 40px;
-    padding: 10px;
-    border-bottom: 1px dotted var(--bg-secondary-color);
-}
-
 .btn,
 .btnName {
-    padding: 0;
     text-align: left;
     white-space: nowrap;
 }

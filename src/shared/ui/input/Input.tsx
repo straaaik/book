@@ -2,6 +2,9 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Input.module.scss';
 import { FC, InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
+import { BiError } from 'react-icons/bi';
+import { HoverCard } from '../HoverCard/HoverCard';
+import { animateVariants } from '../animation/variants';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'info'>;
 
@@ -13,9 +16,11 @@ interface InputProps extends HTMLInputProps {
     info?: string;
     badge?: string;
     focus?: boolean;
+    regex?: 'number' | 'string';
+    error?: string;
 }
 
-export const Input: FC<InputProps> = memo(({ className, value, onChange, placeholder = '', info, badge, focus }) => {
+export const Input: FC<InputProps> = memo(({ className, value, onChange, placeholder = '', info, badge, focus, regex, error }) => {
     const [isFocus, setIsFocus] = useState(false);
     const ref = useRef<HTMLInputElement>(null);
 
@@ -27,7 +32,18 @@ export const Input: FC<InputProps> = memo(({ className, value, onChange, placeho
     }, [focus]);
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.value);
+        switch (regex) {
+            case 'number':
+                const regex = /^\d*\.?\d*$/;
+                if (regex.test(e.target.value)) onChange?.(e.target.value);
+                break;
+            case 'string':
+                onChange?.(e.target.value);
+                break;
+            default:
+                onChange?.(e.target.value);
+                break;
+        }
     };
 
     const handlerFocus = () => {
@@ -39,21 +55,24 @@ export const Input: FC<InputProps> = memo(({ className, value, onChange, placeho
     };
 
     return (
-        <div className={classNames(cls.InputContent, {}, [className])}>
+        <motion.div className={classNames(cls.InputContent, {}, [className])}>
             {info && <div className={cls.info}>{info}</div>}
             <motion.div animate={{ opacity: isFocus || value ? 0 : 1 }} className={cls.placeholder}>
                 {!isFocus && !value && placeholder}
             </motion.div>
             <motion.input
                 ref={ref}
+                variants={animateVariants}
+                animate={error && 'error'}
+                style={{ paddingRight: badge && 40 }}
                 onFocus={handlerFocus}
                 onBlur={handlerBlur}
-                animate={{ border: isFocus || value ? '2px solid var(--inverted-primary-color)' : '20px solid var(--inverted-primary-color)' }}
                 className={cls.input}
                 value={value}
                 onChange={onChangeHandler}
             />
             {badge && <motion.div className={cls.badge}>{badge}</motion.div>}
-        </div>
+            <div className={cls.error}>{error && <HoverCard title={<BiError />} description={error} />}</div>
+        </motion.div>
     );
 });

@@ -1,0 +1,24 @@
+.wrapperSelect {
+    display: flex;
+    padding: 15px;
+
+    .symbol {
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        font-weight: 600;
+    }
+
+    .wrapperName {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        gap: 5;
+    }
+
+    .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

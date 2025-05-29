@@ -4,7 +4,7 @@ export const sidebarVariants = {
         opacity: 1,
         transition: {
             opacity: { ease: 'linear' },
-            duration: 1,
+            duration: 0.5,
         },
     }),
     closed: {

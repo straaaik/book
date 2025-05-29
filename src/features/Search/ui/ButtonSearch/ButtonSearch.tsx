@@ -8,7 +8,7 @@ interface ButtonSearchProps {
 
 export const ButtonSearch = ({ onClick }: ButtonSearchProps) => {
     return (
-        <Button theme={ButtonTheme.OPACITY} className={cls.ButtonSearch} onClick={onClick}>
+        <Button animation="bg" theme={ButtonTheme.OPACITY} className={cls.ButtonSearch} onClick={onClick}>
             <div className={cls.placeholder}>Search</div>
             <AiOutlineSearch className={cls.icon} />
         </Button>

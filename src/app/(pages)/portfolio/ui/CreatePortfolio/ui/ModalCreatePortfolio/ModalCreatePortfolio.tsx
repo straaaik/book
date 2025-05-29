@@ -60,7 +60,7 @@ export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreate
                             },
                         },
                     }}
-                    render={({ field }) => <Input focus placeholder="Enter portfolio name" value={field.value} onChange={field.onChange} />}
+                    render={({ field }) => <Input focus placeholder="Enter name..." value={field.value} onChange={field.onChange} />}
                 />
                 <Controller name="icon" control={control} render={({ field }) => <SelectIcon active={field.value?.name} onClick={field.onChange} />} />
                 {errors.value && <div className={cls.error}>{errors.value?.message}</div>}
