@@ -39,7 +39,7 @@ export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, activ
 
     const onSubmit: SubmitHandler<IForm> = async (data) => {
         await addCoin({
-            id: data.id + data.portfolio_name,
+            id: data.id,
             name: data.name,
             amount: Number(data.amount),
             price: Number(data.price),

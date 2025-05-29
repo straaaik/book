@@ -15,6 +15,7 @@ export const SelectCountCoins = ({ limit, setLimit }: SelectCountCoinsProps) => 
                 initialValue={limit}
                 options={[
                     { description: '50', value: '50' },
+                    { description: '100', value: '100' },
                     { description: '150', value: '150' },
                     { description: '200', value: '200' },
                 ]}

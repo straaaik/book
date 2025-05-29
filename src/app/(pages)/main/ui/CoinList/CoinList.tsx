@@ -10,7 +10,7 @@ import { useState } from 'react';
 export const CoinList = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState('100');
-    const { data, isFetching } = coinApi.useGetCoinListWithMarketQuery(
+    const { data, isLoading } = coinApi.useGetCoinListWithMarketQuery(
         { vs_currency: 'usd', page, per_page: limit },
         {
             pollingInterval: RELOAD_TIME,
@@ -19,7 +19,7 @@ export const CoinList = () => {
     return (
         <div>
             <SelectCountCoins limit={limit} setLimit={setLimit} />
-            <CoinTableMain data={data} isLoading={isFetching} />
+            <CoinTableMain data={data} isLoading={isLoading} />
             <PaginationMainPage page={page} setPage={setPage} />
         </div>
     );

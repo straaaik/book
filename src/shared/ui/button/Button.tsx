@@ -40,7 +40,7 @@ export const Button: FC<SearchProps> = memo((props) => {
                 <motion.button
                     type={type}
                     style={style}
-                    whileHover={{ background: 'var(--warn-color)' }}
+                    whileHover={{ backgroundColor: 'var(--warn-color)' }}
                     whileTap={{ scale: scale[1] }}
                     className={classNames(cls.Button, {}, [className, cls[theme], cls[size]])}
                     onClick={onClick}
@@ -53,7 +53,7 @@ export const Button: FC<SearchProps> = memo((props) => {
                 <motion.button
                     type={type}
                     style={style}
-                    whileHover={{ scale: scale[0], background: 'var(--warn-color)' }}
+                    whileHover={{ scale: scale[0], backgroundColor: 'var(--warn-color)' }}
                     whileTap={{ scale: scale[1] }}
                     className={classNames(cls.Button, {}, [className, cls[theme], cls[size]])}
                     onClick={onClick}

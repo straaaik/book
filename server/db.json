@@ -2,92 +2,88 @@
   "portfolio": [
     {
       "id": "bitcoinMain",
-      "name": "Bitcoin",
-      "buy": [
-        {
-          "amount": 0.21,
-          "price": 108839,
-          "date": "2025-05-29T11:37:30.408Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 0.21,
-      "avgPrice": 108839,
-      "purchase_price": 22856.19,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "ethereumMain",
-      "name": "Ethereum",
-      "buy": [
-        {
-          "amount": 0.2,
-          "price": 2719.79,
-          "date": "2025-05-29T11:58:05.150Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 0.2,
-      "avgPrice": 2719.79,
-      "purchase_price": 543.958,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "rippleMain",
-      "name": "XRP",
-      "buy": [
-        {
-          "amount": 2,
-          "price": 2.3,
-          "date": "2025-05-29T12:02:14.854Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 2,
-      "avgPrice": 2.3,
-      "purchase_price": 4.6,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "bitcoin-cashMain",
-      "name": "Bitcoin Cash",
-      "buy": [
-        {
-          "amount": 12,
-          "price": 419.64,
-          "date": "2025-05-29T12:02:23.173Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 12,
-      "avgPrice": 419.64,
-      "purchase_price": 5035.68,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "bitcoinBitcoin",
+      "serverId": "bitcoin",
       "name": "Bitcoin",
       "buy": [
         {
           "amount": 1,
-          "price": 108508,
-          "date": "2025-05-29T13:03:23.932Z",
+          "price": 106973,
+          "date": "2025-05-29T16:50:23.296Z",
+          "fee": 0,
+          "notes": ""
+        },
+        {
+          "amount": 111,
+          "price": 106973,
+          "date": "2025-05-29T16:50:35.130Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [
+        {
+          "amount": 21,
+          "price": 106733,
+          "date": "2025-05-29T17:30:13.001Z",
+          "fee": 0,
+          "notes": ""
+        },
+        {
+          "amount": 21,
+          "price": 106737,
+          "date": "2025-05-29T17:33:59.511Z",
+          "fee": 0,
+          "notes": ""
+        },
+        {
+          "amount": 2121,
+          "price": 106737,
+          "date": "2025-05-29T17:34:39.217Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "holdings_coin": -2051,
+      "avgPrice": 106973,
+      "purchase_price": 11980976,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "rippleBitcoin",
+      "serverId": "ripple",
+      "name": "XRP",
+      "buy": [
+        {
+          "amount": 121,
+          "price": 2.27,
+          "date": "2025-05-29T17:12:55.448Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 108508,
-      "purchase_price": 108508,
+      "holdings_coin": 121,
+      "avgPrice": 2.27,
+      "purchase_price": 274.67,
+      "portfolio_name": "Bitcoin"
+    },
+    {
+      "id": "tronBitcoin",
+      "serverId": "tron",
+      "name": "TRON",
+      "buy": [
+        {
+          "amount": 11,
+          "price": 0.276249,
+          "date": "29.05.2025, 20:25:50",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 11,
+      "avgPrice": 0.276249,
+      "purchase_price": 3.038739,
       "portfolio_name": "Bitcoin"
     }
   ],

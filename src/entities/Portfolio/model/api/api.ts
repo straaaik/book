@@ -20,6 +20,7 @@ export const portfolioApi = baseApi.injectEndpoints({
         }),
         getPortfolioNames: create.query<IPortfolioNames[], void>({ query: () => '/portfolio_names', providesTags: ['Names'] }),
         getPortfolio: create.query<Coin[], void>({ query: () => '/portfolio', providesTags: ['Portfolio'] }),
+        getCoinForId: create.query<Coin, string>({ query: (id) => `/portfolio/${id}`, providesTags: ['Portfolio'] }),
         deleteCoin: create.mutation<void, string>({
             query: (id) => ({
                 url: `/portfolio/${id}`,
@@ -32,11 +33,12 @@ export const portfolioApi = baseApi.injectEndpoints({
                 const res = await baseQuery('/portfolio');
                 const { id: newCoinId, name: newCoinName, options, portfolio_name, ...newCoinInfo } = newCoin;
                 const portfolio = res.data as Coin[];
+                const id = newCoinId + portfolio_name;
 
-                const checkCoin = portfolio.some((item) => item?.id == newCoinId);
+                const checkCoin = portfolio.some((item) => item?.id == id);
 
                 if (checkCoin) {
-                    const coinId = portfolio.findIndex((coin) => coin?.id == newCoinId);
+                    const coinId = portfolio.findIndex((coin) => coin?.id == id);
                     const updatePortfolio = [...portfolio[coinId][options], newCoinInfo];
                     const updateData = {
                         ...portfolio[coinId],
@@ -50,7 +52,7 @@ export const portfolioApi = baseApi.injectEndpoints({
 
                     if (options == 'buy') {
                         const update = await baseQuery({
-                            url: `/portfolio/${newCoinId}`,
+                            url: `/portfolio/${id}`,
                             method: 'PUT',
                             body: {
                                 ...updateData,
@@ -62,7 +64,7 @@ export const portfolioApi = baseApi.injectEndpoints({
                         return { data: update.data as Coin };
                     } else {
                         const update = await baseQuery({
-                            url: `/portfolio/${newCoinId}`,
+                            url: `/portfolio/${id}`,
                             method: 'PUT',
                             body: { ...updateData, holdings_coin: holdingsCoin },
                         });
@@ -70,7 +72,8 @@ export const portfolioApi = baseApi.injectEndpoints({
                     }
                 } else {
                     const updateData = {
-                        id: newCoinId,
+                        id: id,
+                        serverId: newCoinId,
                         name: newCoinName,
                         buy: [newCoinInfo],
                         sell: [],

@@ -41,18 +41,25 @@ export const Modal = (props: ModalProps) => {
         <Portal>
             <AnimatePresence initial={false}>
                 {isOpen && (
-                    <motion.div key="modal" className={cls.Modal} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <div className={cls.overlay}>
-                            <div ref={ref} className={cls.content}>
-                                <div className={cls.header}>
+                    <motion.div className={cls.Modal} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                        <motion.div className={cls.overlay}>
+                            <motion.div
+                                key="modal"
+                                initial={{ rotateY: 20, rotateX: 10 }}
+                                animate={{ rotateY: 0, rotateX: 0 }}
+                                exit={{ rotateY: 20, rotateX: 10 }}
+                                ref={ref}
+                                className={cls.content}
+                            >
+                                <motion.div className={cls.header}>
                                     <span>{header}</span>
                                     <Button theme={ButtonTheme.CLEAR} className={cls.closeBtn} onClick={onHandlerClose}>
                                         <AiOutlineCloseCircle />
                                     </Button>
-                                </div>
+                                </motion.div>
                                 <div className={classNames(cls.main, {}, [className])}>{children}</div>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

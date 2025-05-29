@@ -17,13 +17,13 @@ export const CoinTableMain = ({ data, isLoading }: CoinTableMainProps) => {
         if (data) setSortedData(data);
     }, [data]);
 
-    if (isLoading || !sortedData) return <LoadingSpinner />;
+    if (isLoading || !sortedData.length) return <LoadingSpinner />;
 
     return (
         <CoinsTable
             className={cls.CoinTableMain}
             head={<SortingCoinList data={sortedData} setData={setSortedData} />}
-            main={sortedData?.map((coin) => (
+            main={sortedData.map((coin) => (
                 <CoinCard
                     id={coin.id}
                     key={coin.market_cap_rank}

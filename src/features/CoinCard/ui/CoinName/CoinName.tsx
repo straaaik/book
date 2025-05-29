@@ -10,12 +10,13 @@ interface CoinNameProps {
     image?: string;
     name?: string;
     symbol?: string;
-    id?: string;
+    id: string;
     rank?: number;
     portfolioName?: string;
+    onClick?: (id: string) => void;
 }
 
-export const CoinName = ({ name, image, symbol, id, rank, portfolioName }: CoinNameProps) => {
+export const CoinName = ({ name, image, symbol, id, rank, portfolioName, onClick }: CoinNameProps) => {
     const { data } = portfolioApi.useGetPortfolioNamesQuery();
     const iconName = data?.find((item) => item.id == portfolioName);
     const icon = useIcon();
@@ -24,21 +25,32 @@ export const CoinName = ({ name, image, symbol, id, rank, portfolioName }: CoinN
     return (
         <>
             {rank && <td className={cls.rank}>{rank}</td>}
-            <td>
-                <Button>
-                    <Link href={`/coin/${id}`} className={cls.link}>
-                        {image && <Image className={cls.image} src={image} alt={image} width={30} height={30} />}
-                        {name && <div className={cls.name}>{name}</div>}
-                        {symbol && <div className={cls.symbol}>{symbol}</div>}
-                    </Link>
-                </Button>
-            </td>
-            {portfolioName && (
+
+            {portfolioName ? (
+                <>
+                    <td>
+                        <Button className={cls.link} onClick={() => onClick?.(id)}>
+                            {image && <Image className={cls.image} src={image} alt={image} width={30} height={30} />}
+                            {name && <div className={cls.name}>{name}</div>}
+                            {symbol && <div className={cls.symbol}>{symbol}</div>}
+                        </Button>
+                    </td>
+                    <td>
+                        <div className={cls.icon_wrapper}>
+                            {PortfolioIcon && <PortfolioIcon className={cls.icon} />}
+                            <span>{portfolioName}</span>
+                        </div>
+                    </td>
+                </>
+            ) : (
                 <td>
-                    <div className={cls.icon_wrapper}>
-                        {PortfolioIcon && <PortfolioIcon className={cls.icon} />}
-                        <span>{portfolioName}</span>
-                    </div>
+                    <Button>
+                        <Link href={`/coin/${id}`} className={cls.link}>
+                            {image && <Image className={cls.image} src={image} alt={image} width={30} height={30} />}
+                            {name && <div className={cls.name}>{name}</div>}
+                            {symbol && <div className={cls.symbol}>{symbol}</div>}
+                        </Link>
+                    </Button>
                 </td>
             )}
         </>

@@ -20,6 +20,7 @@ interface CoinInfoProps {
     profitLoss?: [number, number];
     id: string;
     portfolioName?: string;
+    onClick?: (arg: string) => void;
 }
 
 export const CoinCard = (props: CoinInfoProps) => {
@@ -41,11 +42,12 @@ export const CoinCard = (props: CoinInfoProps) => {
         avgPrice,
         profitLoss,
         portfolioName,
+        onClick,
     } = props;
 
     return (
         <tr className={className}>
-            <CoinName rank={rank} name={name} image={image} symbol={symbol} id={id} portfolioName={portfolioName} />
+            <CoinName onClick={onClick} rank={rank} name={name} image={image} symbol={symbol} id={id} portfolioName={portfolioName} />
             <CoinInfo
                 price={price}
                 marketCap={marketCap}

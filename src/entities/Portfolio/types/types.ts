@@ -3,7 +3,7 @@ import { CoinsListWithMarketData } from '@/entities/Coin';
 interface HistoryCoin {
     amount: number;
     price: number;
-    date: Date;
+    date: string;
 }
 
 interface HistoryCapital {
@@ -20,6 +20,7 @@ export interface IPortfolioNames {
 
 export interface Coin {
     id: string;
+    serverId: string;
     name: string;
     buy: HistoryCoin[];
     sell: HistoryCoin[];
