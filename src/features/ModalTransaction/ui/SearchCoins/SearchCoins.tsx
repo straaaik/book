@@ -4,8 +4,8 @@ import cls from './SearchCoins.module.scss';
 import { useState } from 'react';
 import { useDebounceSearch } from '@/shared/hooks/useDebounceSearch';
 import { CoinsListWithMarketData } from '@/entities/Coin';
-import { Coins } from './ui/Coins/Coins';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Coins } from './ui/Coins/Coins';
 
 interface SelectCoinProps {
     className?: string;
@@ -18,9 +18,7 @@ export const SearchCoins = ({ className, setChooseCoin }: SelectCoinProps) => {
 
     return (
         <div className={classNames(cls.SelectCoin, {}, [className])}>
-            <div className={cls.title}>
-                <Input className={cls.input} value={value} onChange={setValue} placeholder="Search..." />
-            </div>
+            <Input className={cls.input} value={value} onChange={setValue} placeholder="Search..." />
             {!isFetching ? <Coins setChooseCoin={setChooseCoin} dataCoins={dataCoins} /> : <Skeleton className={cls.skeleton} value={8} />}
         </div>
     );

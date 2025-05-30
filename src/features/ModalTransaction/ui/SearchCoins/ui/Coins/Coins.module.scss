@@ -1,14 +1,14 @@
 .Coins {
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    overflow-x: hidden;
     width: 100%;
     height: 90%;
+    overflow: hidden;
 }
 
 .Btn {
     display: flex;
+    align-items: center;
     gap: 5px;
 }
 

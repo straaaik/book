@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { SortingCoinList } from './ui/SortingCoinList/SortingCoinList';
 import cls from './CoinTableMain.module.scss';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-
+import { FixedSizeList as List } from 'react-window';
 interface CoinTableMainProps {
     data: CoinsListWithMarketData[] | undefined;
     isLoading: boolean;
