@@ -1,0 +1,27 @@
+.CounterBox {
+    display: flex;
+    background-color: var(--bg-secondary-color);
+
+    // background: linear-gradient(90deg, color-mix(in srgb, var(--inverted-bg-color) 20%, transparent) 0.1px, transparent 1%) 60% 0, var(--bg-secondary-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    justify-content: space-between;
+    border: 1px solid color-mix(in srgb, var(--inverted-bg-color) 20%, transparent);
+}
+
+.description {
+    border-right: 1px solid var(--inverted-bg-color);
+    padding-right: 30px;
+}
+
+.changesBtn {
+    padding: 0;
+    padding-left: 30px;
+    border-radius: 0;
+    border-left: 1px solid var(--inverted-bg-color);
+
+    * {
+        padding: 0;
+    }
+}

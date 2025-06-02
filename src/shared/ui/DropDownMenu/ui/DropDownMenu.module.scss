@@ -1,12 +1,13 @@
 .Actions {
+    display: inline-block;
     position: relative;
 }
 
 .content {
     overflow: hidden;
     position: absolute;
-    bottom: 100%;
-    right: 50%;
+    top: -50%;
+    right: 40px;
     width: 250px;
     border: 1px solid color-mix(in srgb, var(--inverted-bg-color) 20%, transparent);
     border-radius: 5px;

@@ -1,3 +1,4 @@
+import { portfolioPageReducer } from '@/app/(pages)/portfolio/model/slice/portfolioPageSlice';
 import { coinApi } from '@/entities/Coin';
 import { portfolioApi, portfolioReducer } from '@/entities/Portfolio';
 import { configureStore } from '@reduxjs/toolkit';
@@ -8,6 +9,7 @@ export const makeStore = () => {
             [portfolioApi.reducerPath]: portfolioApi.reducer,
             [coinApi.reducerPath]: coinApi.reducer,
             portfolio: portfolioReducer,
+            portfolioPage: portfolioPageReducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(portfolioApi.middleware, coinApi.middleware),
     });

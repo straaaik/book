@@ -1,0 +1,20 @@
+.Content {
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .sell {
+        background-color: var(--red-color);
+    }
+
+    .buy {
+        background-color: var(--green-color);
+    }
+
+    .btnChange,
+    .total {
+        margin-top: auto;
+    }
+}

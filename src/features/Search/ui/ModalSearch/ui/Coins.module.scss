@@ -10,7 +10,7 @@
     font-weight: 300;
     font-size: 16px;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 12px;
 }
 
 .link:hover {
@@ -21,7 +21,7 @@
 .wrapperName {
     display: flex;
     overflow: hidden;
-    gap: 5;
+    gap: 5px;
 }
 
 .name {
@@ -31,8 +31,7 @@
 }
 
 .symbol {
-    margin-left: 10px;
-    color: var(--inverted-primary-color);
+    color: var(--secondary-color);
     text-transform: uppercase;
     overflow: hidden;
     white-space: nowrap;

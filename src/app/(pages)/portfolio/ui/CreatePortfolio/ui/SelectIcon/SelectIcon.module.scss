@@ -1,13 +1,13 @@
 .SelectIcon {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     align-items: center;
     justify-content: center;
     border: 1px dotted var(--bg-secondary-color);
-    padding: 10px;
     border-radius: 12px;
     max-width: 300px;
     gap: 5px;
+    padding: 10px;
 }
 
 .icon_wrapper {

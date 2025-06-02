@@ -6,8 +6,10 @@
 }
 
 .info {
+    position: absolute;
+    top: -20px;
     display: flex;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 300;
     margin-left: 10px;
     letter-spacing: 0.5px;
@@ -15,12 +17,13 @@
 
 .error {
     position: absolute;
-    top: 0;
+    top: -22px;
     right: 10px;
     color: var(--red-color);
 }
 
 .input {
+    line-height: 100px;
     height: 40px;
     width: 100%;
     font-size: 18px;
@@ -32,7 +35,8 @@
 
 .placeholder {
     position: absolute;
-    bottom: 11px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 20px;
     font-size: 18px;
     font-weight: 300;
@@ -42,11 +46,11 @@
 }
 
 .badge {
+    position: absolute;
     pointer-events: none;
     color: var(--secondary-color);
-    position: absolute;
     font-size: 16px;
     right: 10px;
-    bottom: 25px;
-    transform: translateY(50%);
+    top: 50%;
+    transform: translateY(-50%);
 }

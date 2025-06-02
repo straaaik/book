@@ -1,0 +1,54 @@
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 32px;
+    border: (var(--border));
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: var(--bg-secondary-color);
+    position: relative;
+    overflow: hidden;
+
+    .name {
+        font-weight: 500;
+    }
+
+    .symbol {
+        text-transform: uppercase;
+        color: var(--secondary-color);
+    }
+
+    .coinInfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .portfolioInfo {
+        right: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .icon {
+            fill: var(--bg-color);
+            width: 200px;
+            height: 200px;
+        }
+
+        .portfolioName {
+            font-size: 24px;
+            font-weight: 900;
+            user-select: none;
+            left: 50%;
+            bottom: 25%;
+            transform: translateX(-50%);
+            position: absolute;
+            color: var(--secondary-color);
+        }
+    }
+}

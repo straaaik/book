@@ -42,13 +42,14 @@ export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreate
     const onSubmit: SubmitHandler<IForm> = (data) => {
         reset();
         onClose();
+        console.log(data.icon);
         createPortfolio({ id: data.value, icon: data.icon?.name });
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} header="Create portfolio">
             <form className={classNames(cls.ModalCreatePortfolio, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
-                <PortfolioCard name={value} Icon={icon?.icon} />
+                <PortfolioCard className={cls.example} name={value} Icon={icon?.icon} />
                 <Controller
                     name="value"
                     control={control}
@@ -56,14 +57,15 @@ export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreate
                         required: 'A portfolio cannot be without a name.',
                         validate: {
                             checkNames: (value) => {
-                                if (data?.some((item) => item.id == value)) return 'Such a portfolio already exists.';
+                                if (data?.some((item) => item.id == value || value == 'Overview')) return 'Such a portfolio already exists.';
                             },
                         },
                     }}
-                    render={({ field }) => <Input focus placeholder="Enter name..." value={field.value} onChange={field.onChange} />}
+                    render={({ field, fieldState }) => (
+                        <Input error={fieldState.error?.message} focus placeholder="Enter name..." value={field.value} onChange={field.onChange} />
+                    )}
                 />
                 <Controller name="icon" control={control} render={({ field }) => <SelectIcon active={field.value?.name} onClick={field.onChange} />} />
-                {errors.value && <div className={cls.error}>{errors.value?.message}</div>}
                 <Button type="submit" theme={ButtonTheme.DANGER}>
                     Create
                 </Button>

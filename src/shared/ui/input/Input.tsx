@@ -55,7 +55,7 @@ export const Input: FC<InputProps> = memo(({ className, value, onChange, placeho
     };
 
     return (
-        <motion.div className={classNames(cls.InputContent, {}, [className])}>
+        <motion.div style={{ marginTop: info ? 20 : 0 }} className={classNames(cls.InputContent, {}, [className])}>
             {info && <div className={cls.info}>{info}</div>}
             <motion.div animate={{ opacity: isFocus || value ? 0 : 1 }} className={cls.placeholder}>
                 {!isFocus && !value && placeholder}
@@ -63,8 +63,8 @@ export const Input: FC<InputProps> = memo(({ className, value, onChange, placeho
             <motion.input
                 ref={ref}
                 variants={animateVariants}
+                style={{ paddingRight: badge ? 40 : 0 }}
                 animate={error && 'error'}
-                style={{ paddingRight: badge && 40 }}
                 onFocus={handlerFocus}
                 onBlur={handlerBlur}
                 className={cls.input}

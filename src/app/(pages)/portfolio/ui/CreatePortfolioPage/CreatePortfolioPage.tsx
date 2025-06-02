@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './CreatePortfolioPage.module.scss';
-import { CreatePortfolio } from '../CreatePortfolio/CreatePortfolio';
 import { TbFaceIdError } from 'react-icons/tb';
+import { CreatePortfolio } from '../CreatePortfolio/CreatePortfolio';
 
 interface CreatePortfolioPageProps {
     className?: string;

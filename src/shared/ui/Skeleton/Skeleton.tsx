@@ -8,9 +8,10 @@ import { memo } from 'react';
 interface LoadingDataProps {
     className?: string;
     value?: number;
+    height?: number;
 }
 
-export const Skeleton = memo(({ className, value = 1 }: LoadingDataProps) => {
+export const Skeleton = memo(({ className, value = 1, height }: LoadingDataProps) => {
     const skeletonArr = new Array(value).fill(null);
 
     return (
@@ -18,6 +19,7 @@ export const Skeleton = memo(({ className, value = 1 }: LoadingDataProps) => {
             {skeletonArr.map((_, i) => (
                 <motion.div
                     key={i}
+                    style={{ height: height || 40 }}
                     className={classNames(cls.block, {}, [className])}
                     initial={{ opacity: 0.2 }}
                     animate={{ opacity: [0.2, 0.6, 0.2] }}

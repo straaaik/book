@@ -1,5 +1,4 @@
 import cls from './CoinInfo.module.scss';
-
 import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
 
 interface CoinInfoProps {
@@ -16,24 +15,13 @@ interface CoinInfoProps {
     symbol?: string;
 }
 
-export const CoinInfo = ({
-    price,
-    change1h,
-    change24h,
-    change7d,
-    marketCap,
-    volume,
-    circulatingSupply,
-    holdings,
-    avgPrice,
-    profitLoss,
-    symbol,
-}: CoinInfoProps) => {
+export const CoinInfo = (props: CoinInfoProps) => {
+    const { price, change1h, change24h, change7d, marketCap, volume, circulatingSupply, holdings, avgPrice, profitLoss, symbol } = props;
     return (
         <>
             {price !== undefined && (
                 <td>
-                    <TextNumber text={price} format="currency" />
+                    <TextNumber text={price} format="currency" highlight />
                 </td>
             )}
             {change1h !== undefined && (

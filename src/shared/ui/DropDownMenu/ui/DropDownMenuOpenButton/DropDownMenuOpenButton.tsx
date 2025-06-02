@@ -10,15 +10,20 @@ interface DropDownMenuOpenButtonProps {
 }
 
 export const DropDownMenuOpenButton = memo(({ onOpen, isOpen }: DropDownMenuOpenButtonProps) => {
+    const onHandlerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        onOpen();
+    };
+
     return (
-        <motion.div
+        <motion.button
             //TODO Поменять VAR в motion для анимации
             whileHover={{ backgroundColor: 'var(--warn-color)', boxShadow: 'inset 0 0 0 2px var(--bg-secondary-color)' }}
             animate={{ backgroundColor: isOpen ? 'var(--warn-color)' : 'rgba(0, 0, 0, 0)' }}
             className={cls.btnOpen}
-            onClick={onOpen}
+            onClick={(e) => onHandlerClick(e)}
         >
             <CgMoreVertical />
-        </motion.div>
+        </motion.button>
     );
 });

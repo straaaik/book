@@ -1,50 +1,48 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
-import cls from './page.module.scss';
 import { useUpdatePortfolio } from '@/shared/hooks/useUpdatePortfolio';
-import { NewTransaction } from './ui/NewTransaction/NewTransaction';
-import { PortfolioChart } from './ui/PortfolioChart/PortfolioChart';
-import { PortfoliosInfo } from './ui/PortfoliosInfo/PortfoliosInfo';
-import { useAppSelector } from '@/app/config/store/hooks';
 import { portfolioApi } from '@/entities/Portfolio';
 import { useState } from 'react';
 import { CreatePortfolioPage } from './ui/CreatePortfolioPage/CreatePortfolioPage';
-import { CoinTablePortfolio } from './ui/CoinTablePortfolio/CoinTablePortfolio';
 import { PortfolioEmpty } from './ui/PortfolioEmpty/PortfolioEmpty';
-import { checkEmptyPortfolio } from './module/checkEmptyPortfolio';
+import { useCheckEmptyPortfolio } from './module/hooks/useCheckEmptyPortfolio';
 import { LoadingSpinner } from '../_loading/loading';
-import { CoinHistory } from './ui/CoinHistory/CoinHistory';
+import { PortfolioNav } from './ui/PortfolioNav/PortfolioNav';
+import { OverviewContent } from './ui/OverviewContent/OverviewContent';
+import { TransactionContent } from './ui/TransactionContent/TransactionContent';
 
-const Portfolio = () => {
-    useUpdatePortfolio();
-    const portfolio = useAppSelector((state) => state.portfolio.data);
-    const [activePortfolio, setActivePortfolio] = useState<string>('Overview');
-    const [selectCoin, setSelectCoin] = useState<string | null>(null);
+export enum Content {
+    TRANSACTION = 'Transaction',
+    OVERVIEW = 'Overview',
+}
+
+const PortfolioPage = () => {
+    useUpdatePortfolio(); // Обновление портфолио
     const { data: portfolioNames, isLoading } = portfolioApi.useGetPortfolioNamesQuery();
-    const checkRender = checkEmptyPortfolio(portfolio, activePortfolio);
+    const [content, setContent] = useState<Content>(Content.OVERVIEW);
+    const checkRender = useCheckEmptyPortfolio();
 
     if (isLoading) return <LoadingSpinner />;
     if (!portfolioNames?.length) return <CreatePortfolioPage />;
+    if (!checkRender) return <PortfolioEmpty />;
+
+    const renderContent = () => {
+        switch (content) {
+            case Content.OVERVIEW:
+                return <OverviewContent />;
+            case Content.TRANSACTION:
+                return <TransactionContent />;
+            default:
+                return <div>ERROR</div>;
+        }
+    };
 
     return (
-        <div className={classNames(cls.Portfolio, {}, [])}>
-            <PortfoliosInfo portfolio={portfolio} active={activePortfolio} setActive={setActivePortfolio} />
-            {checkRender ? (
-                <>
-                    <PortfolioChart active={activePortfolio} />
-                    <NewTransaction active={activePortfolio} className={cls.btnNewTransaction} />
-                    {selectCoin ? (
-                        <CoinHistory setSelectCoin={setSelectCoin} coin={selectCoin} />
-                    ) : (
-                        <CoinTablePortfolio active={activePortfolio} portfolio={portfolio} onClick={setSelectCoin} />
-                    )}
-                </>
-            ) : (
-                <PortfolioEmpty active={activePortfolio} />
-            )}
+        <div>
+            <PortfolioNav setContent={setContent} content={content} />
+            {renderContent()}
         </div>
     );
 };
 
-export default Portfolio;
+export default PortfolioPage;

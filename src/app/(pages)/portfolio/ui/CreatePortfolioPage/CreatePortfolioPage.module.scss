@@ -3,11 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: var(--height);
-    width: var(--width);
     gap: 30px;
+    inset: 0;
     overflow: hidden;
-    position: relative;
+    position: absolute;
 }
 
 .description {

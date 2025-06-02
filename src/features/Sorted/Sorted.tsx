@@ -8,7 +8,7 @@ import { useState } from 'react';
 interface CoinSortedProps<T> {
     className?: string;
     params: ParamsType<T>[];
-    sortedFunction: (payload: sortedFunction<T>) => void;
+    sortedFunction?: (payload: sortedFunction<T>) => void;
 }
 
 interface sortedFunction<T> {
@@ -33,7 +33,7 @@ export const Sorted = <T,>(props: CoinSortedProps<T>) => {
     const onBtnClick = (item: keyof T) => {
         setActive(item);
         setStatus((prev) => (prev == 'ascending' ? 'descending' : 'ascending'));
-        sortedFunction({ item, status });
+        sortedFunction?.({ item, status });
     };
 
     return (

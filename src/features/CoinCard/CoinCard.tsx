@@ -1,6 +1,7 @@
 import { CoinName } from './ui/CoinName/CoinName';
 import { CoinInfo } from './ui/CoinInfo/CoinInfo';
 import { CoinActions } from './ui/CoinActions/CoinActions';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 interface CoinInfoProps {
     className?: string;
@@ -44,6 +45,18 @@ export const CoinCard = (props: CoinInfoProps) => {
         portfolioName,
         onClick,
     } = props;
+
+    const keyProps = Object.keys(props) as [keyof CoinInfoProps];
+
+    if (keyProps.some((key) => props[key] === undefined)) {
+        return (
+            <tr>
+                <td style={{ padding: '0 10px' }} colSpan={10}>
+                    <Skeleton height={60} />
+                </td>
+            </tr>
+        );
+    }
 
     return (
         <tr className={className}>

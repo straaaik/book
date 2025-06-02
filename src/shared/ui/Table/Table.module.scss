@@ -1,0 +1,41 @@
+.Table {
+    th,
+    td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+    th {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+}
+
+.tableHead {
+    top: 0;
+    position: sticky;
+    background-color: transparent;
+}
+
+.wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    border-bottom: (var(--border));
+    padding: 20px;
+    background-color: var(--bg-secondary-color);
+}
+
+.container {
+    border-radius: 12px;
+    overflow: hidden;
+}
