@@ -1,10 +1,10 @@
 import { CoinsListWithMarketData } from '@/entities/Coin';
-import { CoinCard, CoinsTable } from '@/features';
+import { CoinCard } from '@/features';
 import { useState, useEffect } from 'react';
 import { SortingCoinList } from './ui/SortingCoinList/SortingCoinList';
 import cls from './CoinTableMain.module.scss';
 import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
-import { FixedSizeList as List } from 'react-window';
+import { Table } from '@/shared/ui/Table/Table';
 interface CoinTableMainProps {
     data: CoinsListWithMarketData[] | undefined;
     isLoading: boolean;
@@ -20,7 +20,7 @@ export const CoinTableMain = ({ data, isLoading }: CoinTableMainProps) => {
     if (isLoading || !sortedData.length) return <LoadingSpinner />;
 
     return (
-        <CoinsTable
+        <Table
             className={cls.CoinTableMain}
             head={<SortingCoinList data={sortedData} setData={setSortedData} />}
             main={sortedData.map((coin) => (

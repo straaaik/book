@@ -24,7 +24,7 @@ export default function RootLayout({
                     <ThemeProvider>
                         <Header />
                         <ThemeSwitcher />
-                        {children}
+                        <div className="main">{children}</div>
                     </ThemeProvider>
                 </StoreProvider>
             </body>
