@@ -3,10 +3,12 @@ import { Portfolio } from '../../types/types';
 
 export interface PortfolioStateType {
     data: Portfolio[];
+    active?: string;
 }
 
 const initialState: PortfolioStateType = {
     data: [],
+    active: typeof window !== 'undefined' ? localStorage.getItem('activePortfolio') || 'Overview' : 'Overview',
 };
 
 interface SortedType {
@@ -15,7 +17,7 @@ interface SortedType {
 }
 
 export const portfolioSlice = createSlice({
-    name: 'portfolio/merge',
+    name: 'portfolio',
     initialState,
     reducers: {
         addCoinToPortfolio: (state, action: PayloadAction<Portfolio>) => {
@@ -26,6 +28,10 @@ export const portfolioSlice = createSlice({
             } else {
                 state.data.push(coin);
             }
+        },
+        setActive: (state, action: PayloadAction<string>) => {
+            state.active = action.payload;
+            localStorage.setItem('activePortfolio', action.payload);
         },
         updatePortfolio: (state, action) => {
             state.data = action.payload;

@@ -11,7 +11,7 @@ export const OverviewContent = () => {
     return (
         <div className={cls.OverviewContent}>
             {selectCoin ? (
-                <CoinHistory setSelectCoin={setSelectCoin} coin={selectCoin} />
+                <CoinHistory setSelectCoin={setSelectCoin} coinId={selectCoin} />
             ) : (
                 <>
                     <PortfolioChart />

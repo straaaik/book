@@ -1,8 +1,9 @@
 import { useAppSelector } from '@/app/config/store/hooks';
+import { getActive, getPortfolio } from '@/entities/Portfolio';
 
 export const useCheckEmptyPortfolio = () => {
-    const portfolio = useAppSelector((state) => state.portfolio.data);
-    const activePortfolio = useAppSelector((state) => state.portfolioPage.active);
+    const portfolio = useAppSelector(getPortfolio);
+    const activePortfolio = useAppSelector(getActive);
 
     if (!portfolio?.length) return false;
     if (activePortfolio == 'Overview') return true;

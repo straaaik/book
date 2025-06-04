@@ -2,7 +2,7 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfolioChart.module.scss';
 import { CharDoughnut } from '@/shared/ui/Charts/Doughnut/Doughnut';
 import { useAppSelector } from '@/app/config/store/hooks';
-import { getActivePortfolio } from '@/app/(pages)/portfolio/model/selectors/activePortfolio';
+import { getActivePortfolio } from '@/entities/Portfolio/model/selectors/getActivePortfolio';
 
 interface PortfolioChartProps {
     className?: string;

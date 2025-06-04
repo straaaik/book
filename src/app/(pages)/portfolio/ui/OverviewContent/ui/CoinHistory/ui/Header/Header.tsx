@@ -1,29 +1,28 @@
-import { CoinByID } from '@/entities/Coin';
 import cls from './Header.module.scss';
 import Image from 'next/image';
-import { Coin, portfolioApi } from '@/entities/Portfolio';
+import { getIcon } from '@/shared/lib/getIcon';
 import { useIcon } from '@/shared/hooks/useIcon';
 
 interface HeaderProps {
-    serverCoin: CoinByID;
-    selectCoin: Coin;
+    image: string;
+    name: string;
+    symbol: string;
+    portfolioName: string;
 }
 
-export const Header = ({ serverCoin, selectCoin }: HeaderProps) => {
-    const { data: infoPortfolio } = portfolioApi.useGetPortfolioNamesForIdQuery(selectCoin.portfolio_name);
-    const portfolioName = selectCoin.portfolio_name;
-    const icon = useIcon();
-    const PortfolioIcon = icon(infoPortfolio?.[portfolioName].icon);
+export const Header = ({ image, name, symbol, portfolioName }: HeaderProps) => {
+    const PortfolioIcon = useIcon(portfolioName);
+
     return (
         <div className={cls.Header}>
             <div className={cls.coinInfo}>
-                {serverCoin?.image.large && <Image src={serverCoin?.image.large} alt={serverCoin?.name} width={50} height={50} />}
-                <span className={cls.name}>{serverCoin?.name}</span>
-                <span className={cls.symbol}>{serverCoin?.symbol}</span>
+                {image && <Image src={image} alt={name} width={50} height={50} />}
+                <span className={cls.name}>{name}</span>
+                <span className={cls.symbol}>{symbol}</span>
             </div>
             <div className={cls.portfolioInfo}>
                 {PortfolioIcon && <PortfolioIcon className={cls.icon} />}
-                <span className={cls.portfolioName}>{selectCoin.portfolio_name}</span>
+                <span className={cls.portfolioName}>{portfolioName}</span>
             </div>
         </div>
     );

@@ -58,3 +58,20 @@
         text-transform: uppercase;
     }
 }
+
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .name {
+        margin-top: -5px;
+    }
+
+    .icon {
+        height: 30px;
+        width: 30px;
+        fill: var(--inverted-bg-color);
+    }
+}

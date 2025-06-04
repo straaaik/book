@@ -4,7 +4,7 @@ import { PortfolioSorted } from './ui/PortfolioSorted/PortfolioSorted';
 import { CoinCard } from '@/features';
 import { Table } from '@/shared/ui/Table/Table';
 import { useAppSelector } from '@/app/config/store/hooks';
-import { getActivePortfolio } from '@/app/(pages)/portfolio/model/selectors/activePortfolio';
+import { getActivePortfolio } from '@/entities/Portfolio/model/selectors/getActivePortfolio';
 
 interface IPortfolioList {
     onClick: (arg: string) => void;

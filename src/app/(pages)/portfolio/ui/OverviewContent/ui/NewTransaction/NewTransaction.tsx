@@ -4,9 +4,10 @@ import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { useState } from 'react';
 import { ModalTransaction } from '@/features';
 import { useAppSelector } from '@/app/config/store/hooks';
+import { getActive } from '@/entities/Portfolio';
 
 export const NewTransaction = ({ className }: { className?: string }) => {
-    const activePortfolio = useAppSelector((state) => state.portfolioPage.active);
+    const activePortfolio = useAppSelector(getActive);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (

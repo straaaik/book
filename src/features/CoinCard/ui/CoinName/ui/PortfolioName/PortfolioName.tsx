@@ -1,8 +1,7 @@
-import { portfolioApi } from '@/entities/Portfolio';
-import { useIcon } from '@/shared/hooks/useIcon';
 import cls from './PortfolioName.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
 import Image from 'next/image';
+import { useIcon } from '@/shared/hooks/useIcon';
 
 interface PortfolioNameProps {
     image?: string;
@@ -15,9 +14,7 @@ interface PortfolioNameProps {
 }
 
 export const PortfolioName = ({ id, rank, name, symbol, portfolioName, image, onClick }: PortfolioNameProps) => {
-    const icon = useIcon();
-    const { data } = portfolioApi.useGetPortfolioNamesForIdQuery(portfolioName);
-    const PortfolioIcon = icon(data?.[portfolioName]?.icon);
+    const PortfolioIcon = useIcon(portfolioName);
 
     return (
         <>

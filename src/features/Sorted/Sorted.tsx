@@ -16,7 +16,7 @@ interface sortedFunction<T> {
     status: 'ascending' | 'descending';
 }
 
-interface ParamsType<T> {
+export interface ParamsType<T> {
     sortKey: keyof T;
     text?: string;
 }

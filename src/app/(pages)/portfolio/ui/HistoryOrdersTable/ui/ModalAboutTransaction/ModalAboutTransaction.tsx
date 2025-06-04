@@ -1,15 +1,15 @@
 import { Modal } from '@/shared/ui/Modal/Modal';
-import { Order } from '../../../../module/mergeOrders';
 import { InfoBox } from '@/shared/ui/InfoBox/InfoBox';
 import cls from './ModalAboutTransaction.module.scss';
 import { LANG } from '@/shared/constant/constant';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { CounterBox } from '@/shared/ui/CounterBox/CounterBox';
+import { OrderInfo } from '@/entities/Portfolio';
 
 interface ModalAboutTransactionProps {
     isOpen: boolean;
     onClose: (arg: boolean) => void;
-    info: Order;
+    info: OrderInfo[number];
     symbol?: string;
 }
 //TODO добавить возможность редактирования транзакции, а не только просмотра
