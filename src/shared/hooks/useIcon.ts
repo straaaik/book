@@ -1,10 +1,10 @@
-import { portfolioApi } from '@/entities/Portfolio';
+import { useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 import { ICONS } from '../assets/icon/PortfolioIcons';
 
-export const useIcon = (name: string) => {
-    const { data: portfolio } = portfolioApi.useGetPortfolioNamesQuery();
+export const useIcon = (portfolioName: string) => {
+    const { data: portfolio } = useGetPortfolioNamesQuery();
 
-    const iconName = portfolio?.find((item) => item.id == name)?.[name].icon;
+    const iconName = portfolio?.find((item) => item.id == portfolioName)?.[portfolioName].icon;
 
     if (!iconName) return null;
 

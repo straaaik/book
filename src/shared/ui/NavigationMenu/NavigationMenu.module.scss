@@ -1,0 +1,17 @@
+.NavigationMenu {
+    display: flex;
+    border-bottom: 2px solid var(--bg-secondary-color);
+}
+
+.item {
+    position: relative;
+}
+
+.swiper {
+    position: absolute;
+    background-color: var(--warn-color);
+    border-radius: 12px;
+    width: 100%;
+    height: 5px;
+    bottom: -13px;
+}

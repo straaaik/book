@@ -7,7 +7,7 @@ interface CoinInfoProps {
     className?: string;
     rank?: number;
     image?: string;
-    name?: string;
+    name: string;
     symbol?: string;
     price?: number;
     change1h?: number;

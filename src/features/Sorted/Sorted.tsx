@@ -3,17 +3,13 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './Sorted.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { sorting } from './module/sorting';
 
 interface CoinSortedProps<T> {
     className?: string;
     params: ParamsType<T>[];
-    sortedFunction?: (payload: sortedFunction<T>) => void;
-}
-
-interface sortedFunction<T> {
-    item: keyof T;
-    status: 'ascending' | 'descending';
+    setSortingData?: Dispatch<SetStateAction<T[]>>;
 }
 
 export interface ParamsType<T> {
@@ -22,7 +18,7 @@ export interface ParamsType<T> {
 }
 
 export const Sorted = <T,>(props: CoinSortedProps<T>) => {
-    const { className, params, sortedFunction } = props;
+    const { className, params, setSortingData } = props;
 
     const [status, setStatus] = useState<'ascending' | 'descending'>('ascending');
     const [active, setActive] = useState<keyof T>();
@@ -33,7 +29,7 @@ export const Sorted = <T,>(props: CoinSortedProps<T>) => {
     const onBtnClick = (item: keyof T) => {
         setActive(item);
         setStatus((prev) => (prev == 'ascending' ? 'descending' : 'ascending'));
-        sortedFunction?.({ item, status });
+        sorting({ item, status, setSortingData });
     };
 
     return (

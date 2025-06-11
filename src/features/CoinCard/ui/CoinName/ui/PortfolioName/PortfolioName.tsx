@@ -5,7 +5,7 @@ import { useIcon } from '@/shared/hooks/useIcon';
 
 interface PortfolioNameProps {
     image?: string;
-    name?: string;
+    name: string;
     symbol?: string;
     id: string;
     rank?: number;
@@ -13,14 +13,14 @@ interface PortfolioNameProps {
     onClick?: (id: string) => void;
 }
 
-export const PortfolioName = ({ id, rank, name, symbol, portfolioName, image, onClick }: PortfolioNameProps) => {
+export const PortfolioName = ({ rank, name, symbol, portfolioName, image, onClick }: PortfolioNameProps) => {
     const PortfolioIcon = useIcon(portfolioName);
 
     return (
         <>
             {rank && <td className={cls.rank}>{rank}</td>}
             <td>
-                <Button className={cls.link} onClick={() => onClick?.(id)}>
+                <Button className={cls.link} onClick={() => onClick?.(name)}>
                     {image && <Image className={cls.image} src={image} alt={image} width={30} height={30} />}
                     {name && <div className={cls.name}>{name}</div>}
                     {symbol && <div className={cls.symbol}>{symbol}</div>}

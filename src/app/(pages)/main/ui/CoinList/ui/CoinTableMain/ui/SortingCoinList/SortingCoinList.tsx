@@ -1,36 +1,15 @@
 import { CoinsListWithMarketData } from '@/entities/Coin';
 import { Sorted } from '@/features/Sorted/Sorted';
+import { Dispatch, SetStateAction } from 'react';
 
 interface SortingCoinListProps {
-    data: CoinsListWithMarketData[];
-    setData: (arg: CoinsListWithMarketData[]) => void;
+    setData: Dispatch<SetStateAction<CoinsListWithMarketData[]>>;
 }
 
-export const SortingCoinList = ({ data, setData }: SortingCoinListProps) => {
-    const sortingCoins = ({ item, status }: { item: keyof CoinsListWithMarketData; status: 'ascending' | 'descending' }) => {
-        switch (status) {
-            case 'ascending':
-                if (item == 'name') {
-                    setData([...data].sort((a, b) => a[item].localeCompare(b[item], undefined, { sensitivity: 'base' })));
-                } else {
-                    setData([...data].sort((a, b) => Number(b[item]) - Number(a[item])));
-                }
-                break;
-            case 'descending':
-                if (item == 'name') {
-                    setData([...data].sort((a, b) => b[item].localeCompare(a[item], undefined, { sensitivity: 'base' })));
-                } else {
-                    setData([...data].sort((a, b) => Number(a[item]) - Number(b[item])));
-                }
-                break;
-            default:
-                setData(data);
-                break;
-        }
-    };
-
+export const SortingCoinList = ({ setData }: SortingCoinListProps) => {
     return (
         <Sorted<CoinsListWithMarketData>
+            setSortingData={setData}
             params={[
                 { sortKey: 'market_cap_rank', text: '#' },
                 { sortKey: 'name', text: 'Name' },
@@ -42,7 +21,6 @@ export const SortingCoinList = ({ data, setData }: SortingCoinListProps) => {
                 { sortKey: 'total_volume', text: 'Volume' },
                 { sortKey: 'circulating_supply', text: 'Circulating Supply' },
             ]}
-            sortedFunction={(payload) => sortingCoins(payload)}
         />
     );
 };

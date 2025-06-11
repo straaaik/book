@@ -5,13 +5,15 @@ import { getActive, Portfolio, portfolioActions } from '@/entities/Portfolio';
 import { motion } from 'motion/react';
 import { useAppDispatch, useAppSelector } from '@/app/config/store/hooks';
 import { useIcon } from '@/shared/hooks/useIcon';
+import { FC } from 'react';
 interface PortfolioCardProps {
     className?: string;
     name: string;
     portfolio?: Portfolio[];
+    Icon?: FC;
 }
 
-export const PortfolioCard = ({ className, name, portfolio }: PortfolioCardProps) => {
+export const PortfolioCard = ({ className, name, portfolio, Icon }: PortfolioCardProps) => {
     const dispatch = useAppDispatch();
     const activePortfolio = useAppSelector(getActive);
     const PortfolioIcon = useIcon(name);
@@ -40,7 +42,7 @@ export const PortfolioCard = ({ className, name, portfolio }: PortfolioCardProps
                 </div>
             </div>
 
-            <div className={cls.icon}>{PortfolioIcon && <PortfolioIcon />}</div>
+            <div className={cls.icon}>{(PortfolioIcon && <PortfolioIcon />) || (Icon && <Icon />)}</div>
         </motion.div>
     );
 };

@@ -12,7 +12,7 @@ import { HoverCard } from '../HoverCard/HoverCard';
 import { BiError } from 'react-icons/bi';
 import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
 
-interface Options {
+export interface Options {
     value: string;
     description: string;
 }
@@ -20,20 +20,20 @@ interface Options {
 interface SelectProps {
     className?: string;
     options: Options[];
-    onChange?: (value: string) => void;
-    initialValue: string;
+    onChange?: (value: Options) => void;
+    selectedValue: string;
     title?: string;
     error?: string;
 }
 
-export const Select = memo(({ className, options, onChange, initialValue, title, error }: SelectProps) => {
+export const Select = memo(({ className, options, onChange, selectedValue, title, error }: SelectProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
     useOutsideClick(ref, setIsVisible);
 
-    const onClickHandler = (value: string) => {
-        onChange?.(value);
+    const onClickHandler = (option: Options) => {
+        onChange?.(option);
         setIsVisible(false);
     };
 
@@ -41,18 +41,18 @@ export const Select = memo(({ className, options, onChange, initialValue, title,
         <motion.div ref={ref} initial={false} animate={isVisible ? 'open' : 'closed'} className={classNames(cls.Select, {}, [className])}>
             {title && <div className={cls.title}>{title}</div>}
             <div className={cls.error}>{error && <HoverCard title={<BiError />} description={error} />}</div>
-            <ButtonSelect error={error} onClick={() => setIsVisible(!isVisible)} text={initialValue} />
+            <ButtonSelect error={error} onClick={() => setIsVisible(!isVisible)} text={options.find((option) => option.value == selectedValue)} />
             <motion.div style={{ top: title ? 65 : 40 }} className={cls.options} variants={sidebarVariants}>
-                {options.map(({ description, value }) => (
+                {options.map((option) => (
                     <Button
                         type="button"
                         animation="bg"
-                        style={{ background: value === initialValue ? 'var(--warn-color)' : 'var(--bg-secondary-color)' }}
+                        style={{ backgroundColor: option.value === selectedValue ? 'var(--warn-color)' : 'var(--bg-secondary-color)' }}
                         className={cls.option}
-                        key={value}
-                        onClick={() => onClickHandler(value)}
+                        key={option.value}
+                        onClick={() => onClickHandler(option)}
                     >
-                        {description}
+                        {option.description}
                     </Button>
                 ))}
             </motion.div>

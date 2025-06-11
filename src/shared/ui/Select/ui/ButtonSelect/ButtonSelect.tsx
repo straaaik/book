@@ -2,10 +2,11 @@ import cls from './ButtonSelect.module.scss';
 import { IoIosArrowDown } from 'react-icons/io';
 import { motion } from 'motion/react';
 import { animateVariants } from '@/shared/ui/animation/variants';
+import { Options } from '../../Select';
 
 interface ButtonSelectProps {
     onClick: () => void;
-    text: string;
+    text?: Options;
     error?: string;
 }
 
@@ -19,7 +20,7 @@ export const ButtonSelect = ({ onClick, text, error }: ButtonSelectProps) => {
             className={cls.ButtonSelect}
             onClick={onClick}
         >
-            <div className={cls.text}>{text}</div>
+            <div className={cls.text}>{text?.description}</div>
             <div className={cls.icon}>
                 <IoIosArrowDown />
             </div>

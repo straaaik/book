@@ -5,8 +5,10 @@ import { Button } from '@/shared/ui/Button/Button';
 import { IoChevronBackCircle } from 'react-icons/io5';
 import { Header } from './ui/Header/Header';
 import { useAppSelector } from '@/app/config/store/hooks';
-import { HistoryOrdersTable } from '../../../HistoryOrdersTable/HistoryOrdersTable';
 import { getHistory } from '@/entities/Portfolio/model/selectors/getHistory';
+import { getActive } from '@/entities/Portfolio';
+import { useLazyState } from '@/shared/hooks/useLazyState';
+import { TransactionOrdersTable } from '../../../TransactionOrdersTable/TransactionOrdersTable/TransactionOrdersTable';
 
 interface CoinHistoryProps {
     className?: string;
@@ -15,10 +17,13 @@ interface CoinHistoryProps {
 }
 
 export const CoinHistory = memo(({ className, coinId, setSelectCoin }: CoinHistoryProps) => {
-    const orders = useAppSelector(getHistory(coinId));
+    const orders = useAppSelector((state) => getHistory(state, coinId));
+    const [sortedOrders, setSortedOrders] = useLazyState(orders || []);
+
+    const activePortfolio = useAppSelector(getActive);
 
     //TODO Добавить страницу ошибки!
-    if (!orders) return <div>There is no such coin in this portfolio.</div>;
+    if (!orders || !activePortfolio || !sortedOrders) return <div>There is no such coin in this portfolio.</div>;
 
     const coin = orders?.[0];
 
@@ -27,8 +32,8 @@ export const CoinHistory = memo(({ className, coinId, setSelectCoin }: CoinHisto
             <Button className={cls.btnBack} onClick={() => setSelectCoin(null)}>
                 <IoChevronBackCircle />
             </Button>
-            <Header image={coin.image} name={coin.name} portfolioName={coin.portfolio_name} symbol={coin.symbol} />
-            <HistoryOrdersTable orders={orders} />
+            <Header image={coin.image} name={coin.name} symbol={coin.symbol} />
+            <TransactionOrdersTable show={activePortfolio == 'Overview' ? 'more' : 'mini'} onSorted={setSortedOrders} orders={sortedOrders} />
         </div>
     );
 });

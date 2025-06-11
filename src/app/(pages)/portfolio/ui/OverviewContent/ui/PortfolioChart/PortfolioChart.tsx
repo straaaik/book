@@ -1,18 +1,16 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfolioChart.module.scss';
 import { CharDoughnut } from '@/shared/ui/Charts/Doughnut/Doughnut';
-import { useAppSelector } from '@/app/config/store/hooks';
-import { getActivePortfolio } from '@/entities/Portfolio/model/selectors/getActivePortfolio';
+import { Portfolio } from '@/entities/Portfolio';
 
 interface PortfolioChartProps {
     className?: string;
+    portfolio: Portfolio[];
 }
 
-export const PortfolioChart = ({ className }: PortfolioChartProps) => {
-    const activePortfolio = useAppSelector(getActivePortfolio);
-
-    const coinName = activePortfolio?.map((coin) => coin.name);
-    const amountCoin = activePortfolio?.map((coin) => coin.holdings_coin * coin.current_price);
+export const PortfolioChart = ({ className, portfolio }: PortfolioChartProps) => {
+    const coinName = portfolio?.map((coin) => coin.name);
+    const amountCoin = portfolio?.map((coin) => coin.holdings_coin * coin.current_price);
 
     const data = {
         labels: coinName,

@@ -1,11 +1,11 @@
 'use client';
 
 import { useUpdatePortfolio } from '@/shared/hooks/useUpdatePortfolio';
-import { portfolioApi } from '@/entities/Portfolio';
+import { useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 import { useState } from 'react';
 import { CreatePortfolioPage } from './ui/CreatePortfolioPage/CreatePortfolioPage';
 import { PortfolioEmpty } from './ui/PortfolioEmpty/PortfolioEmpty';
-import { useCheckEmptyPortfolio } from './module/hooks/useCheckEmptyPortfolio';
+import { useCheckEmptyPortfolio } from './hooks/useCheckEmptyPortfolio';
 import { LoadingSpinner } from '../_loading/loading';
 import { PortfolioNav } from './ui/PortfolioNav/PortfolioNav';
 import { OverviewContent } from './ui/OverviewContent/OverviewContent';
@@ -18,8 +18,8 @@ export enum Content {
 
 const PortfolioPage = () => {
     useUpdatePortfolio(); // Обновление портфолио
-    const { data: portfolioNames, isLoading } = portfolioApi.useGetPortfolioNamesQuery();
-    const [content, setContent] = useState<Content>(Content.OVERVIEW);
+    const { data: portfolioNames, isLoading } = useGetPortfolioNamesQuery();
+    const [content, setContent] = useState<string>(Content.OVERVIEW);
     const checkRender = useCheckEmptyPortfolio();
 
     if (isLoading) return <LoadingSpinner />;

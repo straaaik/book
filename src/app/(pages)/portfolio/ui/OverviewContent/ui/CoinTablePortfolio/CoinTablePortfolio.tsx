@@ -1,21 +1,25 @@
-import { useCallback } from 'react';
 import cls from './CoinTablePortfolio.module.scss';
 import { PortfolioSorted } from './ui/PortfolioSorted/PortfolioSorted';
 import { CoinCard } from '@/features';
 import { Table } from '@/shared/ui/Table/Table';
-import { useAppSelector } from '@/app/config/store/hooks';
-import { getActivePortfolio } from '@/entities/Portfolio/model/selectors/getActivePortfolio';
+import { Portfolio } from '@/entities/Portfolio';
+import { useLazyState } from '@/shared/hooks/useLazyState';
 
 interface IPortfolioList {
     onClick: (arg: string) => void;
+    portfolio: Portfolio[];
 }
 
-export const CoinTablePortfolio = ({ onClick }: IPortfolioList) => {
-    const activePortfolio = useAppSelector(getActivePortfolio);
+export const CoinTablePortfolio = ({ onClick, portfolio }: IPortfolioList) => {
+    const [sortedPortfolio, setSortedPortfolio] = useLazyState(portfolio);
 
-    const renderPortfolio = useCallback(() => {
-        return activePortfolio?.map((item) => {
-            return (
+    return (
+        <Table
+            title="Assets"
+            classNameContainer={cls.container}
+            className={cls.CoinTablePortfolio}
+            head={<PortfolioSorted setSortedData={setSortedPortfolio} />}
+            main={sortedPortfolio?.map((item) => (
                 <CoinCard
                     onClick={onClick}
                     id={item.id}
@@ -32,9 +36,7 @@ export const CoinTablePortfolio = ({ onClick }: IPortfolioList) => {
                     change7d={item.price_change_percentage_7d_in_currency}
                     profitLoss={[item.profit_loss, (item.profit_loss / item.purchase_price) * 100]}
                 />
-            );
-        });
-    }, [onClick, activePortfolio]);
-
-    return <Table title="Assets" classNameContainer={cls.container} className={cls.CoinTablePortfolio} head={<PortfolioSorted />} main={renderPortfolio()} />;
+            ))}
+        />
+    );
 };

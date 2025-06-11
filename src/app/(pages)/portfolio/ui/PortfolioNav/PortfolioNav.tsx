@@ -1,10 +1,11 @@
-import cls from './PortfolioNav.module.scss';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Dispatch, SetStateAction } from 'react';
 import { Content } from '../../page';
+import { NavigationMenu } from '@/shared/ui/NavigationMenu/NavigationMenu';
+import cls from './PortfolioNav.module.scss';
 
 interface PortfolioNavProps {
-    setContent: (content: Content) => void;
-    content: Content;
+    setContent: Dispatch<SetStateAction<string>>;
+    content: string;
 }
 
 interface ButtonContent {
@@ -18,13 +19,5 @@ export const PortfolioNav = ({ setContent, content }: PortfolioNavProps) => {
         { label: 'Transaction', content: Content.TRANSACTION },
     ];
 
-    return (
-        <div className={cls.PortfolioNav}>
-            {ButtonContent.map((item) => (
-                <Button theme={content == item.content ? ButtonTheme.INVERTED : ButtonTheme.CLEAR} key={item.label} onClick={() => setContent(item.content)}>
-                    {item.label}
-                </Button>
-            ))}
-        </div>
-    );
+    return <NavigationMenu className={cls.PortfolioNav} labels={ButtonContent} activeContent={content} setContent={setContent} />;
 };

@@ -1,8 +1,8 @@
-import { portfolioApi } from '@/entities/Portfolio';
 import { useState } from 'react';
 import { PortfolioActions } from './ui/PortfolioActions/PortfolioActions';
 import { MainActions } from './ui/MainActions/MainActions';
 import { CoinInfo } from '../../types/types';
+import { useDeleteCoinMutation } from '@/entities/Portfolio';
 
 interface CoinActionsProps {
     portfolio?: boolean;
@@ -11,7 +11,7 @@ interface CoinActionsProps {
 
 export const CoinActions = ({ portfolio, coinInfo }: CoinActionsProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [deleteCoin] = portfolioApi.useDeleteCoinMutation();
+    const [deleteCoin] = useDeleteCoinMutation();
 
     const onDeleteBtnClick = () => {
         if (coinInfo?.id) deleteCoin(coinInfo.id);

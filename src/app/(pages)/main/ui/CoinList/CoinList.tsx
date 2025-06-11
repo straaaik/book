@@ -6,6 +6,7 @@ import { CoinTableMain } from './ui/CoinTableMain/CoinTableMain';
 import { PaginationMainPage } from './ui/PaginationMainPage/PaginationMainPage';
 import { SelectCountCoins } from './ui/SelectCountCoins/SelectCountCoins';
 import { useState } from 'react';
+import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 
 export const CoinList = () => {
     const [page, setPage] = useState(1);
@@ -16,10 +17,13 @@ export const CoinList = () => {
             pollingInterval: RELOAD_TIME,
         }
     );
+
+    if (!data || isLoading) return <LoadingSpinner />;
+
     return (
         <div>
             <SelectCountCoins limit={limit} setLimit={setLimit} />
-            <CoinTableMain data={data} isLoading={isLoading} />
+            <CoinTableMain data={data} />
             <PaginationMainPage page={page} setPage={setPage} />
         </div>
     );

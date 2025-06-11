@@ -1,0 +1,21 @@
+.Link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    margin: 0 15px;
+    font-weight: 900;
+    user-select: none;
+    color: var(--primary-color);
+}
+
+.symbol {
+    padding: 1px;
+}
+
+.icon {
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}

@@ -3,7 +3,7 @@ import cls from './ModalCreatePortfolio.module.scss';
 import { Modal } from '@/shared/ui/Modal/Modal';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { portfolioApi } from '@/entities/Portfolio';
+import { useCreateNewPortfolioMutation, useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 import { PortfolioCard } from '../../../PortfolioCard/PortfolioCard';
 import { SelectIcon } from '../SelectIcon/SelectIcon';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -21,16 +21,10 @@ interface IForm {
 }
 
 export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreatePortfolioProps) => {
-    const [createPortfolio] = portfolioApi.useCreateNewPortfolioMutation();
-    const { data } = portfolioApi.useGetPortfolioNamesQuery();
+    const [createPortfolio] = useCreateNewPortfolioMutation();
+    const { data } = useGetPortfolioNamesQuery();
 
-    const {
-        handleSubmit,
-        control,
-        watch,
-        formState: { errors },
-        reset,
-    } = useForm<IForm>({
+    const { handleSubmit, control, watch, reset } = useForm<IForm>({
         defaultValues: {
             value: '',
             icon: null,

@@ -1,12 +1,11 @@
-import { useAppDispatch } from '@/app/config/store/hooks';
-import { Portfolio, portfolioActions } from '@/entities/Portfolio';
+import { Portfolio } from '@/entities/Portfolio';
 import { Sorted } from '@/features/Sorted/Sorted';
+import { Dispatch, SetStateAction } from 'react';
 
-export const PortfolioSorted = () => {
-    const dispatch = useAppDispatch();
-
+export const PortfolioSorted = ({ setSortedData }: { setSortedData: Dispatch<SetStateAction<Portfolio[]>> }) => {
     return (
         <Sorted<Portfolio>
+            setSortingData={setSortedData}
             params={[
                 {
                     sortKey: 'name',
@@ -45,7 +44,6 @@ export const PortfolioSorted = () => {
                     text: 'Profit / Loss',
                 },
             ]}
-            sortedFunction={(payload) => dispatch(portfolioActions.sortedPortfolio(payload))}
         />
     );
 };

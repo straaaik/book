@@ -3,9 +3,9 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfoliosInfo.module.scss';
 import { PortfolioCard } from '../PortfolioCard/PortfolioCard';
-import { portfolioApi } from '@/entities/Portfolio';
 import { useAppSelector } from '@/app/config/store/hooks';
 import { CreatePortfolio } from '../CreatePortfolio/CreatePortfolio';
+import { useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 
 interface PortfolioInfoProps {
     className?: string;
@@ -13,7 +13,7 @@ interface PortfolioInfoProps {
 
 export const PortfoliosInfo = ({ className }: PortfolioInfoProps) => {
     const portfolio = useAppSelector((state) => state.portfolio.data);
-    const { data: portfolioNames } = portfolioApi.useGetPortfolioNamesQuery();
+    const { data: portfolioNames } = useGetPortfolioNamesQuery();
 
     if (!portfolioNames?.length) return null;
 

@@ -1,12 +1,12 @@
 import { coinApi } from '@/entities/Coin';
-import { portfolioApi, portfolioActions } from '@/entities/Portfolio';
+import { portfolioActions, useGetPortfolioQuery } from '@/entities/Portfolio';
 import { useEffect } from 'react';
 import { RELOAD_TIME } from '../constant/constant';
 import { useAppDispatch } from '@/app/config/store/hooks';
 
 export const useUpdatePortfolio = () => {
     const dispatch = useAppDispatch();
-    const { data: dataPortfolio } = portfolioApi.useGetPortfolioQuery();
+    const { data: dataPortfolio } = useGetPortfolioQuery();
     const names = dataPortfolio?.map((item) => item.name);
     const { data: dataCoins } = coinApi.useGetCoinListWithMarketQuery({ names }, { pollingInterval: RELOAD_TIME });
 

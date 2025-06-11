@@ -4,13 +4,13 @@ import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { CounterBox } from '@/shared/ui/CounterBox/CounterBox';
 import { SelectButton } from '@/shared/ui/SelectButton/selectButton';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { portfolioApi } from '@/entities/Portfolio';
 import { Actions } from './ui/Actions/Actions';
 import { IForm } from '../../module/types';
 import { ButtonChoosesCoin } from './ui/ButtonChoosesCoin/ButtonChoosesCoin';
 import { Inputs } from './ui/Inputs/Inputs';
 import { SelectPortfolio } from './ui/SelectPortfolio/SelectPortfolio';
 import { CoinsListWithMarketData } from '@/entities/Coin';
+import { useUpdateCoinToPortfolioMutation } from '@/entities/Portfolio';
 
 interface FormAddTransactionProps {
     className?: string;
@@ -20,7 +20,7 @@ interface FormAddTransactionProps {
 }
 
 export const FormAddTransaction = ({ className, chooseCoin, setChooseCoin, active }: FormAddTransactionProps) => {
-    const [addCoin] = portfolioApi.useUpdateCoinToPortfolioMutation();
+    const [addCoin] = useUpdateCoinToPortfolioMutation();
 
     const { handleSubmit, control, watch } = useForm<IForm>({
         defaultValues: {

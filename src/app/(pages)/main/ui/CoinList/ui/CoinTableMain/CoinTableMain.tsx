@@ -1,29 +1,20 @@
 import { CoinsListWithMarketData } from '@/entities/Coin';
 import { CoinCard } from '@/features';
-import { useState, useEffect } from 'react';
 import { SortingCoinList } from './ui/SortingCoinList/SortingCoinList';
 import cls from './CoinTableMain.module.scss';
-import { LoadingSpinner } from '@/app/(pages)/_loading/loading';
 import { Table } from '@/shared/ui/Table/Table';
+import { useLazyState } from '@/shared/hooks/useLazyState';
 interface CoinTableMainProps {
-    data: CoinsListWithMarketData[] | undefined;
-    isLoading: boolean;
+    data: CoinsListWithMarketData[];
 }
 
-export const CoinTableMain = ({ data, isLoading }: CoinTableMainProps) => {
-    const [sortedData, setSortedData] = useState<CoinsListWithMarketData[]>([]);
-
-    useEffect(() => {
-        if (data) setSortedData(data);
-    }, [data]);
-
-    if (isLoading || !sortedData.length) return <LoadingSpinner />;
-
+export const CoinTableMain = ({ data }: CoinTableMainProps) => {
+    const [sortedData, setSortedData] = useLazyState<CoinsListWithMarketData[]>(data);
     return (
         <Table
             className={cls.CoinTableMain}
-            head={<SortingCoinList data={sortedData} setData={setSortedData} />}
-            main={sortedData.map((coin) => (
+            head={<SortingCoinList setData={setSortedData} />}
+            main={sortedData?.map((coin) => (
                 <CoinCard
                     id={coin.id}
                     key={coin.market_cap_rank}

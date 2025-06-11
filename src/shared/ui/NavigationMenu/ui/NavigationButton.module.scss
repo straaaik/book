@@ -1,0 +1,12 @@
+.NavigationButton {
+    display: flex;
+    text-transform: uppercase;
+    margin: 0 15px;
+    font-weight: 900;
+    user-select: none;
+    color: var(--primary-color);
+}
+
+.symbol {
+    padding: 1px;
+}

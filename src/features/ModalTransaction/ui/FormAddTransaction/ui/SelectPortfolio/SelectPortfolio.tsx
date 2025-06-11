@@ -1,14 +1,14 @@
 import { Control, Controller } from 'react-hook-form';
 import { IForm } from '../../../../module/types';
 import { Select } from '@/shared/ui/Select/Select';
-import { portfolioApi } from '@/entities/Portfolio';
+import { useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 
 interface SelectPortfolioProps {
     control: Control<IForm>;
 }
 
 export const SelectPortfolio = ({ control }: SelectPortfolioProps) => {
-    const { data } = portfolioApi.useGetPortfolioNamesQuery();
+    const { data } = useGetPortfolioNamesQuery();
     const options = data!.map((item) => {
         return { description: item.id, value: item.id };
     });

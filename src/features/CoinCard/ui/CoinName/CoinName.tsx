@@ -4,7 +4,7 @@ import { MainName } from './ui/MainName/MainName';
 interface CoinNameProps {
     className?: string;
     image?: string;
-    name?: string;
+    name: string;
     symbol?: string;
     id: string;
     rank?: number;

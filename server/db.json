@@ -1,241 +1,128 @@
 {
   "portfolio": [
     {
-      "id": "ethereumIgor",
-      "serverId": "ethereum",
-      "name": "Ethereum",
-      "buy": [
-        {
-          "amount": 10,
-          "price": 2000,
-          "date": "2023-01-15T10:00:00Z",
-          "fee": 20,
-          "notes": "Initial purchase"
-        },
-        {
-          "amount": 5,
-          "price": 2100,
-          "date": "2023-02-15T12:00:00Z",
-          "fee": 10,
-          "notes": "Added more"
-        },
-        {
-          "amount": 3,
-          "price": 1900,
-          "date": "2023-03-15T14:00:00Z",
-          "fee": 15,
-          "notes": "Market dip"
-        }
-      ],
-      "sell": [
-        {
-          "amount": 2,
-          "price": 2200,
-          "date": "2023-04-15T16:00:00Z",
-          "fee": 5,
-          "notes": "Partial profit"
-        },
-        {
-          "amount": 1,
-          "price": 2300,
-          "date": "2023-05-15T18:00:00Z",
-          "fee": 3,
-          "notes": "Market peak"
-        }
-      ],
-      "holdings_coin": 15,
-      "avgPrice": 2000,
-      "purchase_price": 30000,
-      "portfolio_name": "Igor"
-    },
-    {
-      "id": "cardanoIgor",
-      "serverId": "cardano",
-      "name": "Cardano",
-      "buy": [
-        {
-          "amount": 1000,
-          "price": 1.2,
-          "date": "2023-01-10T10:00:00Z",
-          "fee": 2,
-          "notes": "Initial purchase"
-        },
-        {
-          "amount": 500,
-          "price": 1.1,
-          "date": "2023-02-10T12:00:00Z",
-          "fee": 1,
-          "notes": "Added more"
-        },
-        {
-          "amount": 300,
-          "price": 1.05,
-          "date": "2023-03-10T14:00:00Z",
-          "fee": 1.5,
-          "notes": "Market dip"
-        }
-      ],
-      "sell": [
-        {
-          "amount": 200,
-          "price": 1.3,
-          "date": "2023-04-10T16:00:00Z",
-          "fee": 0.5,
-          "notes": "Partial profit"
-        },
-        {
-          "amount": 100,
-          "price": 1.4,
-          "date": "2023-05-10T18:00:00Z",
-          "fee": 0.3,
-          "notes": "Market peak"
-        }
-      ],
-      "holdings_coin": 1500,
-      "avgPrice": 1.15,
-      "purchase_price": 1725,
-      "portfolio_name": "Igor"
-    },
-    {
-      "id": "polkadotIgor",
-      "serverId": "polkadot",
-      "name": "Polkadot",
-      "buy": [
-        {
-          "amount": 50,
-          "price": 5,
-          "date": "2023-01-20T10:00:00Z",
-          "fee": 0.5,
-          "notes": "Initial purchase"
-        },
-        {
-          "amount": 30,
-          "price": 4.8,
-          "date": "2023-02-20T12:00:00Z",
-          "fee": 0.3,
-          "notes": "Added more"
-        }
-      ],
-      "sell": [
-        {
-          "amount": 20,
-          "price": 6,
-          "date": "2023-03-20T14:00:00Z",
-          "fee": 0.2,
-          "notes": "Partial profit"
-        },
-        {
-          "amount": 10,
-          "price": 6.5,
-          "date": "2023-04-20T16:00:00Z",
-          "fee": 0.1,
-          "notes": "Market peak"
-        }
-      ],
-      "holdings_coin": 50,
-      "avgPrice": 4.9,
-      "purchase_price": 245,
-      "portfolio_name": "Igor"
-    },
-    {
-      "id": "solanaIgor",
-      "serverId": "solana",
-      "name": "Solana",
-      "buy": [
-        {
-          "amount": 20,
-          "price": 100,
-          "date": "2023-01-25T10:00:00Z",
-          "fee": 1,
-          "notes": "Initial purchase"
-        },
-        {
-          "amount": 10,
-          "price": 95,
-          "date": "2023-02-25T12:00:00Z",
-          "fee": 0.5,
-          "notes": "Added more"
-        }
-      ],
-      "sell": [
-        {
-          "amount": 5,
-          "price": 110,
-          "date": "2023-03-25T14:00:00Z",
-          "fee": 0.2,
-          "notes": "Partial profit"
-        },
-        {
-          "amount": 3,
-          "price": 120,
-          "date": "2023-04-25T16:00:00Z",
-          "fee": 0.1,
-          "notes": "Market peak"
-        }
-      ],
-      "holdings_coin": 22,
-      "avgPrice": 97.5,
-      "purchase_price": 1950,
-      "portfolio_name": "Igor"
-    },
-    {
-      "id": "dogecoinIgor",
-      "serverId": "dogecoin",
-      "name": "Dogecoin",
-      "buy": [
-        {
-          "amount": 5000,
-          "price": 0.05,
-          "date": "2023-01-30T10:00:00Z",
-          "fee": 2.5,
-          "notes": "Initial purchase"
-        },
-        {
-          "amount": 2000,
-          "price": 0.04,
-          "date": "2023-02-28T12:00:00Z",
-          "fee": 1.2,
-          "notes": "Added more"
-        }
-      ],
-      "sell": [
-        {
-          "amount": 1000,
-          "price": 0.06,
-          "date": "2023-03-30T14:00:00Z",
-          "fee": 0.5,
-          "notes": "Partial profit"
-        },
-        {
-          "amount": 500,
-          "price": 0.07,
-          "date": "2023-04-30T16:00:00Z",
-          "fee": 0.3,
-          "notes": "Market peak"
-        }
-      ],
-      "holdings_coin": 6500,
-      "avgPrice": 0.045,
-      "purchase_price": 325,
-      "portfolio_name": "Igor"
-    },
-    {
       "id": "bitcoinMain",
       "serverId": "bitcoin",
       "name": "Bitcoin",
       "buy": [
         {
-          "amount": 10,
-          "price": 104895,
-          "date": "2025-06-04T15:01:18.970Z",
+          "id": "e0c7a0d2-a5c1-4237-ac2b-59f26dc0a236",
+          "amount": 1,
+          "price": 105479,
+          "date": "2025-06-07T16:47:14.570Z",
+          "fee": 0,
+          "notes": ""
+        },
+        {
+          "id": "4f2cfffc-a57d-4acc-b493-a48356f43bd4",
+          "amount": 2,
+          "price": 105479,
+          "date": "2025-06-07T16:47:27.188Z",
+          "fee": 0,
+          "notes": ""
+        },
+        {
+          "id": "600db60d-e7d3-48ae-87e2-435fb3edb017",
+          "amount": 3,
+          "price": 105479,
+          "date": "2025-06-07T16:47:39.001Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [
+        {
+          "id": "f1d11baa-073d-413d-972d-14312bb1f3b4",
+          "amount": 1,
+          "price": 105479,
+          "date": "2025-06-07T16:47:57.595Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "holdings_coin": 5,
+      "avgPrice": 105479,
+      "purchase_price": 632874,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "binancecoinMain",
+      "serverId": "binancecoin",
+      "name": "BNB",
+      "buy": [
+        {
+          "id": "bf5f2873-ed4e-450c-a174-c40e2c84fb87",
+          "amount": 1,
+          "price": 652.09,
+          "date": "2025-06-07T20:43:42.823Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 10,
-      "avgPrice": 104895,
-      "purchase_price": 1048950,
+      "holdings_coin": 1,
+      "avgPrice": 652.09,
+      "purchase_price": 652.09,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "dogecoinMain",
+      "serverId": "dogecoin",
+      "name": "Dogecoin",
+      "buy": [
+        {
+          "id": "55b279fc-88fc-449b-b334-f62d4ad44c62",
+          "amount": 2,
+          "price": 0.184027,
+          "date": "2025-06-07T20:43:46.863Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 2,
+      "avgPrice": 0.184027,
+      "purchase_price": 0.368054,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "tetherMain",
+      "serverId": "tether",
+      "name": "Tether",
+      "buy": [
+        {
+          "id": "94d93978-7a49-4382-80b2-4e9cf895b50f",
+          "amount": 1,
+          "price": 1,
+          "date": "2025-06-07T22:52:55.816Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 1,
+      "avgPrice": 1,
+      "purchase_price": 1,
+      "portfolio_name": "Main"
+    },
+    {
+      "id": "cardanoMain",
+      "serverId": "cardano",
+      "name": "Cardano",
+      "buy": [
+        {
+          "id": "eb167cd2-fe8e-4c89-8576-d6536c657019",
+          "amount": 1,
+          "price": 0.668609,
+          "date": "2025-06-07T22:55:10.770Z",
+          "fee": 0,
+          "notes": ""
+        }
+      ],
+      "sell": [],
+      "holdings_coin": 1,
+      "avgPrice": 0.668609,
+      "purchase_price": 0.668609,
       "portfolio_name": "Main"
     }
   ],
@@ -243,13 +130,7 @@
     {
       "id": "Main",
       "Main": {
-        "icon": "Man"
-      }
-    },
-    {
-      "id": "Igor",
-      "Igor": {
-        "icon": "Man"
+        "icon": "Helmet"
       }
     }
   ]
