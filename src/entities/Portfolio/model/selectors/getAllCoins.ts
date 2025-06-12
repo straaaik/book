@@ -1,4 +1,4 @@
-import { createAppSelector } from '@/app/config/store/hooks';
+import { createAppSelector } from '@/shared/hooks/hooks';
 import { getPortfolio } from './getPortfolio';
 
 export const getAllCoins = createAppSelector(getPortfolio, (portfolio) => {

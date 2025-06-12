@@ -1,11 +1,11 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './Modal.module.scss';
 import { ReactNode, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Button, ButtonTheme } from '../Button/Button';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { Portal } from '../Portal/Portal';
-import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 interface ModalProps {
     className?: string;

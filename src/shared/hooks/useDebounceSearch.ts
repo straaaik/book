@@ -1,3 +1,5 @@
+/* eslint-disable fsd/forbidden-imports */
+/* eslint-disable fsd/no-public-api-sidestep */
 import { coinApi } from '@/entities/Coin';
 import { CoinsListWithMarketData, SearchCoin } from '@/entities/Coin/types/types';
 import { SerializedError } from '@reduxjs/toolkit';

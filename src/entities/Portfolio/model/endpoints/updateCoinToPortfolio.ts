@@ -1,7 +1,6 @@
-import { coinApi } from '@/entities/Coin';
 import { Coin, UpdateCoin } from '../../types/types';
-import { portfolioActions } from '../slice/portfolioSlice';
 import { baseApi } from '../api/api';
+import { updatePortfolio } from './updatePortfolio';
 
 const updateCoinToPortfolio = baseApi.injectEndpoints({
     endpoints: (create) => ({
@@ -74,9 +73,7 @@ const updateCoinToPortfolio = baseApi.injectEndpoints({
             async onQueryStarted(_, { dispatch, queryFulfilled }) {
                 try {
                     const coin = (await queryFulfilled).data;
-                    const coinInfo = (await dispatch(coinApi.endpoints.getCoinListWithMarket.initiate({ names: coin.name }))).data || [];
-                    const merge = { ...coinInfo[0], ...coin, profit_loss: coinInfo[0].current_price * coin.holdings_coin - coin.purchase_price };
-                    dispatch(portfolioActions.addCoinToPortfolio(merge));
+                    dispatch(updatePortfolio.endpoints.updatePortfolio.initiate({ id: coin.portfolio_name, price: 0 }));
                 } catch (e) {
                     // TODO обработать ошибку
                     console.log(e);

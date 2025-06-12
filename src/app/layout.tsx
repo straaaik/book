@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import './styles/global.scss';
 import { Quicksand } from 'next/font/google';
-import Header from '@/widgets/Header/Header';
 import { ThemeProvider } from 'next-themes';
-import { ThemeSwitcher } from '@/widgets/ThemeSwitcher/ThemeSwitcher';
 import StoreProvider from './config/store/StoreProvider';
+import { Header } from '@/widgets/Header';
+import { ThemeSwitcher } from '@/widgets/ThemeSwitcher';
 
 export const metadata: Metadata = {
     title: 'Books',

@@ -1,4 +1,4 @@
-import { createAppSelector } from '@/app/config/store/hooks';
+import { createAppSelector } from '@/shared/hooks/hooks';
 import { getActive } from './getActive';
 import { getPortfolio } from './getPortfolio';
 

@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './Input.module.scss';
 import { FC, InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';

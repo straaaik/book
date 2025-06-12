@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './NavigationMenu.module.scss';
 import { Dispatch, SetStateAction } from 'react';
 import { NavigationButton } from './ui/NavigationButton';

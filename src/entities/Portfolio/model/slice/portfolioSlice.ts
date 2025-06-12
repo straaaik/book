@@ -15,15 +15,15 @@ export const portfolioSlice = createSlice({
     name: 'portfolio',
     initialState,
     reducers: {
-        // addCoinToPortfolio: (state, action: PayloadAction<Portfolio>) => {
-        //     const coin = action.payload;
-        //     if (state.data.find((item) => item.name === coin.name)) {
-        //         const id = state.data.findIndex((item) => item.name === coin.name);
-        //         state.data[id] = coin;
-        //     } else {
-        //         state.data.push(coin);
-        //     }
-        // },
+        addCoinToPortfolio: (state, action: PayloadAction<Portfolio>) => {
+            const coin = action.payload;
+            if (state.data.find((item) => item.name === coin.name)) {
+                const id = state.data.findIndex((item) => item.name === coin.name);
+                state.data[id] = coin;
+            } else {
+                state.data.push(coin);
+            }
+        },
         setActive: (state, action: PayloadAction<string>) => {
             state.active = action.payload;
             localStorage.setItem('activePortfolio', action.payload);

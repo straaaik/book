@@ -21,7 +21,7 @@ export const CoinInfo = (props: CoinInfoProps) => {
         <>
             {price !== undefined && (
                 <td>
-                    <TextNumber text={price} format="currency" highlight />
+                    <TextNumber text={price} format="currency" />
                 </td>
             )}
             {change1h !== undefined && (

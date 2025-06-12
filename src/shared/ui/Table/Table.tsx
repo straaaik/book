@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './Table.module.scss';
 
 interface IPortfolioList {

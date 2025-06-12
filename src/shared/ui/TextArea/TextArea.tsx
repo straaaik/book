@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './TextArea.module.scss';
 import { motion } from 'motion/react';
 import { memo } from 'react';

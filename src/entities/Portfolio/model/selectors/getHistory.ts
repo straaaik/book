@@ -1,4 +1,4 @@
-import { createAppSelector } from '@/app/config/store/hooks';
+import { createAppSelector } from '@/shared/hooks/hooks';
 import { getActivePortfolio } from './getActivePortfolio';
 import { HistoryCoin, Portfolio } from '../../types/types';
 

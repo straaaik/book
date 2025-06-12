@@ -1,3 +1,3 @@
-import { RootState } from '@/app/config/store/store';
+import { RootState } from '@/shared/types/redux';
 
 export const getActive = (state: RootState) => state.portfolio.active;

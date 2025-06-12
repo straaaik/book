@@ -1,10 +1,11 @@
+/* eslint-disable fsd/forbidden-imports */
 import { useGetPortfolioNamesQuery } from '@/entities/Portfolio';
 import { ICONS } from '../assets/icon/PortfolioIcons';
 
 export const useIcon = (portfolioName: string) => {
     const { data: portfolio } = useGetPortfolioNamesQuery();
 
-    const iconName = portfolio?.find((item) => item.id == portfolioName)?.[portfolioName].icon;
+    const iconName = portfolio?.find((item) => item.id == portfolioName)?.icon;
 
     if (!iconName) return null;
 

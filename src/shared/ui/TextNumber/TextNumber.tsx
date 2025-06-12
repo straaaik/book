@@ -1,21 +1,21 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { AnimatePresence, motion } from 'motion/react';
 import cls from './TextNumber.module.scss';
-import { NumberFormatter } from './module/NumberFormater';
 import { memo } from 'react';
+import { NumberFormatter } from './module/NumberFormatter';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 
 export type FormatNumber = 'currency' | 'percentages' | 'big' | 'currencyRounded';
 
 interface TextProps {
     className?: string;
-    text: number;
+    text?: number;
     highlight?: boolean;
     format?: FormatNumber;
 }
 
-export const TextNumber = memo(({ className, text, highlight = false, format }: TextProps) => {
+export const TextNumber = memo(({ className, text = 0, highlight = false, format }: TextProps) => {
     const changeHighlightClass = () => {
         if (text > 0) {
             return cls.highlight_green;

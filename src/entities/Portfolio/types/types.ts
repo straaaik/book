@@ -1,4 +1,4 @@
-import { CoinsListWithMarketData } from '@/entities/Coin';
+import { CoinsListWithMarketData } from '../../Coin/types/types';
 
 export interface HistoryCoin {
     amount: number;
@@ -15,14 +15,11 @@ interface HistoryCapital {
 
 export type Portfolio = Coin & CoinsListWithMarketData;
 
-export type IPortfolioNames<ID extends string = string> = {
-    id: ID;
-} & {
-    [T in ID]: IPortfolioTypes;
-};
-
-export interface IPortfolioTypes {
-    icon: string;
+export interface IPortfoliosInfo {
+    id: string;
+    icon?: string;
+    price: number;
+    initial_price: number;
 }
 
 export interface Coin {

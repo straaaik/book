@@ -1,11 +1,11 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../../lib/ClassNames/ClassNames';
 import cls from './DropDownMenu.module.scss';
 import { AnimatePresence, motion } from 'motion/react';
 import { memo, ReactNode, useRef, useState } from 'react';
 import { DropDownMenuOpenButton } from './DropDownMenuOpenButton/DropDownMenuOpenButton';
-import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 interface ActionsProps {
     className?: string;

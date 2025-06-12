@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../../lib/ClassNames/ClassNames';
 import cls from './Doughnut.module.scss';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';

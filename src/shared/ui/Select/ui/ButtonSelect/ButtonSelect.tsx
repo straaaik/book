@@ -1,7 +1,7 @@
 import cls from './ButtonSelect.module.scss';
 import { IoIosArrowDown } from 'react-icons/io';
 import { motion } from 'motion/react';
-import { animateVariants } from '@/shared/ui/animation/variants';
+import { animateVariants } from '../../../animation/variants';
 import { Options } from '../../Select';
 
 interface ButtonSelectProps {

@@ -1,6 +1,6 @@
 import React, { FC, memo, ReactNode } from 'react';
 import cls from './Button.module.scss';
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import { motion, MotionStyle } from 'motion/react';
 
 interface SearchProps {

@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './HoverCard.module.scss';
 import { motion } from 'motion/react';
 import { useState } from 'react';

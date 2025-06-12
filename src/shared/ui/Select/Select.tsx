@@ -1,6 +1,6 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './Select.module.scss';
 import { memo, useRef, useState } from 'react';
 import React from 'react';
@@ -10,7 +10,7 @@ import { ButtonSelect } from './ui/ButtonSelect/ButtonSelect';
 import { sidebarVariants } from './animation/animation';
 import { HoverCard } from '../HoverCard/HoverCard';
 import { BiError } from 'react-icons/bi';
-import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export interface Options {
     value: string;

@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './ButtonPicker.module.scss';
 import { Button, ButtonTheme } from '../Button/Button';
 import { memo, useEffect, useRef, useState } from 'react';

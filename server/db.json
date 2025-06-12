@@ -1,137 +1,78 @@
 {
   "portfolio": [
     {
-      "id": "bitcoinMain",
-      "serverId": "bitcoin",
-      "name": "Bitcoin",
+      "id": "tetherMain",
+      "serverId": "tether",
+      "name": "Tether",
       "buy": [
         {
-          "id": "e0c7a0d2-a5c1-4237-ac2b-59f26dc0a236",
-          "amount": 1,
-          "price": 105479,
-          "date": "2025-06-07T16:47:14.570Z",
-          "fee": 0,
-          "notes": ""
-        },
-        {
-          "id": "4f2cfffc-a57d-4acc-b493-a48356f43bd4",
-          "amount": 2,
-          "price": 105479,
-          "date": "2025-06-07T16:47:27.188Z",
-          "fee": 0,
-          "notes": ""
-        },
-        {
-          "id": "600db60d-e7d3-48ae-87e2-435fb3edb017",
-          "amount": 3,
-          "price": 105479,
-          "date": "2025-06-07T16:47:39.001Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [
-        {
-          "id": "f1d11baa-073d-413d-972d-14312bb1f3b4",
-          "amount": 1,
-          "price": 105479,
-          "date": "2025-06-07T16:47:57.595Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "holdings_coin": 5,
-      "avgPrice": 105479,
-      "purchase_price": 632874,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "binancecoinMain",
-      "serverId": "binancecoin",
-      "name": "BNB",
-      "buy": [
-        {
-          "id": "bf5f2873-ed4e-450c-a174-c40e2c84fb87",
-          "amount": 1,
-          "price": 652.09,
-          "date": "2025-06-07T20:43:42.823Z",
+          "id": "f33492bb-901f-46c6-a9b1-1a541f39f952",
+          "amount": 1000,
+          "price": 1,
+          "date": "2025-06-12T22:04:02.155Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 652.09,
-      "purchase_price": 652.09,
+      "holdings_coin": 1000,
+      "avgPrice": 1,
+      "purchase_price": 1000,
       "portfolio_name": "Main"
     },
     {
-      "id": "dogecoinMain",
-      "serverId": "dogecoin",
-      "name": "Dogecoin",
+      "id": "binancecoinSecond",
+      "serverId": "binancecoin",
+      "name": "BNB",
       "buy": [
         {
-          "id": "55b279fc-88fc-449b-b334-f62d4ad44c62",
+          "id": "12c09d52-c781-43e8-bdde-29ba7c4d8408",
           "amount": 2,
-          "price": 0.184027,
-          "date": "2025-06-07T20:43:46.863Z",
+          "price": 654.72,
+          "date": "2025-06-12T22:04:44.776Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
       "holdings_coin": 2,
-      "avgPrice": 0.184027,
-      "purchase_price": 0.368054,
-      "portfolio_name": "Main"
+      "avgPrice": 654.72,
+      "purchase_price": 1309.44,
+      "portfolio_name": "Second"
     },
     {
-      "id": "tetherMain",
-      "serverId": "tether",
-      "name": "Tether",
+      "id": "bitcoinMain",
+      "serverId": "bitcoin",
+      "name": "Bitcoin",
       "buy": [
         {
-          "id": "94d93978-7a49-4382-80b2-4e9cf895b50f",
+          "id": "51ee9bdb-a002-4e6a-8d65-ca077813458d",
           "amount": 1,
-          "price": 1,
-          "date": "2025-06-07T22:52:55.816Z",
+          "price": 106040,
+          "date": "2025-06-12T22:05:02.153Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
       "holdings_coin": 1,
-      "avgPrice": 1,
-      "purchase_price": 1,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "cardanoMain",
-      "serverId": "cardano",
-      "name": "Cardano",
-      "buy": [
-        {
-          "id": "eb167cd2-fe8e-4c89-8576-d6536c657019",
-          "amount": 1,
-          "price": 0.668609,
-          "date": "2025-06-07T22:55:10.770Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 0.668609,
-      "purchase_price": 0.668609,
+      "avgPrice": 106040,
+      "purchase_price": 106040,
       "portfolio_name": "Main"
     }
   ],
-  "portfolio_names": [
+  "portfolios_info": [
     {
       "id": "Main",
-      "Main": {
-        "icon": "Helmet"
-      }
+      "icon": "Helmet",
+      "initial_price": 107040,
+      "price": 107056
+    },
+    {
+      "id": "Second",
+      "icon": "Dragon",
+      "initial_price": 1309.44,
+      "price": 1313.16
     }
   ]
 }

@@ -1,23 +1,23 @@
-import { IPortfolioNames } from '../../types/types';
+import { IPortfoliosInfo } from '../../types/types';
 import { baseApi } from '../api/api';
 
 const createNewPortfolio = baseApi.injectEndpoints({
     endpoints: (create) => ({
-        createNewPortfolio: create.mutation<IPortfolioNames, { id: string; icon?: string }>({
+        createNewPortfolio: create.mutation<IPortfoliosInfo, { id: string; icon?: string }>({
             async queryFn(portfolioInfo, _, __, baseQuery) {
                 const { id, icon } = portfolioInfo;
                 const update = await baseQuery({
-                    url: `/portfolio_names`,
+                    url: `/portfolios_info`,
                     method: 'POST',
                     body: {
                         id,
-                        [id]: {
-                            icon,
-                        },
-                    },
+                        icon,
+                        initial_price: 0,
+                        price: 0,
+                    } as IPortfoliosInfo,
                 });
 
-                return { data: update.data as IPortfolioNames };
+                return { data: update.data as IPortfoliosInfo };
             },
             invalidatesTags: ['Names'],
         }),

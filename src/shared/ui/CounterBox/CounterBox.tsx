@@ -1,6 +1,6 @@
 'use client';
 
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './CounterBox.module.scss';
 import { animate } from 'motion';
 import { useMotionValue, useTransform, motion } from 'motion/react';

@@ -1,6 +1,6 @@
-import { classNames } from '@/shared/lib/ClassNames/ClassNames';
+import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './InfoBox.module.scss';
-import { LANG } from '@/shared/constant/constant';
+import { LANG } from '../../constant/constant';
 
 interface infoBoxProps {
     className?: string;
