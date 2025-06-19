@@ -17,6 +17,7 @@ interface HistoryOrdersTableProps {
 
 export const TransactionOrdersTable = ({ orders, show, onSorted }: HistoryOrdersTableProps) => {
     const renderColumns: Columns = {
+        id: true,
         type: true,
         name: true,
         date: true,

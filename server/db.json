@@ -1,78 +1,46 @@
 {
-  "portfolio": [
-    {
-      "id": "tetherMain",
-      "serverId": "tether",
-      "name": "Tether",
-      "buy": [
+    "portfolio": [
         {
-          "id": "5ae72de4-37a7-4d46-b505-9b5ecbad4c3d",
-          "amount": 111,
-          "price": 1,
-          "date": "2025-06-19T15:41:28.657Z",
-          "fee": 0,
-          "notes": ""
+            "id": "tetherMain",
+            "serverId": "tether",
+            "name": "Tether",
+            "buy": [
+                {
+                    "id": "77c2e2c7-64f9-4750-8b5a-6d8be333b93d",
+                    "amount": 999,
+                    "price": 1,
+                    "date": "2025-06-19T17:40:07.766Z",
+                    "fee": 0,
+                    "notes": ""
+                },
+                {
+                    "id": "359d906d-bf76-4fbb-ad88-c0d7e161a7a3",
+                    "amount": 123,
+                    "price": 1,
+                    "date": "2025-06-19T17:40:02.718Z",
+                    "fee": 0,
+                    "notes": "Test"
+                }
+            ],
+            "sell": [],
+            "holdings_coin": 1122,
+            "avgPrice": 1,
+            "purchase_price": 1122,
+            "portfolio_name": "Main"
         }
-      ],
-      "sell": [],
-      "holdings_coin": 111,
-      "avgPrice": 1,
-      "purchase_price": 111,
-      "portfolio_name": "Main"
-    },
-    {
-      "id": "binancecoinSecond",
-      "serverId": "binancecoin",
-      "name": "BNB",
-      "buy": [
+    ],
+    "portfolios_info": [
         {
-          "id": "12c09d52-c781-43e8-bdde-29ba7c4d8408",
-          "amount": 2,
-          "price": 654.72,
-          "date": "2025-06-12T22:04:44.776Z",
-          "fee": 0,
-          "notes": ""
-        }
-      ],
-      "sell": [],
-      "holdings_coin": 2,
-      "avgPrice": 654.72,
-      "purchase_price": 1309.44,
-      "portfolio_name": "Second"
-    },
-    {
-      "id": "bitcoinMain",
-      "serverId": "bitcoin",
-      "name": "Bitcoin",
-      "buy": [
+            "id": "Main",
+            "icon": "Helmet",
+            "initial_price": 1122,
+            "price": 1122
+        },
         {
-          "id": "51ee9bdb-a002-4e6a-8d65-ca077813458d",
-          "amount": 1,
-          "price": 106040,
-          "date": "2025-06-12T22:05:02.153Z",
-          "fee": 0,
-          "notes": ""
+            "id": "Second",
+            "icon": "Dragon",
+            "initial_price": 0,
+            "price": 0
         }
-      ],
-      "sell": [],
-      "holdings_coin": 1,
-      "avgPrice": 106040,
-      "purchase_price": 106040,
-      "portfolio_name": "Main"
-    }
-  ],
-  "portfolios_info": [
-    {
-      "id": "Main",
-      "icon": "Helmet",
-      "initial_price": 106151,
-      "price": 104283
-    },
-    {
-      "id": "Second",
-      "icon": "Dragon",
-      "initial_price": 1309.44,
-      "price": 1281.36
-    }
-  ]
+    ]
 }

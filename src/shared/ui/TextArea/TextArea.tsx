@@ -7,14 +7,16 @@ interface TextAreaProps {
     className?: string;
     value: string;
     onChange: () => void;
+    description?: string;
 }
 
-export const TextArea = memo(({ className, value, onChange }: TextAreaProps) => {
+export const TextArea = memo(({ className, value, onChange, description }: TextAreaProps) => {
     const maxLength = 50;
     const charactersRemaining = maxLength - value.length;
 
     return (
-        <>
+        <div className={cls.wrapper}>
+            <span className={cls.description}>{description}</span>
             <motion.textarea
                 whileFocus={{ border: '1px solid var(--warn-color)' }}
                 value={value}
@@ -25,6 +27,6 @@ export const TextArea = memo(({ className, value, onChange }: TextAreaProps) => 
                 {value}
             </motion.textarea>
             <span className={cls.charactersRemaining}>{charactersRemaining}</span>
-        </>
+        </div>
     );
 });

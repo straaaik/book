@@ -1,0 +1,24 @@
+.ModalChangeTransaction {
+    height: 500px;
+}
+
+.form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.textarea {
+    resize: none;
+}
+
+.datepickerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnChange {
+    margin-top: auto;
+}

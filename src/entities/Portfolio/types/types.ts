@@ -1,5 +1,16 @@
 import { CoinsListWithMarketData } from '../../Coin/types/types';
 
+export interface IFormChanges {
+    quantity: string;
+    fee: string;
+    price: string;
+    notes: string;
+    date: Date;
+    coinId: string;
+    transactionId: string;
+    type: 'buy' | 'sell';
+}
+
 export interface HistoryCoin {
     id: string;
     amount: number;

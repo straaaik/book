@@ -4,7 +4,7 @@ import cls from './ModalAboutTransaction.module.scss';
 import { LANG } from '@/shared/constant/constant';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { CounterBox } from '@/shared/ui/CounterBox/CounterBox';
-import { OrderInfo } from '@/entities/Portfolio';
+import { OrderInfo } from '../../../../model/selectors/getHistory';
 
 interface ModalAboutTransactionProps {
     isOpen: boolean;
