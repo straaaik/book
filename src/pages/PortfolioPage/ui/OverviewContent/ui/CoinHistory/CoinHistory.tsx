@@ -7,7 +7,7 @@ import { Header } from './ui/Header/Header';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { getActive, getHistory } from '@/entities/Portfolio';
 import { useLazyState } from '@/shared/hooks/useLazyState';
-import { TransactionOrdersTable } from '../../../TransactionOrdersTable/TransactionOrdersTable/TransactionOrdersTable';
+import { TransactionOrdersTable } from '../../../../../../entities/Portfolio/ui/TransactionOrdersTable/ui/TransactionOrdersTable/TransactionOrdersTable';
 
 interface CoinHistoryProps {
     className?: string;

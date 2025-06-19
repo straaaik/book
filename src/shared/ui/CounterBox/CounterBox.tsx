@@ -21,6 +21,7 @@ export const CounterBox = memo(({ className, description, value, current }: Coun
     useEffect(() => {
         const controls = animate(count, value, { duration: 1 });
         return () => controls.stop();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
     return (

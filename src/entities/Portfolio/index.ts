@@ -1,3 +1,4 @@
+export { TransactionOrdersTable } from './ui/TransactionOrdersTable/ui/TransactionOrdersTable/TransactionOrdersTable';
 export { CreatePortfolio } from './ui/CreatePortfolio/ui/CreatePortfolio';
 
 export { useUpdatePortfolio } from './module/hooks/useUpdatePortfolio';

@@ -1,3 +1,4 @@
+import { updateInfoCoins } from '../../module/updateInfoCoins';
 import { Coin, UpdateCoin } from '../../types/types';
 import { baseApi } from '../api/api';
 import { updatePortfolio } from './updatePortfolio';
@@ -23,10 +24,8 @@ const updateCoinToPortfolio = baseApi.injectEndpoints({
                         ...portfolio[coinIndex],
                         [options]: updatedCoinOrders,
                     };
-                    const holdingCoins =
-                        updatedPortfolio.buy.reduce((acc, item) => acc + item.amount, 0) - updatedPortfolio.sell.reduce((acc, item) => acc + item.amount, 0);
-                    const avgPrice = updatedPortfolio.buy.reduce((acc, item) => acc + item.price * item.amount, 0) / holdingCoins;
-                    const purchasePrice = updatedPortfolio.buy.reduce((acc, item) => acc + item.amount * item.price, 0);
+
+                    const { avgPrice, holdingCoins, purchasePrice } = updateInfoCoins(updatedPortfolio);
 
                     const body = { ...updatedPortfolio, holdings_coin: holdingCoins };
 

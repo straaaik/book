@@ -1,8 +1,10 @@
+'use client';
+
 import { Table } from '@/shared/ui/Table/Table';
 import { TransactionRow } from './ui/TransactionRow/TransactionRow';
 import { TransactionSorted } from './ui/TransactionSorted/TransactionSorted';
-import { Order, OrderInfo } from '@/entities/Portfolio';
 import { Dispatch, SetStateAction } from 'react';
+import { Order, OrderInfo } from '../../../../model/selectors/getHistory';
 
 export type ShowType = 'max' | 'mini' | 'more';
 
@@ -24,7 +26,7 @@ export const TransactionOrdersTable = ({ orders, show, onSorted }: HistoryOrders
         fee: true,
         notes: true,
         symbol: true,
-        id: true,
+        id_coin: true,
         image: true,
     };
 

@@ -11,10 +11,19 @@ interface DropDownMenuItemProps {
 }
 
 export const DropDownMenuItem = memo(({ className, description, icon, onClick }: DropDownMenuItemProps) => {
+    const onHandlerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        onClick?.();
+    };
+
     return (
-        <motion.div onClick={onClick} whileHover={{ background: 'var(--warn-color)' }} className={classNames(cls.DropDownMenuItem, {}, [className])}>
+        <motion.button
+            onClick={(e) => onHandlerClick(e)}
+            whileHover={{ background: 'var(--warn-color)' }}
+            className={classNames(cls.DropDownMenuItem, {}, [className])}
+        >
             {icon && <div className={cls.icon}>{icon}</div>}
             <div className={cls.description}>{description}</div>
-        </motion.div>
+        </motion.button>
     );
 });

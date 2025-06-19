@@ -2,7 +2,7 @@ import { useAppSelector } from '@/shared/hooks/hooks';
 import { useSortingHistory } from '../../../../hooks/useSortingHistory';
 import cls from './SortedTransactions.module.scss';
 import { Dispatch, memo, SetStateAction, useEffect, useState } from 'react';
-import { getAllCoins, Order } from '@/entities/Portfolio';
+import { getActive, getAllCoins, Order } from '@/entities/Portfolio';
 import { Select } from '@/shared/ui/Select/Select';
 
 interface SortedTransactionsProps {
@@ -11,7 +11,8 @@ interface SortedTransactionsProps {
 }
 
 export const SortedTransactions = memo(({ setSortedOrders }: SortedTransactionsProps) => {
-    const coins = useAppSelector(getAllCoins);
+    const active = useAppSelector(getActive);
+    const coins = useAppSelector((state) => getAllCoins(state, active));
     const [sortByCoin, setSortByCoin] = useState('All');
     const [sortByType, setSortByType] = useState('All');
     const sortedHistory = useSortingHistory(sortByCoin, sortByType);

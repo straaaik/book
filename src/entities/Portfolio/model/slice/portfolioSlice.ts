@@ -3,7 +3,7 @@ import { Portfolio } from '../../types/types';
 
 export interface PortfolioStateType {
     data: Portfolio[];
-    active?: string;
+    active: string;
 }
 
 const initialState: PortfolioStateType = {

@@ -10,7 +10,7 @@ export const getHistory = createAppSelector([getActivePortfolio, (_, coinId?: st
             name: item.name,
             symbol: item.symbol,
             image: item.image,
-            id: item.id,
+            id_coin: item.id,
             portfolio_name: item.portfolio_name,
         });
 

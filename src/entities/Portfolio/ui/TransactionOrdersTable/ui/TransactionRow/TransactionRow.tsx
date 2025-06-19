@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import cls from './TransactionRow.module.scss';
-import { Order } from '@/entities/Portfolio';
 import { ModalAboutTransaction } from '../ModalAboutTransaction/ModalAboutTransaction';
 import { Columns } from '../TransactionOrdersTable/TransactionOrdersTable';
 import { CellsTransactionsInfo } from '../TransactionOrdersTable/ui/TransactionRow/ui/CellsTransactionsInfo/CellsTransactionsInfo';
 import { CellTransactionActions } from '../TransactionOrdersTable/ui/TransactionRow/ui/CellTransactionActions/CellTransactionActions';
+import { Order } from '../../../../model/selectors/getHistory';
 
 interface InfoProps {
     className?: string;
@@ -20,7 +20,7 @@ export const TransactionRow = ({ info, show }: InfoProps) => {
         <>
             <motion.tr role="button" className={cls.row} whileHover={{ backgroundColor: 'var(--bg-secondary-color)' }} onClick={() => setIsOpen(true)}>
                 <CellsTransactionsInfo show={show} info={info} />
-                <CellTransactionActions />
+                <CellTransactionActions info={info} />
             </motion.tr>
             <ModalAboutTransaction symbol={info.symbol} info={info} isOpen={isOpen} onClose={setIsOpen} />
         </>

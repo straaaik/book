@@ -20,7 +20,7 @@ export const TransactionRow = ({ info, show }: InfoProps) => {
         <>
             <motion.tr role="button" className={cls.row} whileHover={{ backgroundColor: 'var(--bg-secondary-color)' }} onClick={() => setIsOpen(true)}>
                 <CellsTransactionsInfo show={show} info={info} />
-                <CellTransactionActions />
+                <CellTransactionActions info={info} />
             </motion.tr>
             <ModalAboutTransaction symbol={info.symbol} info={info} isOpen={isOpen} onClose={setIsOpen} />
         </>

@@ -6,18 +6,18 @@
       "name": "Tether",
       "buy": [
         {
-          "id": "f33492bb-901f-46c6-a9b1-1a541f39f952",
-          "amount": 1000,
+          "id": "5ae72de4-37a7-4d46-b505-9b5ecbad4c3d",
+          "amount": 111,
           "price": 1,
-          "date": "2025-06-12T22:04:02.155Z",
+          "date": "2025-06-19T15:41:28.657Z",
           "fee": 0,
           "notes": ""
         }
       ],
       "sell": [],
-      "holdings_coin": 1000,
+      "holdings_coin": 111,
       "avgPrice": 1,
-      "purchase_price": 1000,
+      "purchase_price": 111,
       "portfolio_name": "Main"
     },
     {
@@ -65,14 +65,14 @@
     {
       "id": "Main",
       "icon": "Helmet",
-      "initial_price": 107040,
-      "price": 107056
+      "initial_price": 106151,
+      "price": 104283
     },
     {
       "id": "Second",
       "icon": "Dragon",
       "initial_price": 1309.44,
-      "price": 1313.16
+      "price": 1281.36
     }
   ]
 }

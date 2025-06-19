@@ -3,8 +3,7 @@ import cls from './TransactionContent.module.scss';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { useLazyState } from '@/shared/hooks/useLazyState';
 import { SortedTransactions } from './ui/SortedTransactions/SortedTransactions';
-import { TransactionOrdersTable } from '../TransactionOrdersTable/TransactionOrdersTable/TransactionOrdersTable';
-import { getHistory } from '@/entities/Portfolio';
+import { getHistory, TransactionOrdersTable } from '@/entities/Portfolio';
 import { LoadingSpinner } from '@/shared/ui/LoadingSpinner/LoadingSpinner';
 
 interface TransactionContentProps {

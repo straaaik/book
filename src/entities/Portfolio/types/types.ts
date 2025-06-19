@@ -1,6 +1,7 @@
 import { CoinsListWithMarketData } from '../../Coin/types/types';
 
 export interface HistoryCoin {
+    id: string;
     amount: number;
     price: number;
     date: string;

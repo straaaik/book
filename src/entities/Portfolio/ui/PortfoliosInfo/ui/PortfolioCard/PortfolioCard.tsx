@@ -26,11 +26,11 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading }: Portfol
         dispatch(portfolioActions.setActive(name));
     };
 
-    if (!portfolio) return null;
-
     if (isLoading) {
         return <Skeleton width={150} height={150} border="12px" />;
     }
+
+    if (!portfolio) return null;
 
     const changesPricePercentage = ((portfolio?.price - portfolio?.initial_price) / portfolio?.initial_price) * 100;
 
