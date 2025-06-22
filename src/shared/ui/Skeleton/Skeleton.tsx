@@ -8,8 +8,8 @@ import { memo } from 'react';
 interface LoadingDataProps {
     className?: string;
     value?: number;
-    height?: number;
-    width?: number;
+    height?: number | string;
+    width?: number | string;
     border?: string;
 }
 
@@ -17,7 +17,7 @@ export const Skeleton = memo(({ className, value = 1, height, width, border }: L
     const skeletonArr = new Array(value).fill(null);
 
     return (
-        <motion.div style={{ position: 'relative' }} className={cls.LoadingDat}>
+        <motion.div style={{ position: 'relative' }} className={cls.LoadingData}>
             {skeletonArr.map((_, i) => (
                 <motion.div
                     key={i}

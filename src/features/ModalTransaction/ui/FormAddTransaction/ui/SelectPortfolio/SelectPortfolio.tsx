@@ -9,9 +9,11 @@ interface SelectPortfolioProps {
 
 export const SelectPortfolio = ({ control }: SelectPortfolioProps) => {
     const { data } = useGetPortfolioNamesQuery();
-    const options = data!.map((item) => {
+    const options = data?.map((item) => {
         return { description: item.id, value: item.id };
     });
+
+    if (!options) return null;
 
     return (
         <Controller
@@ -25,7 +27,13 @@ export const SelectPortfolio = ({ control }: SelectPortfolioProps) => {
                 },
             }}
             render={({ field, fieldState }) => (
-                <Select title="Portfolio" error={fieldState.error?.message} initialValue={field.value} options={options} onChange={field.onChange} />
+                <Select
+                    title="Portfolio"
+                    error={fieldState.error?.message}
+                    selectedValue={field.value}
+                    options={options}
+                    onChange={(option) => field.onChange(option.value)}
+                />
             )}
         />
     );

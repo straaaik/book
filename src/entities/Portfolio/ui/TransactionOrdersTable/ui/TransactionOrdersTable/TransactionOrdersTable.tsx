@@ -47,7 +47,7 @@ export const TransactionOrdersTable = ({ orders, show, onSorted }: HistoryOrders
         <Table
             head={<TransactionSorted setSortingData={onSorted} show={renderColumns} />}
             main={orders?.map((order) => (
-                <TransactionRow show={renderColumns} key={order.date + order.name} info={order} />
+                <TransactionRow show={renderColumns} key={order.id} info={order} />
             ))}
         />
     );

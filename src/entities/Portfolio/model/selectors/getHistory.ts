@@ -2,7 +2,7 @@ import { createAppSelector } from '@/shared/hooks/hooks';
 import { getActivePortfolio } from './getActivePortfolio';
 import { HistoryCoin, Portfolio } from '../../types/types';
 
-export const getHistory = createAppSelector([getActivePortfolio, (_, coinId?: string) => coinId], (portfolio, coinId) => {
+export const getHistory = createAppSelector([getActivePortfolio, (_, coinId?: string) => coinId], ({ portfolio }, coinId) => {
     const merge = (item: Portfolio) => {
         const addOrder = (order: HistoryCoin, type: 'buy' | 'sell') => ({
             ...order,

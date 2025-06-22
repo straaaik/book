@@ -1,13 +1,13 @@
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { CoinActions } from './CoinActions/CoinActions';
 import { CoinInfo } from './CoinInfo/CoinInfo';
-import { CoinName } from './CoinName/CoinName';
+import { CoinName, CoinNameProps } from './CoinName/CoinName';
 
 interface CoinInfoProps {
+    isLoading?: boolean;
     className?: string;
     rank?: number;
     image?: string;
-    name: string;
+    name?: string;
     symbol?: string;
     price?: number;
     change1h?: number;
@@ -19,13 +19,14 @@ interface CoinInfoProps {
     holdings?: [number, number];
     avgPrice?: number;
     profitLoss?: [number, number];
-    id: string;
+    id?: string;
     portfolioName?: string;
     onClick?: (arg: string) => void;
 }
 
 export const CoinCard = (props: CoinInfoProps) => {
     const {
+        isLoading,
         className,
         rank,
         name,
@@ -46,34 +47,66 @@ export const CoinCard = (props: CoinInfoProps) => {
         onClick,
     } = props;
 
-    const keyProps = Object.keys(props) as [keyof CoinInfoProps];
+    const passedPropsInfo = {
+        price: 'price' in props,
+        change1h: 'change1h' in props,
+        change24h: 'change24h' in props,
+        change7d: 'change7d' in props,
+        marketCap: 'marketCap' in props,
+        volume: 'volume' in props,
+        circulatingSupply: 'circulatingSupply' in props,
+        holdings: 'holdings' in props,
+        avgPrice: 'avgPrice' in props,
+        symbol: 'symbol' in props,
+        profitLoss: 'profitLoss' in props,
+    };
 
-    if (keyProps.some((key) => props[key] === undefined)) {
+    const passedPropsName = {
+        portfolioName: 'portfolioName' in props,
+        rank: 'rank' in props,
+        name: 'name' in props,
+        image: 'image' in props,
+        symbol: 'symbol' in props,
+        id: 'id' in props,
+    };
+
+    const propsName: CoinNameProps = {
+        portfolioName: passedPropsName.portfolioName ? portfolioName || '0' : undefined,
+        rank: passedPropsName.rank ? rank || 0 : undefined,
+        name: passedPropsName.name ? name || '0' : undefined,
+        image: passedPropsName.image ? image || '0' : undefined,
+        symbol: passedPropsName.symbol ? symbol || '0' : undefined,
+        id: passedPropsName.id ? id || '0' : undefined,
+    };
+
+    const propsInfo: CoinInfoProps = {
+        price: passedPropsInfo.price ? price || 0 : undefined,
+        change1h: passedPropsInfo.change1h ? change1h || 0 : undefined,
+        change24h: passedPropsInfo.change24h ? change24h || 0 : undefined,
+        change7d: passedPropsInfo.change7d ? change7d || 0 : undefined,
+        marketCap: passedPropsInfo.marketCap ? marketCap || 0 : undefined,
+        volume: passedPropsInfo.volume ? volume || 0 : undefined,
+        circulatingSupply: passedPropsInfo.circulatingSupply ? circulatingSupply || 0 : undefined,
+        holdings: passedPropsInfo.holdings ? holdings || [0, 0] : undefined,
+        avgPrice: passedPropsInfo.avgPrice ? avgPrice || 0 : undefined,
+        profitLoss: passedPropsInfo.profitLoss ? profitLoss || [0, 0] : undefined,
+        symbol: passedPropsInfo.symbol ? symbol || '0' : undefined,
+    };
+
+    if (isLoading) {
         return (
-            <tr>
-                <td style={{ padding: '0 10px' }} colSpan={10}>
-                    <Skeleton height={60} />
-                </td>
+            <tr className={className}>
+                <CoinName {...propsName} isLoading={true} />
+                <CoinInfo {...propsInfo} isLoading={true} />
+                <CoinActions isLoading={true} />
             </tr>
         );
     }
 
     return (
         <tr className={className}>
-            <CoinName onClick={onClick} rank={rank} name={name} image={image} symbol={symbol} id={id} portfolioName={portfolioName} />
-            <CoinInfo
-                price={price}
-                marketCap={marketCap}
-                volume={volume}
-                profitLoss={profitLoss}
-                avgPrice={avgPrice}
-                change1h={change1h}
-                change24h={change24h}
-                change7d={change7d}
-                circulatingSupply={circulatingSupply}
-                holdings={holdings}
-                symbol={symbol}
-            />
+            <CoinName onClick={onClick} {...propsName} />
+            <CoinInfo {...propsInfo} />
             <CoinActions portfolio={Boolean(avgPrice)} coinInfo={{ name, symbol, image, current_price: price, id }} />
         </tr>
     );

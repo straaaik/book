@@ -1,6 +1,6 @@
-import { Order, OrderInfo } from '@/entities/Portfolio';
 import { Dispatch, SetStateAction } from 'react';
 import { Columns } from '../../TransactionOrdersTable';
+import { Order, OrderInfo } from '../../../../../../model/selectors/getHistory';
 import { ParamsType, Sorted } from '@/features/Sorted';
 
 interface TransactionSortedProps {

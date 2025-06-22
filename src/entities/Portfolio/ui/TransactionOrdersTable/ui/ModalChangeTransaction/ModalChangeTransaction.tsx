@@ -10,7 +10,7 @@ import { MyDatePicker } from '@/shared/ui/DatePicker/DatePicker';
 import { TextArea } from '@/shared/ui/TextArea/TextArea';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { IFormChanges } from '../../../../types/types';
-import { useChangeTransactionMutation } from '@/entities/Portfolio/model/endpoints/changeTransaction';
+import { useChangeTransactionMutation } from '../../../../model/endpoints/changeTransaction';
 
 interface ModalChangeTransactionProps {
     isOpen: boolean;

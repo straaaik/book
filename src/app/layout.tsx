@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './styles/global.scss';
 import { Quicksand } from 'next/font/google';
+
 import { ThemeProvider } from 'next-themes';
 import StoreProvider from './config/store/StoreProvider';
 import { Header } from '@/widgets/Header';
@@ -25,6 +26,7 @@ export default function RootLayout({
                         <Header />
                         <ThemeSwitcher />
                         <div className="main">{children}</div>
+                        {/* <Footer /> */}
                     </ThemeProvider>
                 </StoreProvider>
             </body>

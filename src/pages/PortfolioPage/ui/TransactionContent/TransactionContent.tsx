@@ -12,7 +12,10 @@ interface TransactionContentProps {
 
 export const TransactionContent = ({ className }: TransactionContentProps) => {
     const orders = useAppSelector(getHistory);
-    const [sortedOrders, setSortedOrders] = useLazyState(orders || []);
+    // const arr = [];
+    // const or = orders?.slice(0, 20) || [];
+
+    const [sortedOrders, setSortedOrders] = useLazyState();
 
     //TODO обработать ошибку
     if (!orders) return <LoadingSpinner />;

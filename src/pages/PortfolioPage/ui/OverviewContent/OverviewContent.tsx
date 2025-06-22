@@ -9,7 +9,16 @@ import { getActivePortfolio } from '@/entities/Portfolio';
 
 export const OverviewContent = () => {
     const [selectCoin, setSelectCoin] = useState<string | null>(null);
-    const activePortfolio = useAppSelector(getActivePortfolio);
+    const { portfolio, isLoading, error } = useAppSelector(getActivePortfolio);
+
+    if (Boolean(error?.length))
+        return (
+            <div className={cls.OverviewContent}>
+                {error?.map((e, i) => (
+                    <div key={i}>{e.error}</div>
+                ))}
+            </div>
+        );
 
     return (
         <div className={cls.OverviewContent}>
@@ -17,9 +26,9 @@ export const OverviewContent = () => {
                 <CoinHistory setSelectCoin={setSelectCoin} coinId={selectCoin} />
             ) : (
                 <>
-                    <PortfolioChart portfolio={activePortfolio} />
+                    <PortfolioChart isLoading={isLoading} portfolio={portfolio} />
                     <NewTransaction className={cls.btnNewTransaction} />
-                    <CoinTablePortfolio portfolio={activePortfolio} onClick={setSelectCoin} />
+                    <CoinTablePortfolio isLoading={isLoading} portfolio={portfolio} onClick={setSelectCoin} />
                 </>
             )}
         </div>

@@ -5,5 +5,5 @@
 
 {
 "portfolio": [],
-"portfolio_names": []
+"portfolios_info": []
 }

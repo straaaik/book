@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    width: 100%;
+    padding: 50px;
+    background: var(--bg-color);
+    border-top: var(--border);
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.selected {
+    display: flex;
+    width: 300px;
+    gap: 10px;
+}
+
+.info {
+    margin-top: auto;
+}

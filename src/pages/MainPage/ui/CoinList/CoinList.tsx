@@ -6,7 +6,6 @@ import { CoinTableMain } from './ui/CoinTableMain/CoinTableMain';
 import { PaginationMainPage } from './ui/PaginationMainPage/PaginationMainPage';
 import { SelectCountCoins } from './ui/SelectCountCoins/SelectCountCoins';
 import { useState } from 'react';
-import { LoadingSpinner } from '@/shared/ui/LoadingSpinner/LoadingSpinner';
 
 export const CoinList = () => {
     const [page, setPage] = useState(1);
@@ -18,12 +17,10 @@ export const CoinList = () => {
         }
     );
 
-    if (!data || isLoading) return <LoadingSpinner />;
-
     return (
         <div>
             <SelectCountCoins limit={limit} setLimit={setLimit} />
-            <CoinTableMain data={data} />
+            <CoinTableMain isLoading={isLoading} data={data} />
             <PaginationMainPage page={page} setPage={setPage} />
         </div>
     );

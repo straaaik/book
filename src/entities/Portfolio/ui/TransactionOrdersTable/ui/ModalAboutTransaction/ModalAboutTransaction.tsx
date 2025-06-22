@@ -11,9 +11,15 @@ interface ModalAboutTransactionProps {
     onClose: (arg: boolean) => void;
     info: OrderInfo[number];
     symbol?: string;
+    openChangeModal: (arg: boolean) => void;
 }
 //TODO добавить возможность редактирования транзакции, а не только просмотра
-export const ModalAboutTransaction = ({ isOpen, info, onClose, symbol }: ModalAboutTransactionProps) => {
+export const ModalAboutTransaction = ({ isOpen, info, onClose, symbol, openChangeModal }: ModalAboutTransactionProps) => {
+    const onHandlerClick = () => {
+        onClose(false);
+        openChangeModal(true);
+    };
+
     return (
         <Modal className={cls.Content} isOpen={isOpen} onClose={() => onClose(false)} header="Transaction Details">
             <InfoBox className={info.type == 'sell' ? cls.sell : cls.buy} description="Type transaction" value={info.type.toUpperCase()} />
@@ -24,7 +30,7 @@ export const ModalAboutTransaction = ({ isOpen, info, onClose, symbol }: ModalAb
             <InfoBox description="Price Per Coin" value={info.price} type="currency" />
             <InfoBox description="Notes" value={info.notes} />
             <CounterBox className={cls.total} description="Total Spent" value={info.price * info.amount} current="USD" />
-            <Button className={cls.btnChange} theme={ButtonTheme.DANGER}>
+            <Button onClick={onHandlerClick} className={cls.btnChange} theme={ButtonTheme.DANGER}>
                 Change transaction
             </Button>
         </Modal>

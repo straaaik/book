@@ -1,13 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Portfolio } from '../../types/types';
 
+export interface IError {
+    status: string;
+    error: string;
+}
+
 export interface PortfolioStateType {
     data: Portfolio[];
+    isLoading: boolean;
     active: string;
+    error?: IError[];
 }
 
 const initialState: PortfolioStateType = {
     data: [],
+    isLoading: true,
     active: typeof window !== 'undefined' ? localStorage.getItem('activePortfolio') || 'Overview' : 'Overview',
 };
 
@@ -30,6 +38,12 @@ export const portfolioSlice = createSlice({
         },
         updatePortfolio: (state, action) => {
             state.data = action.payload;
+        },
+        setIsLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
         },
     },
 });

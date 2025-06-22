@@ -6,9 +6,10 @@ import { Portfolio } from '@/entities/Portfolio';
 interface PortfolioChartProps {
     className?: string;
     portfolio: Portfolio[];
+    isLoading?: boolean;
 }
 
-export const PortfolioChart = ({ className, portfolio }: PortfolioChartProps) => {
+export const PortfolioChart = ({ className, portfolio, isLoading }: PortfolioChartProps) => {
     const coinName = portfolio?.map((coin) => coin.name);
     const amountCoin = portfolio?.map((coin) => coin.holdings_coin * coin.current_price);
 

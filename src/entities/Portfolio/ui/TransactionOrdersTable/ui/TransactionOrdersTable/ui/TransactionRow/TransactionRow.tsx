@@ -24,7 +24,7 @@ export const TransactionRow = ({ info, show }: InfoProps) => {
                 <CellsTransactionsInfo show={show} info={info} />
                 <CellTransactionActions openChangeModal={setIsOpenChange} info={info} />
             </motion.tr>
-            <ModalAboutTransaction symbol={info.symbol} info={info} isOpen={isOpenAbout} onClose={setIsOpenAbout} />
+            <ModalAboutTransaction symbol={info.symbol} info={info} openChangeModal={setIsOpenChange} isOpen={isOpenAbout} onClose={setIsOpenAbout} />
             <ModalChangeTransaction info={info} symbol={info.symbol} isOpen={isOpenChange} onClose={setIsOpenChange} />
         </>
     );

@@ -1,7 +1,11 @@
 import cls from './CoinInfo.module.scss';
 import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
+import { RenderCell } from './RenderCell';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
-interface CoinInfoProps {
+export interface CoinInfoProps {
+    isLoading?: boolean;
+
     price?: number;
     change1h?: number;
     change24h?: number;
@@ -16,66 +20,49 @@ interface CoinInfoProps {
 }
 
 export const CoinInfo = (props: CoinInfoProps) => {
-    const { price, change1h, change24h, change7d, marketCap, volume, circulatingSupply, holdings, avgPrice, profitLoss, symbol } = props;
+    const { price, change1h, change24h, change7d, marketCap, volume, circulatingSupply, holdings, avgPrice, profitLoss, symbol, isLoading } = props;
+
     return (
         <>
-            {price !== undefined && (
-                <td>
-                    <TextNumber text={price} format="currency" />
-                </td>
-            )}
-            {change1h !== undefined && (
-                <td>
-                    <TextNumber text={change1h} format="percentages" highlight />
-                </td>
-            )}
-            {change24h !== undefined && (
-                <td>
-                    <TextNumber text={change24h} format="percentages" highlight />
-                </td>
-            )}
-            {change7d !== undefined && (
-                <td>
-                    <TextNumber text={change7d} format="percentages" highlight />
-                </td>
-            )}
-            {marketCap !== undefined && (
-                <td>
-                    <TextNumber text={marketCap} format="big" />
-                </td>
-            )}
-            {volume !== undefined && (
-                <td>
-                    <TextNumber text={Number(volume)} format="big" />
-                </td>
-            )}
-            {circulatingSupply !== undefined && (
-                <td>
-                    <TextNumber text={Number(circulatingSupply)} format="big" />
-                </td>
-            )}
+            <RenderCell isLoading={isLoading} value={price} format="currency" />
+            <RenderCell isLoading={isLoading} value={change1h} format="percentages" highlight />
+            <RenderCell isLoading={isLoading} value={change24h} format="percentages" highlight />
+            <RenderCell isLoading={isLoading} value={change7d} format="percentages" highlight />
+            <RenderCell isLoading={isLoading} value={marketCap} format="big" />
+            <RenderCell isLoading={isLoading} value={volume} format="big" />
+            <RenderCell isLoading={isLoading} value={circulatingSupply} format="big" />
             {holdings !== undefined && (
                 <td>
-                    <div className={cls.holdings}>
-                        <TextNumber text={Number(holdings[0])} format="currencyRounded" />
-                        <div className={cls.wrapper}>
-                            <TextNumber text={Number(holdings[1])} />
-                            <span>{symbol}</span>
+                    {isLoading ? (
+                        <div className={cls.holdings}>
+                            <Skeleton width={150} height={25} />
+                            <Skeleton width={150} height={10} />
                         </div>
-                    </div>
+                    ) : (
+                        <div className={cls.holdings}>
+                            <TextNumber text={Number(holdings[0])} format="currencyRounded" />
+                            <div className={cls.wrapper}>
+                                <TextNumber text={Number(holdings[1])} />
+                                <span>{symbol}</span>
+                            </div>
+                        </div>
+                    )}
                 </td>
             )}
-            {avgPrice !== undefined && (
-                <td>
-                    <TextNumber text={Number(avgPrice)} format="currencyRounded" />
-                </td>
-            )}
+            <RenderCell isLoading={isLoading} value={avgPrice} format="currencyRounded" />
             {profitLoss !== undefined && (
                 <td>
-                    <div className={cls.profitLoss}>
-                        <TextNumber className={cls.currency} text={Number(profitLoss[0])} format="currencyRounded" highlight />
-                        <TextNumber className={cls.percentages} text={Number(profitLoss[1])} format="percentages" highlight />
-                    </div>
+                    {isLoading ? (
+                        <div className={cls.profitLoss}>
+                            <Skeleton width={150} height={25} />
+                            <Skeleton width={150} height={10} />
+                        </div>
+                    ) : (
+                        <div className={cls.profitLoss}>
+                            <TextNumber className={cls.currency} text={Number(profitLoss[0])} format="currencyRounded" highlight />
+                            <TextNumber className={cls.percentages} text={Number(profitLoss[1])} format="percentages" highlight />
+                        </div>
+                    )}
                 </td>
             )}
         </>

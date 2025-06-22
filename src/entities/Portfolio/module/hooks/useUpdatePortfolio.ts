@@ -11,22 +11,40 @@ import { getPortfolio } from '../../model/selectors/getPortfolio';
 
 export const useUpdatePortfolio = () => {
     const dispatch = useAppDispatch();
-    const { data: dataPortfolio } = useGetPortfolioQuery();
+    const { data: dataPortfolio, isLoading: isLoadingPortfolio, error: errorPortfolio } = useGetPortfolioQuery();
     const names = dataPortfolio?.map((item) => item.name);
-    const { data: portfolios } = useGetPortfoliosInfoQuery();
+    const { data: dataPortfolios, isLoading: isLoadingPortfolios, error: errorPortfolios } = useGetPortfoliosInfoQuery();
     const activePortfolio = useAppSelector(getActive);
-    const { data: dataCoins } = coinApi.useGetCoinListWithMarketQuery({ names }, { pollingInterval: RELOAD_TIME });
+    const {
+        data: dataCoins,
+        isLoading: isLoadingCoins,
+        error: errorCoins,
+    } = coinApi.useGetCoinListWithMarketQuery({ names }, { pollingInterval: RELOAD_TIME });
     const [updatePortfolioInfo] = useUpdatePortfolioMutation();
     const portfolioState = useAppSelector(getPortfolio);
 
     useEffect(() => {
-        portfolios?.forEach((portfolio) => {
+        const errors = [];
+        if (errorCoins) {
+            errors.push(errorCoins);
+        }
+        if (errorPortfolios) {
+            errors.push(errorPortfolios);
+        }
+        if (errorPortfolio) {
+            errors.push(errorPortfolio);
+        }
+        dispatch(portfolioActions.setError(errors));
+    }, [dispatch, errorCoins, errorPortfolios, errorPortfolio]);
+
+    useEffect(() => {
+        dataPortfolios?.forEach((portfolio) => {
             const coins = portfolioState.filter((coin) => coin.portfolio_name == portfolio.id);
             const price = coins.reduce((acc, coin) => coin.current_price * coin.holdings_coin + acc, 0);
             updatePortfolioInfo({ id: portfolio.id, price });
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [portfolios, portfolioState]);
+    }, [dataPortfolios, portfolioState]);
 
     useEffect(() => {
         const portfolio: Portfolio[] = [];
@@ -42,6 +60,11 @@ export const useUpdatePortfolio = () => {
             }
         });
 
-        dispatch(portfolioActions.updatePortfolio(portfolio));
-    }, [dataPortfolio, dataCoins, dispatch, activePortfolio]);
+        if (isLoadingPortfolio || isLoadingPortfolios || isLoadingCoins) {
+            dispatch(portfolioActions.setIsLoading(true));
+        } else {
+            dispatch(portfolioActions.updatePortfolio(portfolio));
+            dispatch(portfolioActions.setIsLoading(false));
+        }
+    }, [dataPortfolio, dataCoins, dispatch, activePortfolio, isLoadingPortfolio, isLoadingPortfolios, isLoadingCoins]);
 };

@@ -1,46 +1,36 @@
 {
-    "portfolio": [
-        {
-            "id": "tetherMain",
-            "serverId": "tether",
-            "name": "Tether",
-            "buy": [
-                {
-                    "id": "77c2e2c7-64f9-4750-8b5a-6d8be333b93d",
-                    "amount": 999,
-                    "price": 1,
-                    "date": "2025-06-19T17:40:07.766Z",
-                    "fee": 0,
-                    "notes": ""
-                },
-                {
-                    "id": "359d906d-bf76-4fbb-ad88-c0d7e161a7a3",
-                    "amount": 123,
-                    "price": 1,
-                    "date": "2025-06-19T17:40:02.718Z",
-                    "fee": 0,
-                    "notes": "Test"
-                }
-            ],
-            "sell": [],
-            "holdings_coin": 1122,
-            "avgPrice": 1,
-            "purchase_price": 1122,
-            "portfolio_name": "Main"
-        }
-    ],
-    "portfolios_info": [
-        {
-            "id": "Main",
-            "icon": "Helmet",
-            "initial_price": 1122,
-            "price": 1122
-        },
-        {
-            "id": "Second",
-            "icon": "Dragon",
-            "initial_price": 0,
-            "price": 0
-        }
-    ]
+  "portfolio": [
+    {
+      "id": "bitcoinMain",
+      "serverId": "bitcoin",
+      "name": "Bitcoin",
+      "transactions": [
+        "8a81e164-a6de-4ab3-bcbe-856acb67c274"
+      ],
+      "holdings_coin": 1,
+      "avgPrice": 99610,
+      "purchase_price": 99610,
+      "portfolio_name": "Main"
+    }
+  ],
+  "portfolios_info": [
+    {
+      "id": "Main",
+      "icon": "Man",
+      "initial_price": 99610,
+      "price": 99566
+    }
+  ],
+  "transactions": [
+    {
+      "id": "8a81e164-a6de-4ab3-bcbe-856acb67c274",
+      "amount": 1,
+      "price": 99610,
+      "date": "2025-06-22T17:54:51.432Z",
+      "fee": 0,
+      "notes": "",
+      "type": "buy",
+      "coin": "bitcoinMain"
+    }
+  ]
 }
