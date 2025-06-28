@@ -1,4 +1,4 @@
-import { ModalTransaction } from '../../../../../ModalTransaction/ui/ModalTransaction';
+import { ModalTransaction } from '@/entities/Portfolio';
 import { DropDownMenu, DropDownMenuItem } from '@/shared/ui/DropDownMenu';
 import { PiCoins } from 'react-icons/pi';
 

@@ -7,15 +7,24 @@ export const getAllCoins = createAppSelector([getPortfolio, (_, portfolioName: s
         const allCoins = portfolio.map((coin) => ({
             name: coin.name,
             image: coin.image,
+            symbol: coin.symbol,
         }));
 
-        return allCoins;
+        const uniqueCoins = allCoins.reduce((acc, item) => {
+            if (!acc.some((coin) => coin.name === item.name)) {
+                acc.push(item);
+            }
+            return acc;
+        }, [] as typeof allCoins);
+
+        return uniqueCoins;
     } else {
-        const currentPortfolio = portfolio.filter((coin) => coin.portfolio_name == portfolioName);
+        const currentPortfolio = portfolio.filter((coin) => coin.portfolioId == portfolioName);
 
         return currentPortfolio.map((coin) => ({
             name: coin.name,
             image: coin.image,
+            symbol: coin.symbol,
         }));
     }
 });

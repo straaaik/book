@@ -3,27 +3,29 @@ import cls from './PortfolioCard.module.scss';
 import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
 import { motion } from 'motion/react';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { useIcon } from '@/shared/hooks/useIcon';
 import { FC } from 'react';
 import { getActive } from '../../../../model/selectors/getActive';
 import { portfolioActions } from '../../../../model/slice/portfolioSlice';
-import { IPortfoliosInfo } from '../../../../types/types';
+import { PortfolioInfoState } from '../../../../types/types';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { usePortfolioIcon } from '../../../../module/hooks/usePortfolioIcon';
 
 interface PortfolioCardProps {
     className?: string;
-    portfolio?: IPortfoliosInfo;
+    portfolio?: PortfolioInfoState;
     Icon?: FC;
     isLoading?: boolean;
+    onClick?: () => void;
 }
 
-export const PortfolioCard = ({ className, portfolio, Icon, isLoading }: PortfolioCardProps) => {
+export const PortfolioCard = ({ className, portfolio, Icon, isLoading, onClick }: PortfolioCardProps) => {
     const dispatch = useAppDispatch();
     const activePortfolio = useAppSelector(getActive);
-    const PortfolioIcon = useIcon(portfolio?.id || '');
+    const PortfolioIcon = usePortfolioIcon(portfolio?.id || '');
 
     const onHandlerClick = (name: string) => {
         dispatch(portfolioActions.setActive(name));
+        onClick?.();
     };
 
     if (isLoading) {
@@ -32,7 +34,9 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading }: Portfol
 
     if (!portfolio) return null;
 
-    const changesPricePercentage = ((portfolio?.price - portfolio?.initial_price) / portfolio?.initial_price) * 100;
+    const costPortfolio = portfolio.cost;
+
+    const changesPricePercentage = portfolio.profit_loss_percentage;
 
     return (
         <motion.div
@@ -44,7 +48,10 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading }: Portfol
             <div className={cls.main}>
                 <div className={cls.name_Portfolio}>{portfolio?.id}</div>
                 <div className={cls.price_Portfolio}>
-                    <TextNumber text={portfolio?.price} format="currencyRounded" />
+                    <TextNumber text={costPortfolio} format="currencyRounded" />
+                </div>
+                <div className={cls.initialPrice}>
+                    <TextNumber text={portfolio.initialCost} format="currencyRounded" />
                 </div>
                 <div className={cls.price_change_Portfolio}>
                     <TextNumber text={changesPricePercentage} format="percentages" highlight />

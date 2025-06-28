@@ -1,19 +1,18 @@
 import { classNames } from '../../lib/ClassNames/ClassNames';
 import cls from './NavigationMenu.module.scss';
-import { Dispatch, SetStateAction } from 'react';
 import { NavigationButton } from './ui/NavigationButton';
 import { motion } from 'motion/react';
 
-interface ILabels {
+interface ILabels<T> {
     label: string;
-    content: string;
+    content: T;
 }
 
-interface NavigationMenuProps {
+interface NavigationMenuProps<T> {
     className?: string;
     activeContent: string;
-    labels: ILabels[];
-    setContent: Dispatch<SetStateAction<string>>;
+    labels: ILabels<T>[];
+    setContent: (arg: T) => void;
 }
 
 const variantsHover = {
@@ -23,7 +22,7 @@ const variantsHover = {
     // },
 };
 
-export const NavigationMenu = ({ className, labels, activeContent, setContent }: NavigationMenuProps) => {
+export const NavigationMenu = <T,>({ className, labels, activeContent, setContent }: NavigationMenuProps<T>) => {
     return (
         <ul className={classNames(cls.NavigationMenu, {}, [className])}>
             {labels.map((item) => (

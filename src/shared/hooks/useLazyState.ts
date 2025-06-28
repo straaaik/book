@@ -1,3 +1,5 @@
+'use client';
+
 import { Dispatch, SetStateAction, useDeferredValue, useEffect, useState } from 'react';
 
 export const useLazyState = <T>(value: T): [T, Dispatch<SetStateAction<T>>] => {

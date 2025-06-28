@@ -2,20 +2,21 @@ import cls from './CellsTransactionsInfo.module.scss';
 import { TextNumber } from '@/shared/ui/TextNumber/TextNumber';
 import { MdOutlineAttachMoney, MdMoneyOffCsred } from 'react-icons/md';
 import { LANG } from '@/shared/constant/constant';
-import Image from 'next/image';
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
-import { Order } from '@/entities/Portfolio';
-import { useIcon } from '@/shared/hooks/useIcon';
 import { Columns } from '../../../../TransactionOrdersTable';
+import { Transaction } from '../../../../../../../../types/transactionsType';
+import Image from 'next/image';
+import { usePortfolioIcon } from '@/entities/Portfolio';
 
 interface CellsTransactionsInfoProps {
-    info: Order;
+    info: Transaction;
     show: Columns;
 }
 
 export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps) => {
-    const { type, name, image, symbol, portfolio_name, amount, price, fee, notes } = info;
-    const PortfolioIcon = useIcon(portfolio_name);
+    const { type, amount, price, fee, notes, coin, coinName, portfolioId } = info;
+    const PortfolioIcon = usePortfolioIcon(portfolioId);
+
     const orderDate = new Date(info.date).toLocaleString(LANG).split(',');
     const amountPrice = info.amount * info.price;
     const modsType = {
@@ -34,12 +35,21 @@ export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps
                 </td>
             )}
 
-            {show.name && (
+            {show.coin && coin && (
                 <td>
                     <div className={cls.coin_name}>
-                        <Image alt={name} src={image} width={30} height={30} />
-                        <span className={cls.name}>{name}</span>
-                        <span className={cls.symbol}>{symbol}</span>
+                        <Image src={coin?.image} alt={coinName} width={30} height={30} />
+                        <span className={cls.icon}>{coin?.name}</span>
+                        <span className={cls.symbol}>{coin?.symbol}</span>
+                    </div>
+                </td>
+            )}
+
+            {show.portfolioId && (
+                <td>
+                    <div className={cls.portfolio}>
+                        {PortfolioIcon && <PortfolioIcon className={cls.icon} />}
+                        <span className={cls.name}>{portfolioId}</span>
                     </div>
                 </td>
             )}
@@ -53,15 +63,6 @@ export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps
                 </td>
             )}
 
-            {show.portfolio_name && (
-                <td>
-                    <div className={cls.portfolio}>
-                        {PortfolioIcon && <PortfolioIcon className={cls.icon} />}
-                        <span className={cls.name}>{portfolio_name}</span>
-                    </div>
-                </td>
-            )}
-
             {show.amount && (
                 <td>
                     <div className={classNames(cls.amount, modsType, [])}>
@@ -70,7 +71,7 @@ export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps
                         </span>
                         <div className={cls.coins}>
                             <span>{amount}</span>
-                            {symbol?.toUpperCase()}
+                            <span>{coin?.symbol.toUpperCase()}</span>
                         </div>
                     </div>
                 </td>

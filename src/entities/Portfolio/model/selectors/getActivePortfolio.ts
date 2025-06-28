@@ -18,7 +18,7 @@ export const getActivePortfolio = createAppSelector(
         if (active === 'Overview') {
             return { portfolio, isLoading, error: errors };
         } else {
-            const activePortfolio = portfolio.filter((coin) => coin.portfolio_name === active);
+            const activePortfolio = portfolio.filter((coin) => coin.portfolioId === active);
             return { portfolio: activePortfolio, isLoading, error: errors };
         }
     }

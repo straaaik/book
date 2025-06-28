@@ -4,51 +4,49 @@ import { Table } from '@/shared/ui/Table/Table';
 import { TransactionRow } from './ui/TransactionRow/TransactionRow';
 import { TransactionSorted } from './ui/TransactionSorted/TransactionSorted';
 import { Dispatch, SetStateAction } from 'react';
-import { Order, OrderInfo } from '../../../../model/selectors/getHistory';
+import { Transaction } from '../../../../types/transactionsType';
 
 export type ShowType = 'max' | 'mini' | 'more';
 
-export type Columns = Record<keyof Order, boolean>;
+export type Columns = Record<keyof Transaction, boolean>;
 interface HistoryOrdersTableProps {
-    orders: OrderInfo;
+    orders?: Transaction[];
     show?: ShowType;
-    onSorted: Dispatch<SetStateAction<Order[]>>;
+    onSorted?: Dispatch<SetStateAction<Transaction[]>>;
+    isLoading?: boolean;
 }
 
-export const TransactionOrdersTable = ({ orders, show, onSorted }: HistoryOrdersTableProps) => {
+export const TransactionOrdersTable = ({ orders, onSorted, isLoading, show }: HistoryOrdersTableProps) => {
     const renderColumns: Columns = {
         id: true,
         type: true,
-        name: true,
+        coin: true,
+        coinId: true,
         date: true,
-        portfolio_name: true,
         amount: true,
         price: true,
         fee: true,
         notes: true,
-        symbol: true,
-        id_coin: true,
-        image: true,
+        coinName: true,
+        portfolioId: true,
     };
 
-    switch (show) {
-        case 'mini':
-            renderColumns.portfolio_name = false;
-            renderColumns.name = false;
-            break;
-        case 'more':
-            renderColumns.name = false;
-            break;
-        default:
-            break;
+    if (show === 'mini') {
+        renderColumns.coin = false;
+        renderColumns.portfolioId = false;
+    }
+    if (show == 'more') {
+        renderColumns.portfolioId = false;
     }
 
     return (
         <Table
             head={<TransactionSorted setSortingData={onSorted} show={renderColumns} />}
-            main={orders?.map((order) => (
-                <TransactionRow show={renderColumns} key={order.id} info={order} />
-            ))}
+            main={
+                isLoading
+                    ? new Array(5).fill(null).map((order, i) => <TransactionRow isLoading={true} show={renderColumns} key={i} info={order} />)
+                    : orders?.map((order) => <TransactionRow show={renderColumns} key={order.id} info={order} />)
+            }
         />
     );
 };

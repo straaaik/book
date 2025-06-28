@@ -1,8 +1,10 @@
 import cls from './PortfolioName.module.scss';
 import { Button } from '@/shared/ui/Button/Button';
 import Image from 'next/image';
-import { useIcon } from '@/shared/hooks/useIcon';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { useAppDispatch } from '@/shared/hooks/hooks';
+import { usePortfolioIcon } from '@/entities/Portfolio';
+import { portfolioPageActions } from '@/pages/PortfolioPage/model/slice/portfolioPageSlice';
 
 interface PortfolioNameProps {
     image?: string;
@@ -11,15 +13,17 @@ interface PortfolioNameProps {
     id?: string;
     rank?: number;
     portfolioName: string;
-    onClick?: (id: string) => void;
     isLoading?: boolean;
 }
 
-export const PortfolioName = ({ rank, name, symbol, portfolioName, image, onClick, isLoading }: PortfolioNameProps) => {
-    const PortfolioIcon = useIcon(portfolioName);
+export const PortfolioName = ({ rank, name, symbol, portfolioName, image, isLoading }: PortfolioNameProps) => {
+    const PortfolioIcon = usePortfolioIcon(portfolioName);
+    const dispatch = useAppDispatch();
 
     const onCoinClick = () => {
-        if (name) onClick?.(name);
+        if (name && symbol && image) {
+            dispatch(portfolioPageActions.changeSelectedCoin({ name, symbol, image, id: name + portfolioName }));
+        }
     };
 
     if (isLoading)

@@ -7,14 +7,14 @@ export interface IError {
 }
 
 export interface PortfolioStateType {
-    data: Portfolio[];
+    coins: Portfolio[];
     isLoading: boolean;
     active: string;
     error?: IError[];
 }
 
 const initialState: PortfolioStateType = {
-    data: [],
+    coins: [],
     isLoading: true,
     active: typeof window !== 'undefined' ? localStorage.getItem('activePortfolio') || 'Overview' : 'Overview',
 };
@@ -25,11 +25,11 @@ export const portfolioSlice = createSlice({
     reducers: {
         addCoinToPortfolio: (state, action: PayloadAction<Portfolio>) => {
             const coin = action.payload;
-            if (state.data.find((item) => item.name === coin.name)) {
-                const id = state.data.findIndex((item) => item.name === coin.name);
-                state.data[id] = coin;
+            if (state.coins.find((item) => item.name === coin.name)) {
+                const id = state.coins.findIndex((item) => item.name === coin.name);
+                state.coins[id] = coin;
             } else {
-                state.data.push(coin);
+                state.coins.push(coin);
             }
         },
         setActive: (state, action: PayloadAction<string>) => {
@@ -37,7 +37,7 @@ export const portfolioSlice = createSlice({
             localStorage.setItem('activePortfolio', action.payload);
         },
         updatePortfolio: (state, action) => {
-            state.data = action.payload;
+            state.coins = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;

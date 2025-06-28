@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfolioEmpty.module.scss';
-import { NewTransaction } from '../OverviewContent/ui/NewTransaction/NewTransaction';
 import { PiHandCoinsDuotone } from 'react-icons/pi';
+import { NewTransaction } from '@/entities/Portfolio';
 
 interface PortfolioEmptyProps {
     className?: string;

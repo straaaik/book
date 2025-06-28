@@ -1,25 +1,17 @@
-'use client';
-
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfoliosInfo.module.scss';
 import { CreatePortfolio } from '../../CreatePortfolio/ui/CreatePortfolio';
 import { PortfolioCard } from './PortfolioCard/PortfolioCard';
-import { useGetPortfoliosInfoQuery } from '../../../model/endpoints/getPortfolioInfo';
-import { OVERVIEW } from '@/shared/constant/constant';
-import { IPortfoliosInfo } from '../../../types/types';
+
+import { usePortfolioInfo } from '../../../module/hooks/usePortfolioInfo';
 
 interface PortfolioInfoProps {
     className?: string;
+    onClick?: () => void;
 }
 
-export const PortfoliosInfo = ({ className }: PortfolioInfoProps) => {
-    const { data: portfolioInfo, isLoading } = useGetPortfoliosInfoQuery();
-
-    const overviewInfo: IPortfoliosInfo = {
-        id: OVERVIEW,
-        initial_price: portfolioInfo?.reduce((acc, item) => item?.initial_price + acc, 0) || 0,
-        price: portfolioInfo?.reduce((acc, item) => item?.price + acc, 0) || 0,
-    };
+export const PortfoliosInfo = ({ className, onClick }: PortfolioInfoProps) => {
+    const { portfolio: portfolioInfo, isLoading, overview } = usePortfolioInfo();
 
     if (isLoading)
         return (
@@ -32,10 +24,10 @@ export const PortfoliosInfo = ({ className }: PortfolioInfoProps) => {
 
     return (
         <div className={classNames(cls.PortfolioInfo, {}, [className])}>
-            <PortfolioCard portfolio={overviewInfo} />
+            <PortfolioCard onClick={onClick} portfolio={overview} />
             <div className={cls.userPortfolio}>
                 {portfolioInfo?.map((item) => (
-                    <PortfolioCard portfolio={item} key={item.id} />
+                    <PortfolioCard onClick={onClick} portfolio={item} key={item.id} />
                 ))}
             </div>
 

@@ -21,7 +21,7 @@ interface CoinInfoProps {
     profitLoss?: [number, number];
     id?: string;
     portfolioName?: string;
-    onClick?: (arg: string) => void;
+    onClick?: () => void;
 }
 
 export const CoinCard = (props: CoinInfoProps) => {
@@ -44,7 +44,6 @@ export const CoinCard = (props: CoinInfoProps) => {
         avgPrice,
         profitLoss,
         portfolioName,
-        onClick,
     } = props;
 
     const passedPropsInfo = {
@@ -105,7 +104,7 @@ export const CoinCard = (props: CoinInfoProps) => {
 
     return (
         <tr className={className}>
-            <CoinName onClick={onClick} {...propsName} />
+            <CoinName {...propsName} />
             <CoinInfo {...propsInfo} />
             <CoinActions portfolio={Boolean(avgPrice)} coinInfo={{ name, symbol, image, current_price: price, id }} />
         </tr>

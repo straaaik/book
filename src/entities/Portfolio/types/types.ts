@@ -1,4 +1,5 @@
 import { CoinsListWithMarketData } from '../../Coin/types/types';
+import { Transaction, TransactionType } from './transactionsType';
 
 export interface IFormChanges {
     quantity: string;
@@ -6,62 +7,73 @@ export interface IFormChanges {
     price: string;
     notes: string;
     date: Date;
-    coinId: string;
     transactionId: string;
-    type: 'buy' | 'sell';
 }
 
-export interface HistoryCoin {
+export interface PortfolioInfoState {
     id: string;
-    amount: number;
-    price: number;
-    date: string;
-    fee: number;
-    notes: string;
+    icon?: string;
+    initialCost: number;
+    cost: number;
+    profit_loss_percentage: number;
 }
 
-interface HistoryCapital {
-    capital: number;
-    date: Date;
+export interface Portfolio extends Coin, CoinsListWithMarketData {
+    holdings_coin: number;
+    purchase_price: number;
+    avgPrice: number;
+    profit_loss: number;
+    profit_loss_percentage: number;
 }
-
-export type Portfolio = Coin & CoinsListWithMarketData;
 
 export interface IPortfoliosInfo {
     id: string;
     icon?: string;
-    price: number;
-    initial_price: number;
+    coins?: Coin[];
+    transactions?: Transaction[];
+}
+
+export interface IPortfoliosInfoCoins {
+    id: string;
+    icon?: string;
+    coins: Coin[];
+}
+
+export interface IPortfoliosInfoTransactions {
+    id: string;
+    icon?: string;
+    transactions: Transaction[];
 }
 
 export interface Coin {
     id: string;
     serverId: string;
     name: string;
-    buy: HistoryCoin[];
-    sell: HistoryCoin[];
-    holdings_coin: number;
-    purchase_price: number;
-    avgPrice: number;
-    profit_loss: number;
-    portfolio_name: string;
+    image: string;
+    symbol: string;
+    portfolioId: string;
+    transactions?: Transaction[];
 }
 
-export interface UpdateCoin {
-    id: string;
+export interface IUpdatePortfolio {
+    coinId: string;
+    serverId: string;
+    transactionId: string;
     name: string;
     amount: number;
     price: number;
     date: Date;
     notes: string;
     fee: number;
-    options: 'buy' | 'sell';
-    portfolio_name: string;
+    options: TransactionType;
+    portfolioId: string;
+    image: string;
+    symbol: string;
 }
 
-export interface PortfoliosStatus {
+export interface CoinDescription {
     id: string;
-    capital: number;
-    initial_capital: number;
-    history_capital: HistoryCapital[];
+    name: string;
+    symbol: string;
+    image: string;
 }

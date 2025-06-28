@@ -1,30 +1,30 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Columns } from '../../TransactionOrdersTable';
-import { Order, OrderInfo } from '../../../../../../model/selectors/getHistory';
-import { ParamsType, Sorted } from '@/features/Sorted';
+import { Transaction } from '../../../../../../types/transactionsType';
+import { ParamsType, Sorted } from '../../../../../../../../features/Sorted';
 
 interface TransactionSortedProps {
     show: Columns;
-    setSortingData?: Dispatch<SetStateAction<Order[]>>;
+    setSortingData?: Dispatch<SetStateAction<Transaction[]>>;
 }
 
 export const TransactionSorted = ({ show, setSortingData }: TransactionSortedProps) => {
-    const filterParams = (key: ParamsType<Order>) => {
+    const filterParams = (key: ParamsType<Transaction>) => {
         const sortKey = key.sortKey;
 
         return show[sortKey] == true ? true : false;
     };
 
-    const params: ParamsType<OrderInfo[number]>[] = [
+    const params: ParamsType<Transaction>[] = [
         { sortKey: 'type', text: 'Type' },
-        { sortKey: 'name', text: 'Coin' },
+        { sortKey: 'coin', text: 'Name' },
+        { sortKey: 'portfolioId', text: 'Portfolio' },
         { sortKey: 'date', text: 'Date' },
-        { sortKey: 'portfolio_name', text: 'Portfolio' },
         { sortKey: 'amount', text: 'Amount' },
         { sortKey: 'price', text: 'Price' },
         { sortKey: 'fee', text: 'Fee' },
         { sortKey: 'notes', text: 'Notes' },
     ];
 
-    return <Sorted<OrderInfo[number]> setSortingData={setSortingData} params={params.filter(filterParams)} />;
+    return <Sorted<Transaction> setSortingData={setSortingData} params={params.filter(filterParams)} />;
 };

@@ -3,7 +3,6 @@
 import cls from './ModalChangeTransaction.module.scss';
 import { memo } from 'react';
 import { Modal } from '@/shared/ui/Modal/Modal';
-import { OrderInfo } from '../../../../model/selectors/getHistory';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { Input } from '@/shared/ui/Input/Input';
 import { MyDatePicker } from '@/shared/ui/DatePicker/DatePicker';
@@ -11,15 +10,15 @@ import { TextArea } from '@/shared/ui/TextArea/TextArea';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { IFormChanges } from '../../../../types/types';
 import { useChangeTransactionMutation } from '../../../../model/endpoints/changeTransaction';
+import { Transaction } from '../../../../types/transactionsType';
 
 interface ModalChangeTransactionProps {
     isOpen: boolean;
     onClose: (arg: boolean) => void;
-    info: OrderInfo[number];
-    symbol?: string;
+    info: Transaction;
 }
 
-export const ModalChangeTransaction = memo(({ isOpen, info, onClose, symbol }: ModalChangeTransactionProps) => {
+export const ModalChangeTransaction = memo(({ isOpen, info, onClose }: ModalChangeTransactionProps) => {
     const [changeTransaction] = useChangeTransactionMutation();
     const { handleSubmit, control } = useForm<IFormChanges>({
         defaultValues: {
@@ -28,8 +27,6 @@ export const ModalChangeTransaction = memo(({ isOpen, info, onClose, symbol }: M
             notes: info.notes,
             price: info.price.toString(),
             quantity: info.amount.toString(),
-            coinId: info.id_coin,
-            type: info.type,
             transactionId: info.id,
         },
     });
@@ -44,7 +41,7 @@ export const ModalChangeTransaction = memo(({ isOpen, info, onClose, symbol }: M
                 <Controller
                     name="quantity"
                     control={control}
-                    render={({ field }) => <Input info="Quantity" value={field.value} badge={symbol?.toUpperCase()} onChange={field.onChange} />}
+                    render={({ field }) => <Input info="Quantity" value={field.value} badge={info.coin?.symbol?.toUpperCase()} onChange={field.onChange} />}
                 />
                 <Controller
                     name="fee"

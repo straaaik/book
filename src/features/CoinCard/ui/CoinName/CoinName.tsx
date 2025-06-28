@@ -10,12 +10,11 @@ export interface CoinNameProps {
     id?: string;
     rank?: number;
     portfolioName?: string;
-    onClick?: (id: string) => void;
 }
 
-export const CoinName = ({ name, image, symbol, id, rank, portfolioName, onClick, isLoading }: CoinNameProps) => {
+export const CoinName = ({ name, image, symbol, id, rank, portfolioName, isLoading }: CoinNameProps) => {
     return portfolioName ? (
-        <PortfolioName isLoading={isLoading} id={id} portfolioName={portfolioName} image={image} name={name} symbol={symbol} rank={rank} onClick={onClick} />
+        <PortfolioName isLoading={isLoading} id={id} portfolioName={portfolioName} image={image} name={name} symbol={symbol} rank={rank} />
     ) : (
         <MainName isLoading={isLoading} id={id} image={image} name={name} symbol={symbol} rank={rank} />
     );

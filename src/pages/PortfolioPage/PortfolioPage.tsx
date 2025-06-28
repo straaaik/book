@@ -1,26 +1,21 @@
 'use client';
 
-import { useUpdatePortfolio } from '@/entities/Portfolio';
-import { useState } from 'react';
+import { TransactionHistory, useUpdatePortfolio } from '@/entities/Portfolio';
 import { PortfolioNav } from './ui/PortfolioNav/PortfolioNav';
+import { Content } from './types/types';
+import { useAppSelector } from '@/shared/hooks/hooks';
+import { getContent } from './model/selectors/portfolioPageSelectors';
 import { OverviewContent } from './ui/OverviewContent/OverviewContent';
-import { TransactionContent } from './ui/TransactionContent/TransactionContent';
-
-export enum Content {
-    TRANSACTION = 'Transaction',
-    OVERVIEW = 'Overview',
-}
 
 export const PortfolioPage = () => {
     useUpdatePortfolio(); // Обновление портфолио
-    const [content, setContent] = useState<string>(Content.OVERVIEW);
-
+    const content = useAppSelector(getContent);
     const renderContent = () => {
         switch (content) {
             case Content.OVERVIEW:
                 return <OverviewContent />;
             case Content.TRANSACTION:
-                return <TransactionContent />;
+                return <TransactionHistory />;
             default:
                 return <div>ERROR</div>;
         }
@@ -28,7 +23,7 @@ export const PortfolioPage = () => {
 
     return (
         <div>
-            <PortfolioNav setContent={setContent} content={content} />
+            <PortfolioNav content={content} />
             {renderContent()}
         </div>
     );

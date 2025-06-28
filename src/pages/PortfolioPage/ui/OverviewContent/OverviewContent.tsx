@@ -1,14 +1,13 @@
-import { useState } from 'react';
 import { CoinTablePortfolio } from './ui/CoinTablePortfolio/CoinTablePortfolio';
-import { NewTransaction } from './ui/NewTransaction/NewTransaction';
 import { PortfolioChart } from './ui/PortfolioChart/PortfolioChart';
 import cls from './OverviewContent.module.scss';
-import { CoinHistory } from './ui/CoinHistory/CoinHistory';
 import { useAppSelector } from '@/shared/hooks/hooks';
-import { getActivePortfolio } from '@/entities/Portfolio';
+import { CoinHistory, NewTransaction } from '@/entities/Portfolio';
+import { getSelectedCoin } from '../../model/selectors/portfolioPageSelectors';
+import { getActivePortfolio } from '@/entities/Portfolio/model/selectors/getActivePortfolio';
 
 export const OverviewContent = () => {
-    const [selectCoin, setSelectCoin] = useState<string | null>(null);
+    const selectCoin = useAppSelector(getSelectedCoin);
     const { portfolio, isLoading, error } = useAppSelector(getActivePortfolio);
 
     if (Boolean(error?.length))
@@ -23,12 +22,12 @@ export const OverviewContent = () => {
     return (
         <div className={cls.OverviewContent}>
             {selectCoin ? (
-                <CoinHistory setSelectCoin={setSelectCoin} coinId={selectCoin} />
+                <CoinHistory coinInfo={selectCoin} />
             ) : (
                 <>
                     <PortfolioChart isLoading={isLoading} portfolio={portfolio} />
                     <NewTransaction className={cls.btnNewTransaction} />
-                    <CoinTablePortfolio isLoading={isLoading} portfolio={portfolio} onClick={setSelectCoin} />
+                    <CoinTablePortfolio isLoading={isLoading} portfolio={portfolio} />
                 </>
             )}
         </div>

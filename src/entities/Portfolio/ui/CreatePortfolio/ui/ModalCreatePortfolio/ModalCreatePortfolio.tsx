@@ -3,12 +3,12 @@ import cls from './ModalCreatePortfolio.module.scss';
 import { Modal } from '@/shared/ui/Modal/Modal';
 import { Input } from '@/shared/ui/Input/Input';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { useCreateNewPortfolioMutation } from '../../../../model/endpoints/createNewPortfolio';
+import { useCreateNewPortfolioMutation } from '../../../../model/endpoints/updatePortfolio/createNewPortfolio';
 import { PortfolioCard } from '../../../PortfoliosInfo/ui/PortfolioCard/PortfolioCard';
 import { SelectIcon } from '../SelectIcon/SelectIcon';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Icons } from '@/shared/assets/icon/PortfolioIcons';
-import { useGetPortfoliosInfoQuery } from '../../../../model/endpoints/getPortfolioInfo';
+import { useGetPortfoliosWithTransactionsQuery } from '../../../../model/endpoints/getPortfolios';
 
 interface ModalCreatePortfolioProps {
     className?: string;
@@ -23,7 +23,7 @@ interface IForm {
 
 export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreatePortfolioProps) => {
     const [createPortfolio] = useCreateNewPortfolioMutation();
-    const { data } = useGetPortfoliosInfoQuery();
+    const { data } = useGetPortfoliosWithTransactionsQuery();
 
     const { handleSubmit, control, watch, reset } = useForm<IForm>({
         defaultValues: {

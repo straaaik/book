@@ -1,4 +1,4 @@
-import { Portfolio } from '@/entities/Portfolio';
+import { Portfolio } from '@/entities/Portfolio/types/types';
 import { Sorted } from '@/features/Sorted';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -12,7 +12,7 @@ export const PortfolioSorted = ({ setSortedData }: { setSortedData: Dispatch<Set
                     text: 'Name',
                 },
                 {
-                    sortKey: 'portfolio_name',
+                    sortKey: 'portfolioId',
                     text: 'Portfolio',
                 },
                 {

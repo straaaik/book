@@ -1,3 +1,5 @@
+'use client';
+
 import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { useState } from 'react';
 import { ModalCreatePortfolio } from './ModalCreatePortfolio/ModalCreatePortfolio';

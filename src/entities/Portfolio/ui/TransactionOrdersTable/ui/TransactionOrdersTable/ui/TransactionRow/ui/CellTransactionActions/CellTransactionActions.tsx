@@ -1,15 +1,15 @@
 'use client';
 
 import { FiEdit3 } from 'react-icons/fi';
-import { useDeleteTransactionMutation } from '../../../../../../../../model/endpoints/deleteTransaction';
-import { Order } from '../../../../../../../../model/selectors/getHistory';
 import { DropDownMenu, DropDownMenuItem } from '@/shared/ui/DropDownMenu';
 import { MdDeleteForever } from 'react-icons/md';
+import { useDeleteTransactionMutation } from '../../../../../../../../model/endpoints/deleteTransaction';
+import { Transaction } from '../../../../../../../../types/transactionsType';
 
-export const CellTransactionActions = ({ info, openChangeModal }: { info: Order; openChangeModal: (arg: boolean) => void }) => {
-    const [deleteCoin] = useDeleteTransactionMutation();
+export const CellTransactionActions = ({ openChangeModal, info }: { openChangeModal: (arg: boolean) => void; info: Transaction }) => {
+    const [deleteTransaction] = useDeleteTransactionMutation();
     const onDeleteClick = () => {
-        deleteCoin({ coinId: info.id_coin, transactionId: info.id, type: info.type });
+        deleteTransaction(info.id);
     };
 
     const onChangeClick = () => {

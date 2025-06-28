@@ -1,17 +1,15 @@
 import cls from './CoinTablePortfolio.module.scss';
 import { PortfolioSorted } from './ui/PortfolioSorted/PortfolioSorted';
 import { Table } from '@/shared/ui/Table/Table';
-import { Portfolio } from '@/entities/Portfolio';
 import { useLazyState } from '@/shared/hooks/useLazyState';
 import { CoinCard } from '@/features/CoinCard';
-
-interface IPortfolioList {
-    onClick?: (arg: string) => void;
+import { Portfolio } from '@/entities/Portfolio/types/types';
+interface ICoinTablePortfolio {
     portfolio: Portfolio[];
     isLoading?: boolean;
 }
 
-export const CoinTablePortfolio = ({ onClick, portfolio, isLoading }: IPortfolioList) => {
+export const CoinTablePortfolio = ({ portfolio, isLoading }: ICoinTablePortfolio) => {
     const [sortedPortfolio, setSortedPortfolio] = useLazyState(portfolio);
 
     return (
@@ -27,7 +25,6 @@ export const CoinTablePortfolio = ({ onClick, portfolio, isLoading }: IPortfolio
                           .map((item, i) => (
                               <CoinCard
                                   isLoading={true}
-                                  onClick={onClick}
                                   id={item}
                                   portfolioName={item}
                                   key={i}
@@ -45,9 +42,8 @@ export const CoinTablePortfolio = ({ onClick, portfolio, isLoading }: IPortfolio
                           ))
                     : sortedPortfolio?.map((item) => (
                           <CoinCard
-                              onClick={onClick}
                               id={item.id}
-                              portfolioName={item.portfolio_name}
+                              portfolioName={item.portfolioId}
                               key={item.id}
                               name={item.name}
                               symbol={item.symbol}

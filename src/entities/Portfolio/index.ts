@@ -1,26 +1,15 @@
+export { baseApi } from './model/api/api';
+export { portfolioReducer } from './model/slice/portfolioSlice';
+
 export { TransactionOrdersTable } from './ui/TransactionOrdersTable/ui/TransactionOrdersTable/TransactionOrdersTable';
 export { CreatePortfolio } from './ui/CreatePortfolio/ui/CreatePortfolio';
+export { CoinHistory } from './ui/CoinHistory/CoinHistory';
+export { TransactionHistory } from './ui/TransactionHistory/TransactionHistory';
+export { PortfoliosInfo } from './ui/PortfoliosInfo/ui/PortfoliosInfo';
+export { NewTransaction } from './ui/NewTransaction/NewTransaction';
+export { ModalTransaction } from './ui/ModalTransaction/ModalTransaction';
 
 export { useUpdatePortfolio } from './module/hooks/useUpdatePortfolio';
-
-export { baseApi } from './model/api/api';
-
-export { useCreateNewPortfolioMutation } from './model/endpoints/createNewPortfolio';
+export { usePortfolioIcon } from './module/hooks/usePortfolioIcon';
 export { useDeleteCoinMutation } from './model/endpoints/deleteCoin';
-export { useUpdateCoinToPortfolioMutation } from './model/endpoints/updateCoinToPortfolio';
-export {
-    useGetCoinForIdQuery,
-    useGetPortfolioInfoForIdQuery as useGetPortfolioNamesForIdQuery,
-    useGetPortfoliosInfoQuery as useGetPortfolioNamesQuery,
-    useGetPortfolioQuery,
-} from './model/endpoints/getPortfolioInfo';
-
-export { getActive } from './model/selectors/getActive';
-export { getActivePortfolio } from './model/selectors/getActivePortfolio';
-export { getHistory } from './model/selectors/getHistory';
-export { getPortfolio } from './model/selectors/getPortfolio';
-export { portfolioActions, portfolioReducer } from './model/slice/portfolioSlice';
-export { getAllCoins } from './model/selectors/getAllCoins';
-
-export type { Portfolio, Coin, IPortfoliosInfo as IPortfolioNames, HistoryCoin } from './types/types';
-export type { OrderInfo, Order } from './model/selectors/getHistory';
+export { useGetPortfolioQuery } from './model/endpoints/getPortfolios';
