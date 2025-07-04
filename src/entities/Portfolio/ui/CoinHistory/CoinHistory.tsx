@@ -17,7 +17,7 @@ interface CoinHistoryProps {
 
 export const CoinHistory = memo(({ className, coinInfo, onClick }: CoinHistoryProps) => {
     const { data: coin, isLoading } = useGetTransactionForCoinQuery(coinInfo.id);
-    const [sortedOrders, setSortedOrders] = useLazyState(coin || []);
+    const [sortedOrders, setSortedOrders] = useLazyState(coin);
 
     if (isLoading || !sortedOrders) {
         return (
@@ -37,7 +37,9 @@ export const CoinHistory = memo(({ className, coinInfo, onClick }: CoinHistoryPr
                 <IoChevronBackCircle />
             </Button>
             <TransactionOrdersTable
-                title={<Header isLoading={isLoading} image={coinInfo.image} name={coinInfo.name} symbol={coinInfo.symbol} />}
+                title={
+                    <Header isLoading={isLoading} image={coinInfo.image} name={coinInfo.name} symbol={coinInfo.symbol} portfolioName={coinInfo.portfolioName} />
+                }
                 isLoading={isLoading}
                 show="mini"
                 onSorted={setSortedOrders}

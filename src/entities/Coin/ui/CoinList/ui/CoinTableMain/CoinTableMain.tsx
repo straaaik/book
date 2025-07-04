@@ -11,7 +11,7 @@ interface CoinTableMainProps {
 }
 
 export const CoinTableMain = ({ data, isLoading }: CoinTableMainProps) => {
-    const [sortedData, setSortedData] = useLazyState<CoinsListWithMarketData[]>(data || []);
+    const [sortedData, setSortedData] = useLazyState<CoinsListWithMarketData>(data);
 
     return (
         <Table

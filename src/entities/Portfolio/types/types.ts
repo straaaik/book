@@ -76,4 +76,5 @@ export interface CoinDescription {
     name: string;
     symbol: string;
     image: string;
+    portfolioName: string;
 }

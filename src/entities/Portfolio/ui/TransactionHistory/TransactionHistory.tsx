@@ -15,7 +15,7 @@ interface TransactionHistoryProps {
 export const TransactionHistory = ({ className }: TransactionHistoryProps) => {
     const activePortfolio = useAppSelector(getActive);
     const { data: orders, isFetching } = useGetTransactionByPortfolioWithCoinQuery(activePortfolio);
-    const [sortedOrders, setSortedOrders] = useLazyState(orders || []);
+    const [sortedOrders, setSortedOrders] = useLazyState(orders);
 
     if (!sortedOrders.length || isFetching)
         return (

@@ -35,17 +35,17 @@ export const RowCoinTable = memo(({ className, coinInfo, isLoading }: RowCoinTab
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_1h_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_1h_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_1h_in_currency} format="percentages" highlight color />}
             />
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_24h_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_24h_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_24h_in_currency} format="percentages" highlight color />}
             />
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_7d_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_7d_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_7d_in_currency} format="percentages" highlight color />}
             />
             <RenderCell isLoading={isLoading} value={coinInfo?.market_cap} content={<TextNumber text={coinInfo?.market_cap} format="big" />} />
             <RenderCell isLoading={isLoading} value={coinInfo?.total_volume} content={<TextNumber text={coinInfo?.total_volume} format="big" />} />

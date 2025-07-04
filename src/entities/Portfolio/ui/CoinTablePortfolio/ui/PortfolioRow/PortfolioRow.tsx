@@ -18,7 +18,7 @@ export const PortfolioRow = memo(({ coinInfo, isLoading, onClick }: PortfolioRow
     const PortfolioIcon = usePortfolioIcon(coinInfo?.portfolioId || '');
 
     const onCoinClick = () => {
-        if (coinInfo) onClick?.({ id: coinInfo.id, image: coinInfo.image, name: coinInfo.name, symbol: coinInfo.symbol });
+        if (coinInfo) onClick?.({ id: coinInfo.id, image: coinInfo.image, name: coinInfo.name, symbol: coinInfo.symbol, portfolioName: coinInfo.portfolioId });
     };
 
     const holdingsCoinPrice = coinInfo ? coinInfo?.holdings_coin * coinInfo?.current_price : 0;
@@ -50,17 +50,17 @@ export const PortfolioRow = memo(({ coinInfo, isLoading, onClick }: PortfolioRow
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_1h_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_1h_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_1h_in_currency} format="percentages" highlight color />}
             />
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_24h_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_24h_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_24h_in_currency} format="percentages" highlight color />}
             />
             <RenderCell
                 isLoading={isLoading}
                 value={coinInfo?.price_change_percentage_7d_in_currency}
-                content={<TextNumber text={coinInfo?.price_change_percentage_7d_in_currency} format="percentages" highlight />}
+                content={<TextNumber text={coinInfo?.price_change_percentage_7d_in_currency} format="percentages" highlight color />}
             />
             <RenderCell
                 isLoading={isLoading}
@@ -81,8 +81,8 @@ export const PortfolioRow = memo(({ coinInfo, isLoading, onClick }: PortfolioRow
                 value={coinInfo?.holdings_coin}
                 content={
                     <div className={cls.profitLoss}>
-                        <TextNumber className={cls.currency} text={Number(coinInfo?.profit_loss)} format="currencyRounded" highlight />
-                        <TextNumber className={cls.percentages} text={Number(coinInfo?.profit_loss_percentage)} format="percentages" highlight />
+                        <TextNumber className={cls.currency} text={Number(coinInfo?.profit_loss)} format="currencyRounded" color />
+                        <TextNumber className={cls.percentages} text={Number(coinInfo?.profit_loss_percentage)} format="percentages" highlight color />
                     </div>
                 }
             />

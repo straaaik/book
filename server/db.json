@@ -7,6 +7,14 @@
       "portfolioId": "First portfolio",
       "serverId": "ethereum",
       "symbol": "eth"
+    },
+    {
+      "id": "BitcoinSecond",
+      "image": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+      "name": "Bitcoin",
+      "portfolioId": "Second",
+      "serverId": "bitcoin",
+      "symbol": "btc"
     }
   ],
   "portfolios": [
@@ -19,6 +27,11 @@
       "id": "Second",
       "icon": "Helmet",
       "coins": "Second"
+    },
+    {
+      "id": "Three",
+      "icon": "Helmet",
+      "coins": "Three"
     }
   ],
   "transactions": [
@@ -33,6 +46,18 @@
       "price": 2548.02,
       "type": "buy",
       "portfolioId": "First portfolio"
+    },
+    {
+      "id": "589fae3d-b552-4a67-9a23-5b8bdfa3acc8",
+      "amount": 1,
+      "coinName": "Bitcoin",
+      "date": "2025-07-04T14:43:53.300Z",
+      "coinId": "BitcoinSecond",
+      "fee": 0,
+      "notes": "",
+      "price": 107978,
+      "type": "buy",
+      "portfolioId": "Second"
     }
   ]
 }

@@ -12,7 +12,7 @@ interface IPortfolioList {
 export const Table = ({ head, main, className, classNameContainer, title }: IPortfolioList) => {
     return (
         <div className={classNames(cls.container, {}, [classNameContainer])}>
-            {title && <h1 className={cls.title}>{title}</h1>}
+            {title && <div className={cls.title}>{title}</div>}
             <div className={cls.wrapper}>
                 <table className={classNames(cls.Table, {}, [className])}>
                     <thead className={cls.tableHead}>{head}</thead>

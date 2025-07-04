@@ -12,7 +12,7 @@ interface CoinTablePortfolioProps {
 }
 
 export const CoinTablePortfolio = ({ onClick, portfolio, isLoading }: CoinTablePortfolioProps) => {
-    const [sortedPortfolio, setSortedPortfolio] = useLazyState(portfolio || []);
+    const [sortedPortfolio, setSortedPortfolio] = useLazyState(portfolio);
 
     return (
         <Table

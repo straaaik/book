@@ -24,8 +24,10 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading, onClick }
     const PortfolioIcon = usePortfolioIcon(portfolio?.id || '');
 
     const onHandlerClick = (name: string) => {
+        dispatch(portfolioActions.setIsLoading(true));
         dispatch(portfolioActions.setActive(name));
         onClick?.();
+        dispatch(portfolioActions.setIsLoading(false));
     };
 
     if (isLoading) {
@@ -54,7 +56,7 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading, onClick }
                     <TextNumber text={portfolio.initialCost} format="currencyRounded" />
                 </div>
                 <div className={cls.price_change_Portfolio}>
-                    <TextNumber text={changesPricePercentage} format="percentages" highlight />
+                    <TextNumber text={changesPricePercentage} format="percentages" highlight color />
                 </div>
             </div>
 
