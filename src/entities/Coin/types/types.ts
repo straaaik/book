@@ -166,7 +166,7 @@ export interface CoinByID {
     }[];
 }
 
-export interface CoinList {
+export interface ICoinList {
     id: string;
     symbol: string;
     name: string;

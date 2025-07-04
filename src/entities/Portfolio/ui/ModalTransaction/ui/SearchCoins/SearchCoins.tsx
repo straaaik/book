@@ -3,9 +3,9 @@ import { Input } from '@/shared/ui/Input/Input';
 import cls from './SearchCoins.module.scss';
 import { useState } from 'react';
 import { useDebounceSearch } from '@/shared/hooks/useDebounceSearch';
-import { CoinsListWithMarketData } from '@/entities/Coin';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Coins } from './ui/Coins/Coins';
+import { CoinsListWithMarketData } from '../../../../../Coin/types/types';
 
 interface SelectCoinProps {
     className?: string;

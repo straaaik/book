@@ -1,0 +1,10 @@
+.Area {
+    border-radius: 12px;
+    border: var(--border);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}

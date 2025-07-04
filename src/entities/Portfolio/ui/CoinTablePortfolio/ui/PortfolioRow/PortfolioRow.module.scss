@@ -1,0 +1,56 @@
+.PortfolioRow {
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .symbol {
+        text-transform: uppercase;
+        color: var(--secondary-color);
+    }
+
+    .icon_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+
+        .icon {
+            height: 30px;
+            width: 30px;
+            fill: var(--inverted-bg-color);
+        }
+
+        span {
+            margin-top: -5px;
+            background-color: var(--bg-color);
+        }
+    }
+
+    .holdings {
+        .wrapper {
+            color: var(--secondary-color);
+            font-size: 12px;
+        }
+
+        span {
+            text-transform: uppercase;
+            margin-left: 5px;
+        }
+    }
+
+    .profitLoss {
+        display: inline-flex;
+        flex-direction: column;
+
+        .currency::before {
+            content: none;
+        }
+
+        .percentages {
+            font-size: 12px;
+        }
+    }
+}

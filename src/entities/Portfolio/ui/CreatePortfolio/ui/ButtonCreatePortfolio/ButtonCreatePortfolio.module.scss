@@ -2,7 +2,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border: 1px dotted var(--bg-secondary-color);
+    border: var(--border);
+    box-shadow: var(--shadow);
     width: 150px;
     height: 150px;
     border-radius: 12px;

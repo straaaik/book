@@ -1,1 +1,1 @@
-export { CoinDetailsPage as default } from '@/pages/CoinDetailsPage/CoinDetailsPage';
+export { CoinDetailsPage as default } from '@/myPages/CoinDetailsPage/CoinDetailsPage';

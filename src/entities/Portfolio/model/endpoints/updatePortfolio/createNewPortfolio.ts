@@ -13,7 +13,7 @@ const createNewPortfolio = baseApi.injectEndpoints({
                         id,
                         icon,
                         coins: id,
-                    } as IPortfoliosInfo,
+                    },
                 });
 
                 return { data: update.data as IPortfoliosInfo };

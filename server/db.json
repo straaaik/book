@@ -1,76 +1,38 @@
 {
   "coins": [
     {
-      "id": "TetherMain",
-      "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
-      "name": "Tether",
-      "portfolioId": "Main",
-      "serverId": "tether",
-      "symbol": "usdt"
-    },
-    {
-      "id": "TetherSecond",
-      "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
-      "name": "Tether",
-      "portfolioId": "Second",
-      "serverId": "tether",
-      "symbol": "usdt"
-    },
-    {
-      "id": "BitcoinSecond",
-      "image": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
-      "name": "Bitcoin",
-      "portfolioId": "Second",
-      "serverId": "bitcoin",
-      "symbol": "btc"
+      "id": "EthereumFirst portfolio",
+      "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+      "name": "Ethereum",
+      "portfolioId": "First portfolio",
+      "serverId": "ethereum",
+      "symbol": "eth"
     }
   ],
   "portfolios": [
     {
-      "id": "Main",
-      "icon": "Man"
+      "id": "First portfolio",
+      "icon": "Dragon",
+      "coins": "First portfolio"
     },
     {
       "id": "Second",
-      "icon": "Dragon"
+      "icon": "Helmet",
+      "coins": "Second"
     }
   ],
   "transactions": [
     {
-      "id": "fbe80596-8e92-4a37-85d2-57a1e5a790a1",
-      "amount": 10,
-      "coinName": "Tether",
-      "date": "2025-06-28T12:20:02.281Z",
-      "coinId": "TetherMain",
+      "id": "e3989209-eb0b-46c6-8e2a-5b1cde76e0ca",
+      "amount": 1,
+      "coinName": "Ethereum",
+      "date": "2025-07-04T07:40:44.189Z",
+      "coinId": "EthereumFirst portfolio",
       "fee": 0,
       "notes": "",
-      "price": 1,
+      "price": 2548.02,
       "type": "buy",
-      "portfolioId": "Main"
-    },
-    {
-      "id": "cdf8fb08-ad54-47e2-92ae-6c70676bbf91",
-      "amount": 10,
-      "coinName": "Tether",
-      "date": "2025-06-28T12:20:17.337Z",
-      "coinId": "TetherSecond",
-      "fee": 0,
-      "notes": "",
-      "price": 0.5,
-      "type": "buy",
-      "portfolioId": "Second"
-    },
-    {
-      "id": "cc1c89dd-d62a-425a-9419-8e1b93131698",
-      "amount": 0.5,
-      "coinName": "Bitcoin",
-      "date": "2025-06-28T12:32:57.294Z",
-      "coinId": "BitcoinSecond",
-      "fee": 0,
-      "notes": "",
-      "price": 27821,
-      "type": "buy",
-      "portfolioId": "Second"
+      "portfolioId": "First portfolio"
     }
   ]
 }

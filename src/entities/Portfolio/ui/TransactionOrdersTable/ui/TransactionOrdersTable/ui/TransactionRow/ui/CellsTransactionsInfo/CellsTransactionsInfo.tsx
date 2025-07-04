@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import { Columns } from '../../../../TransactionOrdersTable';
 import { Transaction } from '../../../../../../../../types/transactionsType';
 import Image from 'next/image';
-import { usePortfolioIcon } from '@/entities/Portfolio';
+import { usePortfolioIcon } from '../../../../../../../../module/hooks/usePortfolioIcon';
 
 interface CellsTransactionsInfoProps {
     info: Transaction;
@@ -15,6 +15,7 @@ interface CellsTransactionsInfoProps {
 
 export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps) => {
     const { type, amount, price, fee, notes, coin, coinName, portfolioId } = info;
+
     const PortfolioIcon = usePortfolioIcon(portfolioId);
 
     const orderDate = new Date(info.date).toLocaleString(LANG).split(',');
@@ -71,7 +72,7 @@ export const CellsTransactionsInfo = ({ info, show }: CellsTransactionsInfoProps
                         </span>
                         <div className={cls.coins}>
                             <span>{amount}</span>
-                            <span>{coin?.symbol.toUpperCase()}</span>
+                            <span>{coin?.symbol.toLocaleUpperCase()}</span>
                         </div>
                     </div>
                 </td>

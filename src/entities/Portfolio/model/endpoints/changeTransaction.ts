@@ -16,7 +16,7 @@ const changeTransaction = baseApi.injectEndpoints({
                 },
             }),
 
-            invalidatesTags: ['Transactions'],
+            invalidatesTags: ['Transactions', 'Portfolios'],
         }),
     }),
 });

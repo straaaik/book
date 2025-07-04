@@ -2,8 +2,8 @@ import { classNames } from '@/shared/lib/ClassNames/ClassNames';
 import cls from './PortfoliosInfo.module.scss';
 import { CreatePortfolio } from '../../CreatePortfolio/ui/CreatePortfolio';
 import { PortfolioCard } from './PortfolioCard/PortfolioCard';
-
 import { usePortfolioInfo } from '../../../module/hooks/usePortfolioInfo';
+import { CreatePortfolioPage } from '../../CreatePortfolioPage/CreatePortfolioPage';
 
 interface PortfolioInfoProps {
     className?: string;
@@ -13,7 +13,7 @@ interface PortfolioInfoProps {
 export const PortfoliosInfo = ({ className, onClick }: PortfolioInfoProps) => {
     const { portfolio: portfolioInfo, isLoading, overview } = usePortfolioInfo();
 
-    if (isLoading)
+    if (isLoading) {
         return (
             <div className={classNames(cls.PortfolioInfo, {}, [className])}>
                 <PortfolioCard isLoading={true} />
@@ -21,6 +21,11 @@ export const PortfoliosInfo = ({ className, onClick }: PortfolioInfoProps) => {
                 <PortfolioCard isLoading={true} />
             </div>
         );
+    }
+
+    if (!portfolioInfo?.length) {
+        return <CreatePortfolioPage />;
+    }
 
     return (
         <div className={classNames(cls.PortfolioInfo, {}, [className])}>
@@ -32,7 +37,7 @@ export const PortfoliosInfo = ({ className, onClick }: PortfolioInfoProps) => {
             </div>
 
             <div className={cls.btn_wrapper}>
-                <CreatePortfolio className={cls.btnAdd} />
+                <CreatePortfolio />
             </div>
         </div>
     );

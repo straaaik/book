@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Columns } from '../../TransactionOrdersTable';
 import { Transaction } from '../../../../../../types/transactionsType';
-import { ParamsType, Sorted } from '../../../../../../../../features/Sorted';
+import { ParamsType, Sorted } from '../../../../../../../../shared/ui/Table/ui/Sorted';
 
 interface TransactionSortedProps {
     show: Columns;

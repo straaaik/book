@@ -5,6 +5,7 @@ import { TransactionRow } from './ui/TransactionRow/TransactionRow';
 import { TransactionSorted } from './ui/TransactionSorted/TransactionSorted';
 import { Dispatch, SetStateAction } from 'react';
 import { Transaction } from '../../../../types/transactionsType';
+import cls from './TransactionOrdersTable.module.scss';
 
 export type ShowType = 'max' | 'mini' | 'more';
 
@@ -14,9 +15,10 @@ interface HistoryOrdersTableProps {
     show?: ShowType;
     onSorted?: Dispatch<SetStateAction<Transaction[]>>;
     isLoading?: boolean;
+    title?: React.ReactNode;
 }
 
-export const TransactionOrdersTable = ({ orders, onSorted, isLoading, show }: HistoryOrdersTableProps) => {
+export const TransactionOrdersTable = ({ orders, onSorted, isLoading, show, title }: HistoryOrdersTableProps) => {
     const renderColumns: Columns = {
         id: true,
         type: true,
@@ -41,6 +43,8 @@ export const TransactionOrdersTable = ({ orders, onSorted, isLoading, show }: Hi
 
     return (
         <Table
+            title={title}
+            classNameContainer={cls.TransactionOrdersTable}
             head={<TransactionSorted setSortingData={onSorted} show={renderColumns} />}
             main={
                 isLoading

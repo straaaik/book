@@ -1,4 +1,6 @@
 .Table {
+    // min-height: 500px;
+
     th,
     td {
         text-align: center;
@@ -9,6 +11,10 @@
     th {
         text-align: center;
         padding-bottom: 10px;
+    }
+
+    .footer {
+        height: 30px;
     }
 }
 
@@ -33,9 +39,10 @@
     border-bottom: (var(--border));
     padding: 20px;
     background-color: var(--bg-secondary-color);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .container {
     border-radius: 12px;
-    overflow: hidden;
 }

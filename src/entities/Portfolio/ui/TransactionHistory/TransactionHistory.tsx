@@ -5,8 +5,8 @@ import { TransactionOrdersTable } from '../TransactionOrdersTable/ui/Transaction
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { getActive } from '../../model/selectors/getActive';
 import { OVERVIEW } from '@/shared/constant/constant';
-import { SortedTransactions } from './ui/SortedTransactions/SortedTransactions';
 import { useGetTransactionByPortfolioWithCoinQuery } from '../../model/endpoints/getTransactions';
+import { Header } from './ui/Header/Header';
 
 interface TransactionHistoryProps {
     className?: string;
@@ -17,18 +17,21 @@ export const TransactionHistory = ({ className }: TransactionHistoryProps) => {
     const { data: orders, isFetching } = useGetTransactionByPortfolioWithCoinQuery(activePortfolio);
     const [sortedOrders, setSortedOrders] = useLazyState(orders || []);
 
-    if (!sortedOrders || isFetching)
+    if (!sortedOrders.length || isFetching)
         return (
             <div className={classNames(cls.TransactionHistory, {}, [className])}>
-                <SortedTransactions setSortedOrders={setSortedOrders} />
-                <TransactionOrdersTable isLoading={true} show="max" />
+                <TransactionOrdersTable title={<Header setSortedOrders={setSortedOrders} />} isLoading={true} show="max" />
             </div>
         );
 
     return (
         <div className={classNames(cls.TransactionHistory, {}, [className])}>
-            <SortedTransactions setSortedOrders={setSortedOrders} />
-            <TransactionOrdersTable onSorted={setSortedOrders} show={activePortfolio === OVERVIEW ? 'max' : 'more'} orders={sortedOrders} />
+            <TransactionOrdersTable
+                title={<Header setSortedOrders={setSortedOrders} />}
+                onSorted={setSortedOrders}
+                show={activePortfolio === OVERVIEW ? 'max' : 'more'}
+                orders={sortedOrders}
+            />
         </div>
     );
 };

@@ -8,7 +8,7 @@ const deleteTransaction = baseApi.injectEndpoints({
                 url: `/transactions/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Transactions'],
+            invalidatesTags: ['Transactions', 'Portfolios'],
         }),
     }),
 });

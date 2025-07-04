@@ -1,5 +1,5 @@
 import { ParamValue } from 'next/dist/server/request/params';
-import { CoinsListWithMarketData, ParamsCoinsListWithMarketData, CoinByID, CoinList, SearchCoinResponse } from '../../types/types';
+import { CoinsListWithMarketData, ParamsCoinsListWithMarketData, CoinByID, ICoinList, SearchCoinResponse } from '../../types/types';
 import { coinGeckoApi } from '../api/api';
 
 export const coinApi = coinGeckoApi.injectEndpoints({
@@ -13,7 +13,7 @@ export const coinApi = coinGeckoApi.injectEndpoints({
         getCoin: create.query<CoinByID, ParamValue>({
             query: (id) => `coins/${id}`,
         }),
-        getCoinList: create.query<CoinList[], void>({
+        getCoinList: create.query<ICoinList[], void>({
             query: () => 'coins/list',
         }),
         searchCoins: create.query<SearchCoinResponse, string>({

@@ -40,7 +40,7 @@ export const PortfolioCard = ({ className, portfolio, Icon, isLoading, onClick }
 
     return (
         <motion.div
-            animate={{ border: activePortfolio == portfolio?.id ? '1px dotted var(--warn-color)' : '1px dotted var(--bg-secondary-color)' }}
+            animate={{ border: activePortfolio == portfolio?.id ? '2px solid var(--warn-color)' : '1px dotted var(--bg-secondary-color)' }}
             whileHover={{ backgroundColor: 'var(--bg-secondary-color)' }}
             onClick={() => onHandlerClick(portfolio.id)}
             className={classNames(cls.PortfolioCard, {}, [className])}

@@ -4,10 +4,10 @@ const deleteCoin = baseApi.injectEndpoints({
     endpoints: (create) => ({
         deleteCoin: create.mutation<void, string>({
             query: (id) => ({
-                url: `/coins/${id}`,
+                url: `/coins/${id}?_dependent=transactions`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Coins', 'Transactions'],
+            invalidatesTags: ['Coins', 'Transactions', 'Portfolios'],
         }),
     }),
 });

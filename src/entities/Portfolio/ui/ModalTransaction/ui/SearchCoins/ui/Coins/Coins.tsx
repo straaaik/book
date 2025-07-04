@@ -2,10 +2,11 @@ import cls from './Coins.module.scss';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import Image from 'next/image';
 import { ResponseType } from '@/shared/hooks/useDebounceSearch';
-import { coinApi, CoinsListWithMarketData } from '@/entities/Coin';
 import { NotFoundResult } from '@/shared/ui/NotFoundResult/NotFoundResult';
 import { ListChildComponentProps } from 'react-window';
 import { LazyList } from '@/shared/ui/LazyList/LazyList';
+import { coinApi } from '../../../../../../../Coin/model/endpoints/getCoinInfo';
+import { CoinsListWithMarketData } from '../../../../../../../Coin/types/types';
 
 interface CoinsProps {
     setChooseCoin: (arg: CoinsListWithMarketData) => void;

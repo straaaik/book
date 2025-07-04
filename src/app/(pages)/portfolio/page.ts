@@ -1,1 +1,1 @@
-export { PortfolioPage as default } from '@/pages/PortfolioPage/PortfolioPage';
+export { PortfolioPage as default } from '@/myPages/PortfolioPage/PortfolioPage';

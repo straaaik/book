@@ -1,0 +1,16 @@
+.PortfolioChart {
+    display: grid;
+    gap: 25px;
+    width: 100%;
+    // border: var(--border);
+    // box-shadow: var(--shadow);
+    // padding: 20px;
+    // border-radius: 12px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+}
+
+.doughnut {
+    grid-column: 2;
+    grid-row: 1/3;
+}

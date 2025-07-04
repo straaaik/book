@@ -44,7 +44,11 @@ export const ModalCreatePortfolio = ({ className, isOpen, onClose }: ModalCreate
     return (
         <Modal isOpen={isOpen} onClose={onClose} header="Create portfolio">
             <form className={classNames(cls.ModalCreatePortfolio, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
-                <PortfolioCard className={cls.example} portfolio={{ id: value, initial_price: 0, price: 0 }} Icon={icon?.icon} />
+                <PortfolioCard
+                    className={cls.example}
+                    portfolio={{ id: value, cost: 19821, initialCost: 1000, profit_loss_percentage: 19821 / 100 }}
+                    Icon={icon?.icon}
+                />
                 <Controller
                     name="value"
                     control={control}

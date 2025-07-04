@@ -1,0 +1,21 @@
+.PortfolioEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .icon {
+        font-size: 400px;
+    }
+
+    .title {
+        font-size: 46px;
+        font-weight: 900;
+    }
+
+    .description {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: var(--secondary-color);
+    }
+}

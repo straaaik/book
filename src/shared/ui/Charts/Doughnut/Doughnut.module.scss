@@ -1,10 +1,38 @@
 .Doughnut {
-    width: 500px;
-    height: 500px;
     border-radius: 12px;
-    background-color: var(--bg-secondary-color);
+    border: var(--border);
+    box-shadow: var(--shadow);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+}
+
+.wrapperDoughnut {
+    width: 400px;
+    height: 400px;
+}
+
+.wrapperLabels {
+    width: 50%;
     padding: 20px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .container_name {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .colorBox {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
 }
